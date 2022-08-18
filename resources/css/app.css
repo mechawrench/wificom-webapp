@@ -1,0 +1,7 @@
+@import '../../vendor/filament/forms/dist/module.esm.css';
+@import '../../node_modules/tippy.js/dist/tippy.css';
+@import '../../node_modules/tippy.js/themes/light.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
