@@ -115,62 +115,6 @@ class RealtimeBattles extends Page
         return 0;
     }
 
-    public function stop_rtbs()
-    {
-        // Get host wifi device
-        $realtime_battles = RealtimeBattle::where('user_id', auth()->id())->get();
-
-        foreach ($realtime_battles as $realtime_battle) {
-            $message_data = [
-                'digirom' => null,
-                'application_id' => 1,
-                'hide_output' => false,
-                'topic' => $realtime_battle->topic,
-                'topic_action' => 'unsubscribe',
-            ];
-
-            // Lookup WifiDevice by UUID
-            if ($realtime_battle->opponent_id != null) {
-                $opponent = User::where('id', $realtime_battle->opponent_id)->first();
-                // TODO: Make mqtt setup a function
-                $mqtt = new \PhpMqtt\Client\MqttClient(config('mqtt-client.connections.default.host'), config('mqtt-client.connections.default.port'));
-
-                $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-                    ->setUsername(config('mqtt-client.connections.default.connection_settings.auth.username'))
-                    ->setPassword(config('mqtt-client.connections.default.connection_settings.auth.password'))
-                    ->setConnectTimeout(3)
-                    ->setUseTls(true)
-                    ->setTlsSelfSignedAllowed(true);
-
-                $mqtt->connect($connectionSettings, true);
-                $mqtt->publish($opponent->name.'/f/'.$opponent->uuid.'-'.$realtime_battle->opponent_com_uuid.'/wificom-input', json_encode($message_data));
-                sleep(2);
-            }
-
-            // TODO: Make mqtt setup a function
-            $mqtt = new \PhpMqtt\Client\MqttClient(config('mqtt-client.connections.default.host'), config('mqtt-client.connections.default.port'));
-
-            $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
-                ->setUsername(config('mqtt-client.connections.default.connection_settings.auth.username'))
-                ->setPassword(config('mqtt-client.connections.default.connection_settings.auth.password'))
-                ->setConnectTimeout(3)
-                ->setUseTls(true)
-                ->setTlsSelfSignedAllowed(true);
-
-            $mqtt->connect($connectionSettings, true);
-            $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$realtime_battle->initiator_com_uuid.'/wificom-input', json_encode($message_data));
-
-            // Delete mqtt_acl for topic where matches $this->current_rtb_model->topic
-            \App\Models\MqttAcl::where('topic', $realtime_battle->user->name.'/f/'.$message_data['topic'])->delete();
-
-            $realtime_battle->delete();
-
-            sleep(2);
-        }
-
-        return $this->redirect('/realtime-battles');
-    }
-
     public function accept_rtb()
     {
         $this->successMessageAccept = '';

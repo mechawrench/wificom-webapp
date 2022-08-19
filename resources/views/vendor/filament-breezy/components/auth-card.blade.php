@@ -15,6 +15,10 @@
 
         {{ $this->modal }}
         <x-filament::footer />
+        <div class="text-center">
+            <a href="/terms" class="text-gray-600 dark:text-gray-400">Terms and Conditions</a> |
+            <a href="/privacy" class="text-gray-600 dark:text-gray-400">Privacy Policy</a>
+        </div>
     </div>
 
     @livewire('notifications')
