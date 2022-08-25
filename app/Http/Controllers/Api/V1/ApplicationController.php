@@ -72,7 +72,7 @@ class ApplicationController extends Controller
             ->setTlsSelfSignedAllowed(true);
 
         $mqtt->connect($connectionSettings, true);
-        $mqtt->publish($device->user->email.'/f/'.$device->user->uuid.'-'.$device->uuid.'/wificom-input', json_encode($message_data));
+        $mqtt->publish($device->user->name.'/f/'.$device->user->uuid.'-'.$device->uuid.'/wificom-input', json_encode($message_data));
 
         return response()->json(['device' => $device->only('uuid', 'device_name', 'pending_digirom', 'last_ping_at', 'last_used_at', 'last_code_sent_at')], 200);
     }
