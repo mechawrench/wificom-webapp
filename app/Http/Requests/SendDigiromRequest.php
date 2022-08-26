@@ -35,7 +35,7 @@ class SendDigiromRequest extends FormRequest
             'device_uuid' => 'required|string|size:16',
             'application_uuid' => 'required|string|size:16',
             'comment' => 'nullable|string|max:255',
-            'digirom' => 'required|string|regex:/^[vV][1-2](-([0-9A-Fa-f@]{4,5})){1,10}$/',
+            'digirom' => 'required|string',
         ];
     }
 }
