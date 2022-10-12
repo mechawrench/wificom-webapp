@@ -79,14 +79,6 @@
                     {{ $current_rtb_model->invite_code ?? 'No Invite Code Yet' }}
                 </div>
             </div>
-
-
-
-        </div>
-        <div class="pt-5 text-right">
-                <x-filament::button class="w-1/4" wire:click="stop_rtbs">
-                    Quit All Realtime Battles
-                </x-filament::button>
         </div>
     </x-filament::card>
 
