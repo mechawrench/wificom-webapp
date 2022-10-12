@@ -98,7 +98,8 @@
 
                 @endif
 
-            @else
+    @if(config('filament-breezy.enable_2fa'))
+        <x-filament::hr />
 
                 <p class="text-lg font-medium text-gray-900 dark:text-white">{{ __('filament-breezy::default.profile.2fa.not_enabled.title') }}</p>
                 {{ __('filament-breezy::default.profile.2fa.not_enabled.description') }}
@@ -121,25 +122,59 @@
                                     {{ __('filament-breezy::default.profile.2fa.actions.confirm_finish') }}
                                 </x-filament::button>
 
-                                <x-filament::button color="secondary" wire:click="disableTwoFactor">
-                                    {{ __('filament-breezy::default.profile.2fa.actions.cancel_setup') }}
-                                </x-filament::button>
-                            </div>
+                    @if ($this->showing_two_factor_recovery_codes)
+                        <hr class="my-3"/>
+                        <p>{{ __('filament-breezy::default.profile.2fa.enabled.store_codes') }}</p>
+                        <div class="space-y-2">
+                            @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
+                                <span class="inline-flex items-center p-2 rounded-full text-xs font-medium bg-gray-100 text-gray-800">{{ $code }}</span>
+                            @endforeach
                         </div>
-                    </form>
+                        {{$this->getCachedAction('regenerate2fa')}}
+
+                    @endif
+
                 @else
                     <div class="text-right">
                         {{$this->getCachedAction('enable2fa')}}
                     </div>
                 @endif
-            </x-slot>
-        </x-filament::card>
+                <x-slot name="footer">
+                    @if($this->user->has_enabled_two_factor && $this->user->has_confirmed_two_factor)
+                        <div class="flex items-center justify-between">
+                            <x-filament::button color="secondary" wire:click="toggleRecoveryCodes">
+                                {{$this->showing_two_factor_recovery_codes ? __('filament-breezy::default.profile.2fa.enabled.hide_codes') :__('filament-breezy::default.profile.2fa.enabled.show_codes')}}
+                            </x-filament::button>
+                            {{$this->getCachedAction('disable2fa')}}
+                        </div>
+                    @elseif($this->user->has_enabled_two_factor)
+                        <form wire:submit.prevent="confirmTwoFactor">
+                            <div class="flex items-center justify-between">
+                                <div>{{$this->confirmTwoFactorForm}}</div>
+                                <div class="mt-5">
+                                    <x-filament::button type="submit">
+                                        {{ __('filament-breezy::default.profile.2fa.actions.confirm_finish') }}
+                                    </x-filament::button>
 
-    </x-filament-breezy::grid-section>
+                                    <x-filament::button color="secondary" wire:click="disableTwoFactor">
+                                        {{ __('filament-breezy::default.profile.2fa.actions.cancel_setup') }}
+                                    </x-filament::button>
+                                </div>
+                            </div>
+                        </form>
+                    @else
+                        <div class="text-right">
+                            {{$this->getCachedAction('enable2fa')}}
+                        </div>
+                    @endif
+                </x-slot>
+            </x-filament::card>
+
+        </x-filament-breezy::grid-section>
     @endif
 
     @if(config('filament-breezy.enable_sanctum'))
-    <x-filament::hr />
+        <x-filament::hr />
 
     <x-filament-breezy::grid-section class="mt-8">
 
@@ -155,10 +190,10 @@
 
             <form wire:submit.prevent="createApiToken" class="col-span-2 sm:col-span-1 mt-5 md:mt-0">
 
-                <x-filament::card>
-                    @if($plain_text_token)
-                    <input type="text" disabled @class(['w-full py-1 px-3 rounded-lg bg-gray-100 border-gray-200',' dark:bg-gray-900 dark:border-gray-700'=>config('filament.dark_mode')]) name="plain_text_token" value="{{$plain_text_token}}" />
-                    @endif
+                    <x-filament::card>
+                        @if($plain_text_token)
+                            <input type="text" disabled @class(['w-full py-1 px-3 rounded-lg bg-gray-100 border-gray-200',' dark:bg-gray-900 dark:border-gray-700'=>config('filament.dark_mode')]) name="plain_text_token" value="{{$plain_text_token}}" />
+                        @endif
 
                     {{$this->createApiTokenForm}}
 
@@ -170,7 +205,7 @@
                 </x-filament::card>
             </form>
 
-            <x-filament::hr />
+                <x-filament::hr />
 
             @livewire(\JeffGreco13\FilamentBreezy\Http\Livewire\BreezySanctumTokens::class)
 
