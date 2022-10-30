@@ -164,9 +164,7 @@ class RealtimeBattles extends Page
     public function retryHost()
     {
         $wifi_device  = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
-        $rtb = RealtimeBattle::where('invite_code', $this->invite_code)->first();
-
-        $this->hostAccept($wifi_device, $rtb);
+        $this->hostAccept($wifi_device, $this->current_rtb_model);
     }
 
     public function guestAccept()
@@ -207,7 +205,7 @@ class RealtimeBattles extends Page
     }
 
     public function hostAccept($wifi_device, $rtb)
-    {
+    { ;
         $message_data = [
             'digirom' => null,
             'application_id' => 1,
