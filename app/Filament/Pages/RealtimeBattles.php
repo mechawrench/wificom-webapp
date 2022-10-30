@@ -172,6 +172,18 @@ class RealtimeBattles extends Page
         $model = RealtimeBattle::where('invite_code', $this->invite_code)
             ->first();
 
+        if(!$model) {
+            $this->errorMessage = 'Invalid invite code or already used';
+
+            return;
+        }
+
+        if($model->opponent_id && $model->opponent_id != auth()->id()) {
+            $this->errorMessage = 'Invalid invite code or already used';
+
+            return;
+        }
+
         $message_data = [
             'digirom' => null,
             'application_id' => 1,
