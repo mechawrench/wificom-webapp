@@ -169,6 +169,9 @@ class RealtimeBattles extends Page
 
     public function guestAccept()
     {
+        $this->successMessageAccept = '';
+        $this->errorMessage = '';
+
         $model = RealtimeBattle::where('invite_code', $this->invite_code)
             ->first();
 
