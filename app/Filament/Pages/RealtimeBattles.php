@@ -163,7 +163,10 @@ class RealtimeBattles extends Page
 
     public function retryHost()
     {
-        $this->hostAccept($this->current_rtb_model->wifiDevice, $this->current_rtb_model);
+        $wifi_device  = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
+        $rtb = RealtimeBattle::where('invite_code', $this->invite_code)->first();
+
+        $this->hostAccept($wifi_device, $rtb);
     }
 
     public function guestAccept()
