@@ -10,6 +10,8 @@
     class="antialiased bg-gray-100 filament js-focus-visible"
 >
     <head>
+        <script src="//unpkg.com/alpinejs" defer></script>
+
         {{ \Filament\Facades\Filament::renderHook('head.start') }}
 
         <meta charset="utf-8">

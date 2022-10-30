@@ -9,20 +9,17 @@
 
         <title>{{ config('app.name') }}</title>
 
-
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Styles -->
         <style>[x-cloak] { display: none !important; }</style>
         @livewireStyles
-
-        <!-- Scripts -->
-        @livewireScripts
-        @stack('scripts')
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     </head>
 
     <body class="antialiased">
         {{ $slot }}
     </body>
+    <!-- Scripts -->
+    @livewireScripts
+    @stack('scripts')
+
 </html>
