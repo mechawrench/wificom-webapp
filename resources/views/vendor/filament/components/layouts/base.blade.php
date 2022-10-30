@@ -10,8 +10,6 @@
     class="antialiased bg-gray-100 filament js-focus-visible"
 >
     <head>
-        <script src="//unpkg.com/alpinejs" defer></script>
-
         {{ \Filament\Facades\Filament::renderHook('head.start') }}
 
         <meta charset="utf-8">
@@ -132,5 +130,8 @@
         @vite(['resources/js/app.js', 'resources/js/libs/turbo.js'])
 
         {{ \Filament\Facades\Filament::renderHook('body.end') }}
+
+{{--        <script src="//unpkg.com/alpinejs" defer></script>--}}
+
     </body>
 </html>
