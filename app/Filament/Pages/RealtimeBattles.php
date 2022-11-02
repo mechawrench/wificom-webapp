@@ -40,6 +40,10 @@ class RealtimeBattles extends Page
 
     public $guest_connected = false;
 
+    public $host_connected = false;
+
+    public $initial_invite_code;
+
     public function mount(): void
     {
         $this->user_coms = auth()->user()->wifiDevices()->get();
@@ -92,6 +96,8 @@ class RealtimeBattles extends Page
 
         $this->successMessageInitiate = 'Successfully initiated a realtime battle, share your code with your partner and sync scans!';
 
+        $this->host_connected = true;
+
         return 0;
     }
 
@@ -126,6 +132,9 @@ class RealtimeBattles extends Page
         $mqtt_acl->save();
 
         $this->guestAccept();
+
+        $this->guest_connected = true;
+        $this->initial_invite_code = $this->invite_code;
 
         $this->successMessageAccept = 'You have accepted the battle!  Please sync timing with your partner.';
     }

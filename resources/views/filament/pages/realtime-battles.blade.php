@@ -42,9 +42,15 @@
                         Start Realtime Battle
                     </x-filament::button>
                     <br/>
-                    <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryHost">
-                        Retry
-                    </x-filament::button>
+                    @if($this->host_connected)
+                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryHost">
+                            Retry
+                        </x-filament::button>
+                    @else
+                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryHost" disabled>
+                            Retry
+                        </x-filament::button>
+                    @endif
                 </div>
             </div>
             <div wire:poll>
@@ -91,7 +97,7 @@
                         Start Realtime Battle
                     </x-filament::button>
                     <br/>
-                    @if($this->invite_code)
+                    @if($this->invite_code == $this->initial_invite_code && $this->guest_connected)
                         <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryGuest">
                             Retry
                         </x-filament::button>
