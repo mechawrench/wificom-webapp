@@ -53,7 +53,7 @@
                     @endif
                 </div>
             </div>
-            <div wire:poll>
+            <div>
                 Invite Code (Pass this to your partner)
                 <div class="bg-gray-300 border-2 border-gray-500 p-4">
                     {{ $current_rtb_model->invite_code ?? 'No Invite Code Yet' }}
@@ -77,7 +77,7 @@
                     @error('invite_code') <span class="error text-red-300"><br/>{{ $message }}</span> @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3" >
                     <label for="user_selected_com_guest" class="block text-sm font-bold mb-2">WiFiCom Device to
                         Use</label>
                     <select wire:model="user_selected_com_guest"

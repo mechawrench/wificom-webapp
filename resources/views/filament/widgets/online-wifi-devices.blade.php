@@ -1,8 +1,8 @@
 <x-filament::widget>
     <x-filament::card>
-        <div>
+        <div wire.poll>
             <h2 class="text-gray-500 text-sm font-medium">WiFiCom Status</h2>
-            <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4" wire:poll>
+            <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4" >
                 @foreach($devices as $device)
                     <li class="col-span-1 flex shadow-sm rounded-md">
                         @if($device->online_status)
