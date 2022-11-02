@@ -106,6 +106,8 @@ class RealtimeBattles extends Page
         $this->successMessageAccept = '';
         $this->errorMessage = '';
 
+        $this->invite_code = trim($this->invite_code);
+
         $this->validate([
             'invite_code' => 'required|exists:realtime_battles,invite_code',
             'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
