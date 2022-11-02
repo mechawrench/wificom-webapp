@@ -97,7 +97,7 @@
                         Start Realtime Battle
                     </x-filament::button>
                     <br/>
-                    @if($this->invite_code === $this->initial_invite_code && $this->guest_connected)
+                    @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6)
                         <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryGuest">
                             Retry
                         </x-filament::button>
