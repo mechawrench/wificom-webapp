@@ -8,7 +8,6 @@
                 Create a realtime battle instance with another player, send them the invite code to sync up your WiFiCom
                 devices.
             </div>
-            <span class="text-lg text-green-400">{{$successMessageInitiate}}</span>
             <div>
                 <div class="mb-3">
                     <label for="battle_type" class="block text-sm font-bold mb-2">Device Type</label>
@@ -33,24 +32,29 @@
                         <option value="DUMMY">DUMMY DEVICE (DEBUG)</option>
                     </select>
                     @error('user_selected_com_host') <span
-                        class="error text-red-300"><br/>{{ $message }}</span> @enderror
+                        class="error text-red-300" ><br/>{{ $message }}</span> @enderror
                 </div>
 
-                <div class="pt-5 text-right">
+                <div class="pt-5 text-right grid grid-cols-2 gap-4">
+                    <div class="pt-5 text-left">
+                        <span class="text-lg text-green-400"  x-data="{ show: @entangle('show_host_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$successMessageInitiate}}</span>
+                    </div>
+                    <div class="max-w-full pull-right">
+                        <x-filament::button class="w-2/4" wire:click.prevent="genRtbInvite">
+                            Start Realtime Battle
+                        </x-filament::button>
+                        <br/>
+                        @if($this->host_connected)
+                            <x-filament::button class="w-2/4 mt-5" wire:click.prevent="retryHost">
+                                Retry
+                            </x-filament::button>
+                        @else
+                            <x-filament::button class="w-2/4 mt-5" wire:click.prevent="retryHost" disabled>
+                                Retry
+                            </x-filament::button>
+                        @endif
+                    </div>
 
-                    <x-filament::button class="w-1/4" wire:click.prevent="genRtbInvite">
-                        Start Realtime Battle
-                    </x-filament::button>
-                    <br/>
-                    @if($this->host_connected)
-                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryHost">
-                            Retry
-                        </x-filament::button>
-                    @else
-                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryHost" disabled>
-                            Retry
-                        </x-filament::button>
-                    @endif
                 </div>
             </div>
             <div>
@@ -69,8 +73,7 @@
             <div class="mb-3">
                 Enter your partner's invite code
             </div>
-            <span class="text-lg text-green-400">{{$successMessageAccept}}</span>
-            <span class="text-lg text-red-400">{{$errorMessage}}</span>
+
             <div>
                 <div class="mb-3">
                     <input type="text" wire:model="invite_code" class="w-full">
@@ -88,26 +91,32 @@
                         @endforeach
                     </select>
                     @error('user_selected_com_guest') <span
-                        class="error text-red-300"><br/>{{ $message }}</span> @enderror
+                        class="error text-red-300"><br/>{{ $message }}</span>
+                    @enderror
+
                 </div>
 
-                <div class="pt-5 text-right">
-
-                    <x-filament::button type="submit" class="w-1/4" wire:click.prevent="accept_rtb">
-                        Start Realtime Battle
-                    </x-filament::button>
-                    <br/>
-                    @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6)
-                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryGuest">
-                            Retry
+                <div class="pt-5 text-right grid grid-cols-2 gap-4">
+                    <div class="text-left">
+                        <span class="text-lg text-green-400" x-data="{ show: @entangle('show_guest_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$successMessageAccept}}</span>
+                        <span class="text-lg text-red-400" x-data="{ show: @entangle('show_guest_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$errorMessage}}</span>
+                    </div>
+                    <div class="">
+                        <x-filament::button type="submit" class="" wire:click.prevent="accept_rtb">
+                            Start Realtime Battle
                         </x-filament::button>
-                    @else
-                        <x-filament::button class="w-1/4 mt-5" wire:click.prevent="retryGuest" disabled>
-                            Retry
-                        </x-filament::button>
-                    @endif
+                        <br/>
+                        @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6)
+                            <x-filament::button class="mt-5" wire:click.prevent="retryGuest">
+                                Retry
+                            </x-filament::button>
+                        @else
+                            <x-filament::button class="mt-5" wire:click.prevent="retryGuest" disabled>
+                                Retry
+                            </x-filament::button>
+                        @endif
+                    </div>
                 </div>
-
             </div>
         </div>
         </div>

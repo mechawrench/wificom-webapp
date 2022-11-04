@@ -44,6 +44,9 @@ class RealtimeBattles extends Page
 
     public $initial_invite_code;
 
+    public $show_guest_message = true;
+    public $show_host_message = true;
+
     public function mount(): void
     {
         $this->user_coms = auth()->user()->wifiDevices()->get();
@@ -94,7 +97,8 @@ class RealtimeBattles extends Page
             $this->hostAccept($wifi_device, $rtb);
         }
 
-        $this->successMessageInitiate = 'Successfully initiated a realtime battle, share your code with your partner and sync scans!';
+        $this->show_host_message = true;
+        $this->successMessageInitiate = 'Success!  Pass the code to your partner.';
 
         $this->host_connected = true;
 
@@ -119,6 +123,7 @@ class RealtimeBattles extends Page
 
         if (! $model) {
             $this->errorMessage = 'Invalid invite code or already used';
+            $this->show_guest_message = true;
 
             return;
         }
@@ -138,7 +143,8 @@ class RealtimeBattles extends Page
         $this->guest_connected = true;
         $this->initial_invite_code = $this->invite_code;
 
-        $this->successMessageAccept = 'You have accepted the battle!  Please sync timing with your partner.';
+        $this->successMessageAccept = 'Success!  You are now connected to your partner.';
+        $this->show_guest_message = true;
     }
 
     public function retryGuest()
@@ -201,7 +207,7 @@ class RealtimeBattles extends Page
         $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
 
         $this->successMessageAccept = 'Retried to send battle code to device.';
-
+        $this->show_guest_message = true;
     }
 
     public function hostAccept($wifi_device, $rtb)
@@ -229,6 +235,6 @@ class RealtimeBattles extends Page
         $mqtt->connect($connectionSettings, true);
         $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
         $this->successMessageInitiate = 'Successfully retried to send battle request to device!';
-
+        $this->show_host_message = true;
     }
 }
