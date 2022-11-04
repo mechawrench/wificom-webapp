@@ -39,11 +39,11 @@
 
                     <div class="pt-5 text-left">
                         @if($successMessageInitiate != '')
-                            <span class="text-lg text-green-400"  x-init="setTimeout(() => $wire.hide_output(), 6000)">{{$successMessageInitiate}}</span>
+                            <span class="text-lg text-green-400" x-init="setTimeout(() => $wire.hide_output(), 6000)">{{$successMessageInitiate}}</span>
                         @endif
                     </div>
                     <div class="max-w-full pull-right">
-                        <x-filament::button class="w-2/4" wire:click.prevent="genRtbInvite" @click="$refresh()">
+                        <x-filament::button class="w-2/4" wire:click.prevent="genRtbInvite">
                             Start Realtime Battle
                         </x-filament::button>
                         <br/>
