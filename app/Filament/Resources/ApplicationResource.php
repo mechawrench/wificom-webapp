@@ -36,6 +36,9 @@ class ApplicationResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    // Change sidebar order
+    protected static int $order = 0;
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

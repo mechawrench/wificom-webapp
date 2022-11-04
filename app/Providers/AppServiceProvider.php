@@ -31,5 +31,11 @@ class AppServiceProvider extends ServiceProvider
                 'Docs',
             ]);
         });
+
+        Filament::registerNavigationGroups([
+            'Devices',
+            'Online Battles',
+            'Applicatons',
+        ]);
     }
 }
