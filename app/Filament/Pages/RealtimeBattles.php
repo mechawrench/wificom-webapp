@@ -49,7 +49,7 @@ class RealtimeBattles extends Page
 
     public function mount(): void
     {
-        $this->user_coms = auth()->user()->wifiDevices()->get();
+        $this->user_coms = auth()->user()->wifiDevices()->get()->sortBy('sort');
     }
 
     // Widgets
