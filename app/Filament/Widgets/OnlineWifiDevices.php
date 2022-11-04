@@ -12,6 +12,6 @@ class OnlineWifiDevices extends Widget
 
     public function mount(): void
     {
-        $this->devices = auth()->user()->wifiDevices()->get();
+        $this->devices = auth()->user()->wifiDevices()->get()->sortBy('sort');
     }
 }
