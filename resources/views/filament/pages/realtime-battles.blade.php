@@ -36,11 +36,14 @@
                 </div>
 
                 <div class="pt-5 text-right grid grid-cols-2 gap-4">
+
                     <div class="pt-5 text-left">
-                        <span class="text-lg text-green-400"  x-data="{ show: @entangle('show_host_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$successMessageInitiate}}</span>
+                        @if($successMessageInitiate != '')
+                            <span class="text-lg text-green-400"  x-init="setTimeout(() => $wire.hide_output(), 6000)">{{$successMessageInitiate}}</span>
+                        @endif
                     </div>
                     <div class="max-w-full pull-right">
-                        <x-filament::button class="w-2/4" wire:click.prevent="genRtbInvite">
+                        <x-filament::button class="w-2/4" wire:click.prevent="genRtbInvite" @click="$refresh()">
                             Start Realtime Battle
                         </x-filament::button>
                         <br/>
@@ -98,9 +101,11 @@
 
                 <div class="pt-5 text-right grid grid-cols-2 gap-4">
                     <div class="text-left">
-                        <span class="text-lg text-green-400" x-data="{ show: @entangle('show_guest_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$successMessageAccept}}</span>
-                        <span class="text-lg text-red-400" x-data="{ show: @entangle('show_guest_message') }" x-show="show" x-init="setTimeout(() => show = false, 6000)">{{$errorMessage}}</span>
-                    </div>
+                        @if($successMessageAccept != '' || $errorMessage != '')
+                            <span class="text-lg text-green-400" x-init="setTimeout(() => $wire.hide_output(), 6000)">{{$successMessageAccept}}</span>
+                            <span class="text-lg text-red-400" x-init="setTimeout(() => $wire.hide_output(), 6000)">{{$errorMessage}}</span>
+                        @endif
+                         </div>
                     <div class="">
                         <x-filament::button type="submit" class="" wire:click.prevent="accept_rtb">
                             Start Realtime Battle

@@ -44,8 +44,8 @@ class RealtimeBattles extends Page
 
     public $initial_invite_code;
 
-    public $show_guest_message = true;
-    public $show_host_message = true;
+    public $show_guest_message = false;
+    public $show_host_message = false;
 
     public function mount(): void
     {
@@ -97,12 +97,22 @@ class RealtimeBattles extends Page
             $this->hostAccept($wifi_device, $rtb);
         }
 
-        $this->show_host_message = true;
         $this->successMessageInitiate = 'Success!  Pass the code to your partner.';
+        $this->show_host_message = true;
 
         $this->host_connected = true;
 
         return 0;
+    }
+
+    public function hide_output()
+    {
+        $this->show_host_message = false;
+        $this->show_guest_message = false;
+
+        $this->successMessageAccept = '';
+        $this->successMessageInitiate = '';
+        $this->errorMessage = '';
     }
 
     public function accept_rtb()
