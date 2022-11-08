@@ -3,9 +3,11 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Widgets\OnlineWifiDevices;
+use App\Models\AckRequest;
 use App\Models\RealtimeBattle;
 use App\Models\User;
 use Filament\Pages\Page;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use PhpMqtt\Client\Facades\MQTT;
 
@@ -23,15 +25,15 @@ class RealtimeBattles extends Page
 
     public $successMessageInitiate = '';
 
-    public $battle_type;
+    public $battle_type = 'none';
 
     public $opponent_name;
 
     public $current_rtb_model;
 
-    public $user_selected_com_host;
+    public $user_selected_com_host = 'none';
 
-    public $user_selected_com_guest;
+    public $user_selected_com_guest = 'none';
 
     public $user_coms;
 
@@ -229,6 +231,44 @@ class RealtimeBattles extends Page
         $this->show_guest_message = true;
     }
 
+
+    public function checkAckReceivedHost()
+    {
+//        $this->successMessage = '';
+        if ($this->host_ack_id) {
+            $ack_request = AckRequest::where('ack_id', $this->host_ack_id)->first();
+            if ($ack_request) {
+                $this->successMessageInitiate = 'Successfully initiated battle!';
+                Cache::put($this->host_ack_id, true, 60);
+                $ack_request->delete();
+            }
+
+            if(Cache::get($this->host_ack_id)) {
+                $this->successMessageInitiate = 'Successfully initiated/retried battle!';
+            } else {
+                $this->successMessageInitiate = '';
+            }
+        }
+    }
+
+    public function checkAckReceivedGuest()
+    {
+//        $this->successMessage = '';
+        if ($this->guest_ack_id) {
+            $ack_request = AckRequest::where('ack_id', $this->guest_ack_id)->first();
+            if ($ack_request) {
+                $this->successMessage = 'Successfully initiated battle!';
+                Cache::put($this->guest_ack_id, true, 60);
+                $ack_request->delete();
+            }
+
+            if(Cache::get($this->guest_ack_id)) {
+                $this->successMessage = 'Successfully accepted sync!';
+            } else {
+                $this->successMessage = '';
+            }
+        }
+    }
     public function hostAccept($wifi_device, $rtb)
     {
         // Create ack record in cache for 1 minute

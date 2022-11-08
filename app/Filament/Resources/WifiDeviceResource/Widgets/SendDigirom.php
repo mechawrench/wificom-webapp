@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\WifiDeviceResource\Widgets;
 
+use App\Models\AckRequest;
 use Carbon\Carbon;
 use Filament\Widgets\Widget;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use PhpMqtt\Client\Facades\MQTT;
 
@@ -18,7 +20,6 @@ class SendDigirom extends Widget
 
     public $successMessage;
 
-    public $lastAckId;
     public $lastAckUuid;
 
     protected $rules = [
@@ -29,6 +30,23 @@ class SendDigirom extends Widget
     {
         $this->successMessage = '';
         $this->validateOnly($propertyName);
+    }
+
+    public function checkAckReceived()
+    {
+        if ($this->lastAckUuid) {
+            $ack_request = AckRequest::where('ack_id', $this->lastAckUuid)->first();
+            if ($ack_request) {
+                Cache::put($this->lastAckUuid, true, 60);
+                $ack_request->delete();
+            }
+        }
+
+        if(Cache::get($this->lastAckUuid)) {
+            $this->successMessage = 'Digirom sent and received successfully!';
+        } else {
+            $this->successMessage = '';
+        }
     }
 
     public function saveDigirom()
@@ -66,22 +84,10 @@ class SendDigirom extends Widget
 
         $this->clearCachedResults();
 
-        $this->successMessage = 'Digirom sent, try a scan in 6 seconds from now';
+//        $this->successMessage = 'Digirom sent, try a scan in 6 seconds from now';
 
         return 0;
     }
-
-    public function checkAckReceived()
-    {
-        $ackRequest = $this->record->ackRequests()->where('request_type', 'digirom_send')->latest()->first();
-        if ($ackRequest->ack_received) {
-            $this->successMessage = 'Digirom sent successfully';
-        } else {
-            $this->successMessage = 'Digirom send failed';
-        }
-    }
-
-
 
     public function clearCachedResults()
     {

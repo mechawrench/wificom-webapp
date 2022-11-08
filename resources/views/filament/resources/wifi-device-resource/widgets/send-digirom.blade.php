@@ -19,7 +19,11 @@
                     </x-filament::button>
                 </div>
 
-                <span class="text-lg text-green-400">{{$successMessage}}</span>
+                <div wire:poll.1s="checkAckReceived">
+                        <div class="text-center p-5">
+                            <span class="text-lg text-green-400">{{ $successMessage }}</span>
+                        </div>
+                </div>
             </form>
             <div wire:poll>
                 Recent Output (Results stay for 10 minutes)
