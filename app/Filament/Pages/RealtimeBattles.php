@@ -6,6 +6,7 @@ use App\Filament\Widgets\OnlineWifiDevices;
 use App\Models\RealtimeBattle;
 use App\Models\User;
 use Filament\Pages\Page;
+use Illuminate\Support\Str;
 use PhpMqtt\Client\Facades\MQTT;
 
 class RealtimeBattles extends Page
@@ -46,6 +47,9 @@ class RealtimeBattles extends Page
 
     public $show_guest_message = false;
     public $show_host_message = false;
+
+    public $host_ack_id;
+    public $guest_ack_id;
 
     public function mount(): void
     {
@@ -188,6 +192,10 @@ class RealtimeBattles extends Page
             return;
         }
 
+        // Create ack record in cache for 1 minute
+        $this->guest_ack_id = Str::random(6);
+        cache()->put($this->guest_ack_id, false, 60);
+
         $message_data = [
             'digirom' => null,
             'application_id' => 1,
@@ -197,6 +205,7 @@ class RealtimeBattles extends Page
             'battle_type' => $model->device_type, // TODO: Change the model column to battle_type instead of device_type
             'user_type' => 'guest',
             'host' => $model->user->name,
+            'ack_id' => $this->guest_ack_id,
         ];
 
         // Lookup WifiDevice by UUID
@@ -221,7 +230,11 @@ class RealtimeBattles extends Page
     }
 
     public function hostAccept($wifi_device, $rtb)
-    { ;
+    {
+        // Create ack record in cache for 1 minute
+        $this->host_ack_id = Str::random(6);
+        cache()->put($this->host_ack_id, false, 60);
+
         $message_data = [
             'digirom' => null,
             'application_id' => 1,
@@ -231,6 +244,7 @@ class RealtimeBattles extends Page
             'battle_type' => $this->battle_type,
             'user_type' => 'host',
             'host' => strtolower(auth()->user()->name),
+            'ack_id' => $this->host_ack_id,
         ];
 
         $mqtt = new \PhpMqtt\Client\MqttClient(config('mqtt-client.connections.default.host'), config('mqtt-client.connections.default.port'));

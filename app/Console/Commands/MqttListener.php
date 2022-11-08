@@ -44,6 +44,13 @@ class MqttListener extends Command
         $mqtt->connect($connectionSettings, true);
 
         $mqtt->subscribe('#', function (string $topic, string $message) {
+
+            $message_json = json_decode($message, true);
+            if (array_key_exists('ack_id', $message_json)) {
+                Cache::put($message_json['ack_id'], true, 60);
+                $this->info("Ack ID: " . $message_json['ack_id'] . ' received from device_uuid: ' . $message_json['device_uuid']);
+            }
+
             if (Str::endsWith($topic, 'wificom-output')) {
                 $message = json_decode($message, true);
                 $name = substr($topic, 0, strpos($topic, '/f'));

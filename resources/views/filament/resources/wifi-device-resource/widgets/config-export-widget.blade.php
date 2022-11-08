@@ -9,7 +9,7 @@
             Copy the following config to secrets.py on your WiFiCom device, do not share this file with anyone!
         </div>
         <div>
-            Replace the uppercased values with your own information to complete the configuration.
+            Replace the uppercase values with your own information to complete the configuration.
         </div>
         <!-- Codeblock -->
         <div x-data="{ open: false }">
@@ -28,7 +28,7 @@
                             'ssid' : 'YOUR_WIFI_NETWORK',<br/>
                             'password' : 'YOUR_WIFI_PASSWORD',<br/>
                             # Hosted service variables<br/>
-                            'broker' : 'mqtt-production.wificom.dev',<br/>
+                            'broker': '{{ config('mqtt-client.connections.default.host')}}',<br/>
                             'mqtt_username' : '{{ $record->user->name }}',<br/>
                             'mqtt_password' : '{{ $record->user->mqtt_token }}',<br/>
                             'user_uuid': '{{ $record->user->uuid }}',<br/>

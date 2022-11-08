@@ -130,7 +130,5 @@
                 </div>
             </div>
         </div>
-        </div>
     </x-filament::card>
-
 </x-filament::page>

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\WifiDeviceResource\Widgets;
 use Carbon\Carbon;
 use Filament\Widgets\Widget;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use PhpMqtt\Client\Facades\MQTT;
 
 class SendDigirom extends Widget
@@ -16,6 +17,9 @@ class SendDigirom extends Widget
     public $digirom;
 
     public $successMessage;
+
+    public $lastAckId;
+    public $lastAckUuid;
 
     protected $rules = [
         'digirom' => 'required|string',
@@ -36,10 +40,15 @@ class SendDigirom extends Widget
         $this->record->last_code_sent_at = Carbon::now();
         $this->record->save();
 
+        // Create ack record in cache for 1 minute
+        $this->lastAckUuid = Str::random(6);
+        cache()->put($this->lastAckUuid, false, 60);
+
         $message_data = [
             'digirom' => $validatedData['digirom'],
             'application_id' => 0,
             'hide_output' => false,
+            'ack_id' => $this->lastAckUuid,
         ];
 
         // TODO: Make mqtt setup a function
@@ -57,10 +66,22 @@ class SendDigirom extends Widget
 
         $this->clearCachedResults();
 
-        $this->successMessage = 'Digirom sent successfully, try a scan in 6 seconds from now';
+        $this->successMessage = 'Digirom sent, try a scan in 6 seconds from now';
 
         return 0;
     }
+
+    public function checkAckReceived()
+    {
+        $ackRequest = $this->record->ackRequests()->where('request_type', 'digirom_send')->latest()->first();
+        if ($ackRequest->ack_received) {
+            $this->successMessage = 'Digirom sent successfully';
+        } else {
+            $this->successMessage = 'Digirom send failed';
+        }
+    }
+
+
 
     public function clearCachedResults()
     {

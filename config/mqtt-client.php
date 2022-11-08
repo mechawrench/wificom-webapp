@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use PhpMqtt\Client\MqttClient;
 use PhpMqtt\Client\Repositories\MemoryRepository;
 
