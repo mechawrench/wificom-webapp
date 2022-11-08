@@ -47,8 +47,12 @@ class MqttListener extends Command
 
             $message_json = json_decode($message, true);
             if (array_key_exists('ack_id', $message_json)) {
-                Cache::put($message_json['ack_id'], true, 60);
+//                Cache::put($message_json['ack_id'], true, 60);
                 $this->info("Ack ID: " . $message_json['ack_id'] . ' received from device_uuid: ' . $message_json['device_uuid']);
+
+                $ack_request = \App\Models\AckRequest::create([
+                    'ack_id' => $message_json['ack_id'],
+                ])->save();
             }
 
             if (Str::endsWith($topic, 'wificom-output')) {
