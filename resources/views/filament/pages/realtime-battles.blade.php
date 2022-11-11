@@ -113,7 +113,7 @@
                             @endif
                         </div>
                         <div class="">
-                            @if(!$this->guest_connected)
+                            @if(!$this->guest_connected && $this->initial_invite_code != $this->invite_code)
                                 <x-filament::button type="submit" class="" wire:click.prevent="accept_rtb">
                                     Start Realtime Battle
                                 </x-filament::button>
