@@ -85,7 +85,6 @@ class MqttListener extends Command
                     Log::info($cache_key);
                     Cache::put($cache_key, str($message['output']), $seconds = 600);
                 }
-                $wifiDevice->last_ping_at = now();
                 $wifiDevice->save();
             } elseif (Str::endsWith($topic, 'realtime-battle')) {
                 $this->info('Received message from wifi com realtime battle module');
