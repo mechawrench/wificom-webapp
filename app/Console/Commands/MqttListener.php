@@ -32,6 +32,13 @@ class MqttListener extends Command
      */
     public function handle()
     {
+        $wifiDevice = WifiDevice::where('user_id', $user->id)
+                    ->where('uuid', $device_uuid)
+                    ->first();
+
+        if (! $wifiDevice) {
+            return response()->json(['error' => 'Invalid device UUID.'], 404);
+        }
         $mqtt = new \PhpMqtt\Client\MqttClient(config('mqtt-client.connections.default.host'), config('mqtt-client.connections.default.port'));
 
         $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
@@ -64,10 +71,6 @@ class MqttListener extends Command
                 $device_uuid = substr($topic, strpos($topic, '-') + 1, 16);
 
                 $user = User::where('name', $name)->where('uuid', $user_uuid)->first();
-
-                $wifiDevice = WifiDevice::where('user_id', $user->id)
-                    ->where('uuid', $device_uuid)
-                    ->first();
 
 
                 \Log::info($message);
@@ -111,6 +114,7 @@ class MqttListener extends Command
                     } else {
                         Cache::put($cache_key, str($message_json['output']), $seconds = 600);
                     }
+                    
                     $realtime_battle->save();
                 }
             } else {

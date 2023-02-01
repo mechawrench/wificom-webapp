@@ -135,7 +135,7 @@ class ApplicationController extends Controller
         \Illuminate\Support\Facades\Cache::forget($device->user->uuid.'-'.$device->uuid.'-'.$request->get('application_uuid').'_last_output');
 
         $return_data = [
-            'last_output' => $last_output_clone ?? null,
+            'last_output' => $last_output_clone ?? $device_clone->last_output,
             //'last_valid_output' => $device->last_valid_output,
             'last_code_sent_at' => $device->last_code_sent_at,
             'device' => $device_clone->only('uuid', 'device_name', 'last_ping_at', 'last_used_at', 'last_code_sent_at'),
