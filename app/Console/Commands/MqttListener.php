@@ -69,14 +69,17 @@ class MqttListener extends Command
                     ->where('uuid', $device_uuid)
                     ->first();
 
+
+                \Log::info($message);
+                \Log::info($message['output']);
                 if (strpos($message['output'], 'r:') !== false) {
-                    $this->info('Received message from wifi com module user name: '.$name);
+                    Log::info('Received message from wifi com module user name: '.$name);
                     $wifiDevice->last_output = str($message['output']);
                     $wifiDevice->last_valid_output = str($message['output']);
 
                     // Put in cache the last_output
                     $cache_key = $user_uuid.'-'.$device_uuid.'-'.$message['application_uuid'].'_last_output';
-                    $this->info($cache_key);
+                    Log::info($cache_key);
                     Cache::put($cache_key, str($message['output']), $seconds = 600);
                 }
                 $wifiDevice->last_ping_at = now();

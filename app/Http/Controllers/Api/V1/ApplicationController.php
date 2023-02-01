@@ -9,6 +9,7 @@ use App\Http\Requests\SendDigiromRequest;
 use App\Models\SubscribedApplication;
 use App\Models\WifiDevice;
 use PhpMqtt\Client\Facades\MQTT;
+use Log;
 
 class ApplicationController extends Controller
 {
@@ -18,6 +19,7 @@ class ApplicationController extends Controller
         $device = WifiDevice::where('uuid', $request->get('device_uuid'))->first();
 
         if (! $device) {
+            \Log::error('Invalid device UUID: '.$request->get('device_uuid').'For user: '.auth()->user()->email);
             return response(['error' => 'Invalid device UUID'], 401);
         }
 
@@ -26,14 +28,18 @@ class ApplicationController extends Controller
             ->first();
 
         if (! $subscribedApplication) {
+            \Log::error('Invalid application UUID: '.$request->get('application_uuid').'For user: '.auth()->user()->email);
+
             return response(['error' => 'Invalid application UUID or not currently subscribed to the application.'], 401);
         }
 
         // Check that $subscribedApplication->user_id == auth()->user()->id or that user is 3rd party authorized
         // TODO: Remove third_party_enabled from applications table now that we're using 3rd party proxy only
-        if ($subscribedApplication->user_id != auth()->user()->id) {
-            return response(['error' => 'You are not the API Key owner, can\'t perform that action.'], 401);
-        }
+        // if ($subscribedApplication->user_id != auth()->user()->id) {
+        //     \Log::error('You are not the application owner, can\'t perform that action. For user: '.auth()->user()->email);
+
+        //     return response(['error' => 'You are not the API Key owner, can\'t perform that action.'], 401);
+        // }
 
         // Find the first exclusive SubscribedApplication
         $exclusive_subscribedApplication = $device->subscribedApplications()
@@ -42,6 +48,7 @@ class ApplicationController extends Controller
 
         if ($exclusive_subscribedApplication && $exclusive_subscribedApplication->uuid != $subscribedApplication->uuid) {
             // TODO: Add device_id exclusives instead of account wide
+            \Log::error('Another application is currently exclusive assigned to the user. For user: '.auth()->user()->email.' For application: '.$subscribedApplication->app->name);
             return response(['error' => 'Another application is currently exclusive assigned to the user.'], 401);
         }
 
@@ -74,6 +81,7 @@ class ApplicationController extends Controller
         $mqtt->connect($connectionSettings, true);
         $mqtt->publish($device->user->name.'/f/'.$device->user->uuid.'-'.$device->uuid.'/wificom-input', json_encode($message_data));
 
+        Log::info('Sent digirom to device: '.$device->uuid.' for application: '.$subscribedApplication->app->name.' for user: '.$device->user->email);
         return response()->json(['device' => $device->only('uuid', 'device_name', 'pending_digirom', 'last_ping_at', 'last_used_at', 'last_code_sent_at')], 200);
     }
 
@@ -82,19 +90,23 @@ class ApplicationController extends Controller
         $device = WifiDevice::where('uuid', $request->get('device_uuid'))->first();
 
         if (! $device) {
+            \Log::error('No device found for UUID: '.$request->get('device_uuid'));
             return response(['error' => 'Invalid device UUID'], 401);
         }
 
         $subscribedApplication = $device->subscribedApplications()->where('application_uuid', $request->get('application_uuid'))->first();
 
         if (! $subscribedApplication) {
+            \Log::error('Invalid application UUID: '.$request->get('application_uuid').' User: '.auth()->user()->email);
+
             return response(['error' => 'Invalid application UUID or not currently subscribed to the application.'], 401);
         }
 
         // Check that $subscribedApplication->user_id == auth()->user()->id
-        if ($subscribedApplication->app->user_id != auth()->user()->id) {
-            return response(['error' => 'You are not the application owner, can\'t perform that action.'], 401);
-        }
+        // if ($subscribedApplication->app->user_id != auth()->user()->id) {
+        //     \Log::error('You are not the application owner, can\'t perform that action. For user: '.auth()->user()->email);
+        //     return response(['error' => 'You are not the application owner, can\'t perform that action.'], 401);
+        // }
 
         // Find the first exclusive SubscribedApplication
         $exclusive_subscribedApplication = $device->subscribedApplications()
@@ -103,6 +115,7 @@ class ApplicationController extends Controller
 
         if ($exclusive_subscribedApplication && $exclusive_subscribedApplication->uuid != $subscribedApplication->uuid) {
             // TODO: Add device_id exclusives instead of account wide
+            Log::error('Another application is currently exclusive assigned to the user. For user: '.auth()->user()->email.' For application: '.$subscribedApplication->app->name);
             return response(['error' => 'Another application is currently exclusive assigned to the user.'], 401);
         }
 
@@ -121,12 +134,15 @@ class ApplicationController extends Controller
 
         \Illuminate\Support\Facades\Cache::forget($device->user->uuid.'-'.$device->uuid.'-'.$request->get('application_uuid').'_last_output');
 
-        return response()->json([
+        $return_data = [
             'last_output' => $last_output_clone ?? null,
             //'last_valid_output' => $device->last_valid_output,
             'last_code_sent_at' => $device->last_code_sent_at,
             'device' => $device_clone->only('uuid', 'device_name', 'last_ping_at', 'last_used_at', 'last_code_sent_at'),
-        ], 200);
+        ];
+
+        Log::info('Sent last output to application: '.$subscribedApplication->app->name.' for user: '.$device->user->email, $return_data);
+        return response()->json($return_data, 200);
     }
 
     public static function get_subscribers(GetSubscribersRequest $request)
