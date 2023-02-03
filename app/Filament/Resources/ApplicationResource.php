@@ -54,10 +54,10 @@ class ApplicationResource extends Resource
                     ->unique(ignorable: fn (?Application $record): ?Application => $record),
                 Forms\Components\Textarea::make('description')
                     ->required(),
-                Forms\Components\FileUpload::make('logo')
-                    ->image()
-                    ->maxSize(2048)
-                    ->required(),
+                // Forms\Components\FileUpload::make('logo')
+                //     ->image()
+                //     ->maxSize(2048)
+                //     ->required(),
                 Forms\Components\TextInput::make('website'),
                 Forms\Components\Toggle::make('is_public')
                     ->label('Is Publicly Available'),

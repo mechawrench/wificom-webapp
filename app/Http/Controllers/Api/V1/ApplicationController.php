@@ -117,6 +117,8 @@ class ApplicationController extends Controller
 
         if ($last_output) {
             $last_output_clone = clone $last_output;
+        } else {
+            $last_output_clone = $device_clone->last_output;
         }
 
         \Illuminate\Support\Facades\Cache::forget($device->user->uuid.'-'.$device->uuid.'-'.$request->get('application_uuid').'_last_output');

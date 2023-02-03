@@ -74,6 +74,10 @@ class MqttListener extends Command
                     $wifiDevice->last_output = str($message['output']);
                     $wifiDevice->last_valid_output = str($message['output']);
 
+                    if($message['application_uuid'] == 0) {
+                        $wifiDevice->last_output_web = str($message['output']);
+                    }
+
                     // Put in cache the last_output
                     $cache_key = $user_uuid.'-'.$device_uuid.'-'.$message['application_uuid'].'_last_output';
                     $this->info($cache_key);
@@ -83,7 +87,6 @@ class MqttListener extends Command
                 $wifiDevice->save();
             } elseif (Str::endsWith($topic, 'realtime-battle')) {
                 $this->info('Received message from wifi com realtime battle module');
-//                dd($message);
                 $name = substr($topic, 0, strpos($topic, '/f'));
                 $battle_id = substr($topic, strpos($topic, '/f/') + 3, 16);
 

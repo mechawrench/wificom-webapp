@@ -113,22 +113,22 @@
                             @endif
                         </div>
                         <div class="">
-                            @if(!$this->guest_connected && $this->initial_invite_code != $this->invite_code)
-                                <x-filament::button type="submit" class="" wire:click.prevent="accept_rtb">
+                            @if(($this->guest_rtb_button_enabled && $this->guest_connected) || !$this->guest_connected)
+                                <x-filament::button type="submit" class="w-2/4" wire:click.prevent="accept_rtb">
                                     Start Realtime Battle
                                 </x-filament::button>
                             @else
-                                <x-filament::button type="submit" class="" wire:click.prevent="accept_rtb" disabled>
+                                <x-filament::button type="submit" class="w-2/4" wire:click.prevent="accept_rtb" disabled>
                                     Start Realtime Battle
                                 </x-filament::button>
                             @endif
                             <br/>
                             @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6)
-                                <x-filament::button class="mt-5" wire:click.prevent="retryGuest">
+                                <x-filament::button class="mt-5 w-2/4" wire:click.prevent="retryGuest">
                                     Retry
                                 </x-filament::button>
                             @else
-                                <x-filament::button class="mt-5" wire:click.prevent="retryGuest" disabled>
+                                <x-filament::button class="mt-5 w-2/4" wire:click.prevent="retryGuest" disabled>
                                     Retry
                                 </x-filament::button>
                             @endif

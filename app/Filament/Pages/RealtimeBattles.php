@@ -53,9 +53,31 @@ class RealtimeBattles extends Page
     public $host_ack_id;
     public $guest_ack_id;
 
+    public $guest_rtb_button_enabled = false;
+
     public function mount(): void
     {
         $this->user_coms = auth()->user()->wifiDevices()->get()->sortBy('sort');
+    }
+
+    public function updatedInviteCode($value)
+    {
+        $this->initial_invite_code = $value;
+
+        $model = $this->get_opponent_model();
+
+        if($model){
+//            $this->errorMessage = 'No opponent found with this invite code';
+//            $this->show_guest_message = false;
+//            $this->show_host_message = false;
+            $this->guest_rtb_button_enabled = true;
+
+            return;
+        }
+
+        $this->guest_rtb_button_enabled = false;
+
+
     }
 
     // Widgets
@@ -121,6 +143,22 @@ class RealtimeBattles extends Page
         $this->errorMessage = '';
     }
 
+    public function get_opponent_model()
+    {
+        $model = RealtimeBattle::where('invite_code', $this->invite_code)
+            ->where('opponent_id', null)
+            ->first();
+
+        if (! $model) {
+//            $this->errorMessage = 'Invalid invite code or already used';
+//            $this->show_guest_message = true;
+
+            return null;
+        }
+
+        return $model;
+    }
+
     public function accept_rtb()
     {
         $this->successMessageAccept = '';
@@ -133,16 +171,7 @@ class RealtimeBattles extends Page
             'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
         ]);
 
-        $model = RealtimeBattle::where('invite_code', $this->invite_code)
-            ->where('opponent_id', null)
-            ->first();
-
-        if (! $model) {
-            $this->errorMessage = 'Invalid invite code or already used';
-            $this->show_guest_message = true;
-
-            return;
-        }
+        $model = $this->get_opponent_model();
 
         $model->opponent_id = auth()->id();
         $model->opponent_com_uuid = $this->user_selected_com_guest;
