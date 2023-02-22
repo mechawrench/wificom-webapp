@@ -3,14 +3,18 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Widgets\OnlineWifiDevices;
+use App\Models\AckRequest;
 use App\Models\RealtimeBattle;
 use App\Models\User;
 use Filament\Pages\Page;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use PhpMqtt\Client\Facades\MQTT;
 
 class RealtimeBattles extends Page
 {
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationIcon = 'heroicon-o-lightning-bolt';
 
     protected static ?string $navigationGroup = 'Online Battles';
@@ -23,15 +27,15 @@ class RealtimeBattles extends Page
 
     public $successMessageInitiate = '';
 
-    public $battle_type;
+    public $battle_type = 'none';
 
     public $opponent_name;
 
     public $current_rtb_model;
 
-    public $user_selected_com_host;
+    public $user_selected_com_host = 'none';
 
-    public $user_selected_com_guest;
+    public $user_selected_com_guest = 'none';
 
     public $user_coms;
 
@@ -51,9 +55,29 @@ class RealtimeBattles extends Page
     public $host_ack_id;
     public $guest_ack_id;
 
+    public $guest_rtb_button_enabled = false;
+
     public function mount(): void
     {
         $this->user_coms = auth()->user()->wifiDevices()->get()->sortBy('sort');
+    }
+
+    public function updatedInviteCode($value)
+    {
+        $this->initial_invite_code = $value;
+
+        $model = $this->get_opponent_model();
+
+        if ($model) {
+            //            $this->errorMessage = 'No opponent found with this invite code';
+            //            $this->show_guest_message = false;
+            //            $this->show_host_message = false;
+            $this->guest_rtb_button_enabled = true;
+
+            return;
+        }
+
+        $this->guest_rtb_button_enabled = false;
     }
 
     // Widgets
@@ -77,7 +101,7 @@ class RealtimeBattles extends Page
         } else {
             $this->validate([
                 'battle_type' => 'required|in:digimon-penx-battle,legendz',
-                'user_selected_com_host' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
+                'user_selected_com_host' => 'required|exists:wifi_devices,uuid,user_id,' . auth()->id(),
             ]);
         }
 
@@ -90,16 +114,15 @@ class RealtimeBattles extends Page
 
         // Generate mqtt_acl for topic
         $mqtt_acl = new \App\Models\MqttAcl();
-        $mqtt_acl->topic = strtolower(auth()->user()->name).'/f/'.$rtb->topic;
+        $mqtt_acl->topic = strtolower(auth()->user()->name) . '/f/' . $rtb->topic;
         $mqtt_acl->user_id = auth()->id();
         $mqtt_acl->save();
 
         // Lookup WifiDevice by UUID
         $wifi_device = auth()->user()->wifiDevices()->where('uuid', $rtb->initiator_com_uuid)->first();
 
-        if ($this->user_selected_com_host != 'DUMMY') {
-            $this->hostAccept($wifi_device, $rtb);
-        }
+        $this->hostAccept($wifi_device, $rtb);
+
 
         $this->successMessageInitiate = 'Success!  Pass the code to your partner.';
         $this->show_host_message = true;
@@ -119,6 +142,19 @@ class RealtimeBattles extends Page
         $this->errorMessage = '';
     }
 
+    public function get_opponent_model()
+    {
+        $model = RealtimeBattle::where('invite_code', $this->invite_code)
+            ->where('opponent_id', null)
+            ->first();
+
+        if (!$model) {
+            return null;
+        }
+
+        return $model;
+    }
+
     public function accept_rtb()
     {
         $this->successMessageAccept = '';
@@ -128,15 +164,13 @@ class RealtimeBattles extends Page
 
         $this->validate([
             'invite_code' => 'required|exists:realtime_battles,invite_code',
-            'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
+            'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,' . auth()->id(),
         ]);
 
-        $model = RealtimeBattle::where('invite_code', $this->invite_code)
-            ->where('opponent_id', null)
-            ->first();
+        $model = $this->get_opponent_model();
 
-        if (! $model) {
-            $this->errorMessage = 'Invalid invite code or already used';
+        if (!$model) {
+            $this->successMessageAccept = 'Invalid invite code or already used';
             $this->show_guest_message = true;
 
             return;
@@ -148,7 +182,7 @@ class RealtimeBattles extends Page
 
         // Generate mqtt_acl for topic
         $mqtt_acl = new \App\Models\MqttAcl();
-        $mqtt_acl->topic = strtolower($model->user->name).'/f/'.$model->topic;
+        $mqtt_acl->topic = strtolower($model->user->name) . '/f/' . $model->topic;
         $mqtt_acl->user_id = auth()->id();
         $mqtt_acl->save();
 
@@ -168,8 +202,13 @@ class RealtimeBattles extends Page
 
     public function retryHost()
     {
-        $wifi_device  = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
-        $this->hostAccept($wifi_device, $this->current_rtb_model);
+        if ($this->user_selected_com_host != 'DUMMY') {
+            $wifi_device  = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
+            $this->hostAccept($wifi_device, $this->current_rtb_model);
+        } else {
+            // Display a message to the user host
+            $this->successMessageInitiate = 'Success!  Dummy mode activated.';
+        }
     }
 
     public function guestAccept()
@@ -180,13 +219,13 @@ class RealtimeBattles extends Page
         $model = RealtimeBattle::where('invite_code', $this->invite_code)
             ->first();
 
-        if(!$model) {
+        if (!$model) {
             $this->errorMessage = 'Invalid invite code or already used';
 
             return;
         }
 
-        if($model->opponent_id && $model->opponent_id != auth()->id()) {
+        if ($model->opponent_id && $model->opponent_id != auth()->id()) {
             $this->errorMessage = 'Invalid invite code or already used';
 
             return;
@@ -223,12 +262,50 @@ class RealtimeBattles extends Page
             ->setTlsSelfSignedAllowed(true);
 
         $mqtt->connect($connectionSettings, true);
-        $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
+        $mqtt->publish(strtolower(auth()->user()->name) . '/f/' . auth()->user()->uuid . '-' . $wifi_device->uuid . '/wificom-input', json_encode($message_data));
 
         $this->successMessageAccept = 'Retried to send battle code to device.';
         $this->show_guest_message = true;
     }
 
+
+    public function checkAckReceivedHost()
+    {
+        //        $this->successMessage = '';
+        if ($this->host_ack_id) {
+            $ack_request = AckRequest::where('ack_id', $this->host_ack_id)->first();
+            if ($ack_request) {
+                $this->successMessageInitiate = 'Successfully initiated battle!';
+                Cache::put($this->host_ack_id, true, 60);
+                $ack_request->delete();
+            }
+
+            if (Cache::get($this->host_ack_id)) {
+                $this->successMessageInitiate = 'Successfully initiated/retried battle!';
+            } else {
+                $this->successMessageInitiate = '';
+            }
+        }
+    }
+
+    public function checkAckReceivedGuest()
+    {
+        //        $this->successMessage = '';
+        if ($this->guest_ack_id) {
+            $ack_request = AckRequest::where('ack_id', $this->guest_ack_id)->first();
+            if ($ack_request) {
+                $this->successMessage = 'Successfully initiated battle!';
+                Cache::put($this->guest_ack_id, true, 60);
+                $ack_request->delete();
+            }
+
+            if (Cache::get($this->guest_ack_id)) {
+                $this->successMessage = 'Successfully accepted sync!';
+            } else {
+                $this->successMessage = '';
+            }
+        }
+    }
     public function hostAccept($wifi_device, $rtb)
     {
         // Create ack record in cache for 1 minute
@@ -257,7 +334,9 @@ class RealtimeBattles extends Page
             ->setTlsSelfSignedAllowed(true);
 
         $mqtt->connect($connectionSettings, true);
-        $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
+        if ($this->user_selected_com_host != 'DUMMY') {
+            $mqtt->publish(strtolower(auth()->user()->name) . '/f/' . auth()->user()->uuid . '-' . $wifi_device->uuid . '/wificom-input', json_encode($message_data));
+        }
         $this->successMessageInitiate = 'Successfully retried to send battle request to device!';
         $this->show_host_message = true;
     }

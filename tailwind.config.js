@@ -29,11 +29,17 @@ module.exports = {
                     '600': withOpacityValue('--color-primary-600'),
                     '700': withOpacityValue('--color-primary-700'),
                     '800': withOpacityValue('--color-primary-800'),
-                    '900': withOpacityValue('--color-primary-900')
+                    '900': withOpacityValue('--color-primary-900'),
+                   
                 },
                 danger: colors.red,
                 success: colors.green,
                 warning: colors.amber,
+                "theme-color": "#361CC1",
+                "theme-color-2": "#fe8464",
+            },
+            container: {
+                center: true,
             },
             fontFamily: {
                 sans: ['DM Sans', ...defaultTheme.fontFamily.sans],

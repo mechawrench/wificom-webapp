@@ -28,8 +28,8 @@ class ListApplications extends ListRecords
     protected function getTableColumns(): array
     {
         return [
-            \Filament\Tables\Columns\ImageColumn::make('logo')
-                ->label('Logo'),
+            // \Filament\Tables\Columns\ImageColumn::make('logo')
+            //     ->label('Logo'),
             \Filament\Tables\Columns\TextColumn::make('name')
                 ->label('Name'),
             \Filament\Tables\Columns\TextColumn::make('uuid'),

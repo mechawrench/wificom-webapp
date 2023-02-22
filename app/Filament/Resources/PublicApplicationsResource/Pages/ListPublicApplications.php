@@ -33,9 +33,9 @@ class ListPublicApplications extends ListRecords
     protected function getTableColumns(): array
     {
         return [
-            \Filament\Tables\Columns\ImageColumn::make('logo')
-                ->label('Logo')
-                ->default(public_path('images/default-logo.png')),
+            // \Filament\Tables\Columns\ImageColumn::make('logo')
+            //     ->label('Logo')
+            //     ->default(public_path('images/default-logo.png')),
             \Filament\Tables\Columns\TextColumn::make('name')
                 ->label('Name'),
             \Filament\Tables\Columns\TextColumn::make('user.name')

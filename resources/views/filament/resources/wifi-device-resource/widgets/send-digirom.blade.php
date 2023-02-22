@@ -10,7 +10,7 @@
             <form wire:submit.prevent="saveDigirom">
                 <div>
                     <input type="text" wire:model="digirom" class="w-full">
-                    @error('digirom') <span class="error text-red-300"><br/>{{ $message }}</span> @enderror
+                    @error('digirom') <span class="error text-red-300"><br />{{ $message }}</span> @enderror
                 </div>
 
                 <div class="pt-5 text-right">
@@ -19,12 +19,17 @@
                     </x-filament::button>
                 </div>
 
-                <span class="text-lg text-green-400">{{$successMessage}}</span>
+                <div wire:poll.1s="checkAckReceived">
+                    <div class="text-center p-5">
+                        <span class="text-lg text-green-400">{{ $successMessage }}</span>
+                    </div>
+                </div>
             </form>
             <div wire:poll>
-                Recent Output (Results stay for 10 minutes)
+                Recent Output
+                <!-- (Results stay for 10 minutes) -->
                 <div class="bg-gray-300 border-2 border-gray-500 p-4">
-                    {{ \Illuminate\Support\Facades\Cache::get($record->user->uuid . '-' . $record->uuid . '-' . '0' . '_last_output') ?? 'No output yet' }}
+                    {{ $record->last_output_web }}
                 </div>
             </div>
 

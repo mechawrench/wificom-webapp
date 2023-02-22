@@ -18,3 +18,5 @@ vapor.yml
 rr
 .rr.yaml
 .env.staging
+
+.vapor/
