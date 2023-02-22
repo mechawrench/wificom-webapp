@@ -132,15 +132,18 @@
                             <div class="
                     absolute
                     right-0
-                    hidden
                     mt-2
                     mr-24
                     navbar-btn
                     sm:inline-block
                     lg:mt-0 lg:static lg:mr-0
                   ">
-                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="https://wificom.dev/login" rel="nofollow">
+                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="/login" rel="nofollow">
+                                    @guest
                                     Login
+                                    @else
+                                    Dashboard
+                                    @endauth
                                 </a>
                             </div>
                         </nav>
@@ -459,7 +462,7 @@
                                         </h4>
                                     </div>
                                     <ul class="link">
-                                        <li><a href="javascript:void(0)">Road Map</a></li>
+                                        <li><a href="https://github.com/mechawrench/wificom-roadmap" target="_blank" rel="noopener noreferrer">Road Map</a></li>
                                         <li><a href="/privacy">Privacy Policy</a></li>
                                         <li><a href="/terms">Terms of Service</a></li>
                                     </ul>
@@ -501,7 +504,7 @@
             <!-- footer widget -->
             <div class="py-8 border-t border-gray-200 footer-copyright">
                 <p class="text-white text-center">
-                    WiFiCom.dev
+                    {{ config('app.url', 'WiFiCom') }}
                 </p>
             </div>
             <!-- footer copyright -->
