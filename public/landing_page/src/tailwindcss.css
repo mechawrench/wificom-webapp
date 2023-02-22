@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:300,400,700&display=swap");
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  font-family: "Lato", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-family: "Poppins", sans-serif;
+}
+p {
+  font-size: 16px;
+  line-height: 24px;
+  @apply text-gray-700;
+}
+
+.sticky {
+  @apply fixed bg-white bg-opacity-80;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.collapse.show {
+  @apply block;
+}
+
+.sticky .toggler-icon {
+  @apply bg-gray-900;
+}
+.active > .toggler-icon:nth-child(1) {
+  @apply transform rotate-45 top-[7px];
+}
+.active > .toggler-icon:nth-child(2) {
+  @apply opacity-0;
+}
+.active > .toggler-icon:nth-child(3) {
+  @apply top-[-8px] rotate-[135deg];
+}
+
+.nav-item a {
+  @apply relative inline-block px-4 py-3 text-white capitalize duration-300;
+}
+
+.show .nav-item a,
+.sticky .nav-item a {
+  @apply text-gray-900 hover:text-theme-color-2;
+}
+
+.nav-item a.active,
+.show .nav-item a.active,
+.sticky .nav-item a.active {
+  @apply text-theme-color-2;
+}
+.gradient-btn {
+  background-image: linear-gradient(
+    to right,
+    #fe8464 0%,
+    #fe6e9a 50%,
+    #fe8464 100%
+  );
+  background-size: 200% auto;
+  overflow: hidden;
+}
+.gradient-btn-2 {
+  background-image: linear-gradient(
+    to right,
+    #33c8c1 0%,
+    #119bd2 50%,
+    #33c8c1 100%
+  );
+}
+.gradient-btn:hover {
+  background-position: right center;
+  @apply shadow-xl;
+}
+.main-btn {
+  @apply inline-block px-6 py-3 font-medium text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-400;
+}
+
+.video-icon a {
+  @apply flex items-center justify-center w-16 h-16 bg-white rounded-full text-theme-color-2;
+}
+
+.single-counter::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full transform -rotate-45 rounded-[60px] z-[-1];
+}
+.counter-color-1::before {
+  background-image: linear-gradient(#33c8c1 0%, #119bd2 100%);
+}
+.counter-color-2::before {
+  background-image: linear-gradient(#fe8464 0%, #fe6e9a 100%);
+}
+.counter-color-3::before {
+  background-image: linear-gradient(#361cc1 0%, #2e82ef 100%);
+}
+
+.team-social ul::before {
+  content: "";
+  @apply absolute top-0 left-0 invisible w-full h-full duration-300 opacity-0 bg-gradient-to-t from-[#fe8464] to-[#fe6e9a] z-[-1] group-hover:visible group-hover:opacity-100;
+}
+
+.team-social ul a {
+  @apply inline-block px-3 py-4 text-white duration-300 hover:text-theme-color;
+}
+
+.tns-nav {
+  @apply w-full text-center;
+}
+
+.tns-nav button {
+  @apply w-3 h-3 m-1 duration-300 transform border-0 rounded-full opacity-25 bg-theme-color-2 hover:scale-125 hover:opacity-100 focus:outline-none;
+}
+
+.tns-nav .tns-nav-active {
+  @apply scale-125 opacity-100;
+}
+
+.subscribe-form .main-btn {
+  border-radius: 0 0.25em 0.25em 0;
+  @apply absolute top-0 right-0 h-full py-4;
+}
+@media (max-width: 500px) {
+  .subscribe-form .main-btn {
+    @apply static w-full mt-4 rounded;
+  }
+}
+
+.link li a {
+  @apply inline-block mb-3 text-white duration-300 hover:text-theme-color-2;
+}
+
+.back-to-top {
+  background-image: linear-gradient(to right, #361cc1 0%, #2e82ef 100%);
+  background-size: 200% auto;
+  @apply fixed bottom-0 right-0 z-20 flex items-center justify-center w-10 h-10 mb-8 mr-8 overflow-hidden text-white duration-300 rounded hover:bg-right;
+}

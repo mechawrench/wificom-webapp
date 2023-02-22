@@ -70,7 +70,7 @@ class PublicApplicationsResource extends Resource
                         'application_uuid' => $record->uuid,
                         'user_id' => auth()->id(),
                     ]))
-                    ->visible(fn (Application $record): bool => ! $record->subscribed),
+                    ->visible(fn (Application $record): bool => !$record->subscribed),
                 Action::make('unsubscribe')
                     ->label('Unsubsribe')
                     ->icon('heroicon-o-trash')
@@ -78,11 +78,11 @@ class PublicApplicationsResource extends Resource
                         'application_uuid' => $record->uuid,
                         'user_id' => auth()->id(),
                     ])->delete())
-                    ->hidden(fn (Application $record): bool => ! $record->subscribed),
+                    ->hidden(fn (Application $record): bool => !$record->subscribed),
 
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 

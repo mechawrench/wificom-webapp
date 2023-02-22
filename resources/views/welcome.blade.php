@@ -1,97 +1,526 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="no-js" lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
 
-    <title>Laravel</title>
+    <!--====== Title ======-->
+    <title>WiFiCom - Untethered Digimon/Legendz Communicator</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Wireless access to Digimon/Legendz electronic toy interfacing.  Build your own WiFiCom with our docs and get online from any operating system, device or web browser." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Styles -->
-    <style>
-    </style>
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
+    <!--====== CSS Files LinkUp ======-->
+    <link rel="stylesheet" href="{{ asset('/landing_page/assets/css/animate.css')}}" />
+    <link rel="stylesheet" href="{{ asset('/landing_page/assets/css/tiny-slider.css')}}" />
+    <link rel="stylesheet" href="{{ asset('/landing_page/assets/css/glightbox.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('/landing_page/assets/css/lineicons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('/landing_page/assets/css/tailwindcss.css')}}" />
 </head>
-<body class="antialiased">
-<div class="relative overflow-hidden bg-white pt-16 pb-32">
-    <div class="relative">
-        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
-            <div class="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
-                <div>
-                    <div>
-            <span class="flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600">
-              <!-- Heroicon name: outline/inbox -->
-              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
-              </svg>
-            </span>
-                    </div>
-                    <div class="mt-6">
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900">Stay on top of customer support</h2>
-                        <p class="mt-4 text-lg text-gray-500">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
-                        <div class="mt-6">
-                            <a href="#" class="inline-flex rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Get started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 border-t border-gray-200 pt-6">
-                    <blockquote>
-                        <div>
-                            <p class="text-base text-gray-500">&ldquo;Cras velit quis eros eget rhoncus lacus ultrices sed diam. Sit orci risus aenean curabitur donec aliquet. Mi venenatis in euismod ut.&rdquo;</p>
-                        </div>
-                        <footer class="mt-3">
-                            <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0">
-                                    <img class="h-6 w-6 rounded-full" src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-                                </div>
-                                <div class="text-base font-medium text-gray-700">Marcia Hill, Digital Marketing Manager</div>
+
+<body>
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!--====== HEADER PART START ======-->
+    <header class="header-area z-10">
+        <div class="
+          navbar-area
+          absolute
+          top-0
+          left-0
+          z-[999]
+          w-full
+          duration-300
+          bg-transparent
+        ">
+            <div class="container px-4 lg:py-0 py-5 relative">
+                <div class="flex flex-wrap">
+                    <div class="w-full">
+                        <nav class="
+                  flex
+                  items-center
+                  justify-between
+                  navbar navbar-expand-lg
+                ">
+                            <a class="mr-4 navbar-brand" href="index.html">
+                                <!-- <img src="/landing_page/assets/images/logo/logo.svg" alt="Logo" /> -->
+                            </a>
+                            <button class="block navbar-toggler focus:outline-none lg:hidden" type="button" data-toggle="collapse" data-target="#navbarOne" aria-controls="navbarOne" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="
+                      toggler-icon
+                      relative
+                      block
+                      duration-300
+                      bg-white
+                      h-[2px]
+                      w-[30px]
+                      my-[6px]
+                    ">
+                                </span>
+                                <span class="
+                      toggler-icon
+                      relative
+                      block
+                      duration-300
+                      bg-white
+                      h-[2px]
+                      w-[30px]
+                      my-[6px]
+                    ">
+                                </span>
+                                <span class="
+                      toggler-icon
+                      relative
+                      block
+                      duration-300
+                      bg-white
+                      h-[2px]
+                      w-[30px]
+                      my-[6px]
+                    ">
+                                </span>
+                            </button>
+
+                            <div class="
+                    absolute
+                    left-0
+                    z-20
+                    hidden
+                    w-full
+                    px-5
+                    py-3
+                    duration-300
+                    bg-white
+                    shadow
+                    lg:w-auto
+                    collapse
+                    navbar-collapse
+                    lg:block
+                    top-full
+                    lg:static lg:bg-transparent lg:shadow-none
+                  " id="navbarOne">
+                                <ul id="nav" class="
+                      items-center
+                      content-start
+                      mr-auto
+                      lg:justify-end
+                      navbar-nav
+                      lg:flex
+                    ">
+                                    <li class="nav-item active">
+                                        <a class="page-scroll" href="#home">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#features">Features</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#discord">Discord</a>
+                                    </li>
+                                </ul>
                             </div>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="mt-12 sm:mt-16 lg:mt-0">
-                <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-                    <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg" alt="Inbox user interface">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mt-24">
-        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
-            <div class="mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">
-                <div>
-                    <div>
-            <span class="flex h-12 w-12 items-center justify-center rounded-md bg-indigo-600">
-              <!-- Heroicon name: outline/sparkles -->
-              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-              </svg>
-            </span>
+                            <!-- navbar collapse -->
+
+                            <div class="
+                    absolute
+                    right-0
+                    hidden
+                    mt-2
+                    mr-24
+                    navbar-btn
+                    sm:inline-block
+                    lg:mt-0 lg:static lg:mr-0
+                  ">
+                                <a class="main-btn gradient-btn" data-scroll-nav="0" href="https://wificom.dev/login" rel="nofollow">
+                                    Login
+                                </a>
+                            </div>
+                        </nav>
+                        <!-- navbar -->
                     </div>
-                    <div class="mt-6">
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900">Better understand your customers</h2>
-                        <p class="mt-4 text-lg text-gray-500">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
-                        <div class="mt-6">
-                            <a href="#" class="inline-flex rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Get started</a>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- navbar area -->
+
+        <div id="home" class="relative z-20 bg-bottom bg-no-repeat bg-cover" style="background-image: url({{ asset('/landing_page/assets/images/header/banner-bg.svg')}})">
+            <div class="container px-4">
+                <div class="justify-center flex flex-wrap">
+                    <div class="w-full lg:w-2/3">
+                        <div class="pt-32 mb-12 text-center lg:pt-48 header-hero-content">
+                            <h3 class="
+                    text-4xl
+                    font-light
+                    leading-tight
+                    text-white
+                    header-sub-title
+                    wow
+                    fadeInUp
+                  " data-wow-duration="1.3s" data-wow-delay="0.2s">
+                                WiFiCom - Untethered vPet Interactions
+                            </h3>
+                            <h2 class="
+                    mb-3
+                    text-4xl
+                    font-bold
+                    text-white
+                    header-title
+                    wow
+                    fadeInUp
+                  " data-wow-duration="1.3s" data-wow-delay="0.5s">
+                                WiFi and a power source is all you need to get online
+                            </h2>
+                            <p class="mb-8 text-white text wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.8s">
+                                Works on any Operating System, mobile device, and even websites
+                            </p>
+                            <a href="https://docs.wificom.dev" class="main-btn gradient-btn gradient-btn-2 wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="1.1s">
+                                Read our Docs
+                            </a>
+                        </div>
+                        <!-- header hero content -->
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="justify-center flex flex-wrap">
+                    <div class="w-full lg:w-2/3">
+                        <div class="text-center header-hero-image wow fadeIn" data-wow-duration="1.3s" data-wow-delay="1.4s">
+                            <img src="{{ asset('/landing_page/assets/images/header/header-hero.png')}}" alt="hero" />
+                        </div>
+                        <!-- header hero image -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- header hero -->
+    </header>
+    <!--====== HEADER PART ENDS ======-->
+
+    <!--====== BRAND PART START ======-->
+    <div class="pt-24 brand-area">
+        <div class="container px-4">
+            <div class="flex flex-wrap">
+                <div class="w-full">
+                    <!-- 
+-->
+                    <!-- brand logo -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!--====== BRAND PART ENDS ======-->
+
+    <!--====== SERVICES PART START ======-->
+    <section id="features" class="services-area pt-[120px]">
+        <div class="container px-4">
+            <div class="justify-center flex flex-wrap">
+                <div class="w-full lg:w-2/3">
+                    <div class="pb-10 text-center section-title">
+                        <div class="
+                m-auto
+                w-40
+                h-1
+                mb-3
+                bg-gradient-to-r
+                to-[#fe8464]
+                from-[#fe6e9a]
+              "></div>
+                        <h3 class="text-[32px] pt-2 font-bold">Same features as a D-Com<span class="font-normal"> but with so much more, includes a screen, speaker, and buttons to interact</span>
+                        </h3>
+                    </div>
+                    <!-- section title -->
+                </div>
+            </div>
+            <!-- row -->
+            <div class="justify-center flex flex-wrap">
+                <div class="w-full sm:w-2/3 lg:w-1/3">
+                    <div class="single-services
+              px-8
+              py-12
+              mx-4
+              mt-8
+              text-center
+              duration-300
+              bg-white
+              border-2 border-transparent
+              rounded-lg
+              shadow-lg
+              group
+              hover:border-theme-color-2
+              wow
+              fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+                        <div class="services-icon relative inline-block">
+                            <img class="duration-300 shape group-hover:rotate-[25deg]" src="{{ asset('/landing_page/assets/images/services/services-shape.svg')}}" alt="shape">
+                            <img class="
+                  duration-300
+                  shape-1
+                  absolute
+                  top-1/2
+                  left-1/2
+                  translate-x-[-50%] translate-y-[-50%]
+                " src="{{ asset('/landing_page/assets/images/services/services-shape-1.svg')}}" alt="shape">
+                            <i class="
+                  lni lni-baloon
+                  absolute
+                  top-0
+                  left-0
+                  flex
+                  items-center
+                  justify-center
+                  w-full
+                  h-full
+                  text-3xl text-white
+                "></i>
+                        </div>
+                        <div class="mt-8 services-content">
+                            <h4 class="mb-8 text-xl font-bold text-gray-900">WiFi Enabled</h4>
+                            <p class="mb-8">Also optional, use your WiFiCom as a normal D-Com when unable to connect online</p>
+                            <!-- 
+-->
                         </div>
                     </div>
+                    <!-- single services -->
+                </div>
+                <div class="w-full sm:w-2/3 lg:w-1/3">
+                    <div class="mt-8
+              text-center
+              single-services
+              px-8
+              py-12
+              mx-4
+              duration-300
+              bg-white
+              border-2 border-transparent
+              rounded-lg
+              shadow-lg
+              group
+              hover:border-theme-color-2
+              wow
+              fadeIn" data-wow-duration="1s" data-wow-delay="0.5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeIn;">
+                        <div class="services-icon relative inline-block">
+                            <img class="duration-300 shape group-hover:rotate-[25deg]" src="{{ asset('/landing_page/assets/images/services/services-shape.svg')}}" alt="shape">
+                            <img class="
+                  duration-300
+                  shape-1
+                  absolute
+                  top-1/2
+                  left-1/2
+                  translate-x-[-50%] translate-y-[-50%]
+                " src="{{ asset('/landing_page/assets/images/services/services-shape-2.svg')}}" alt="shape">
+                            <i class="
+                  lni lni-cog
+                  absolute
+                  top-0
+                  left-0
+                  flex
+                  items-center
+                  justify-center
+                  w-full
+                  h-full
+                  text-3xl text-white
+                "></i>
+                        </div>
+                        <div class="mt-8 services-content">
+                            <h4 class="mb-8 text-xl font-bold text-gray-900">Easily Configured</h4>
+                            <p class="mb-8">Simple single file configuration, other files are optional but enable even more device abilities</p>
+                            <!-- 
+-->
+                        </div>
+                    </div>
+                    <!-- single services -->
+                </div>
+                <div class="w-full sm:w-2/3 lg:w-1/3">
+                    <div class="single-services
+              px-8
+              py-12
+              mx-4
+              mt-8
+              text-center
+              duration-300
+              bg-white
+              border-2 border-transparent
+              rounded-lg
+              shadow-lg
+              group
+              hover:border-theme-color-2
+              wow
+              fadeIn" data-wow-duration="1s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.8s; animation-name: fadeIn;">
+                        <div class="services-icon relative inline-block">
+                            <img class="duration-300 shape group-hover:rotate-[25deg]" src="{{ asset('/landing_page/assets/images/services/services-shape.svg')}}" alt="shape">
+                            <img class="
+                  duration-300
+                  shape-1
+                  absolute
+                  top-1/2
+                  left-1/2
+                  translate-x-[-50%] translate-y-[-50%]
+                " src="{{ asset('/landing_page/assets/images/services/services-shape-3.svg')}}" alt="shape">
+                            <i class="
+                  lni lni-bolt-alt
+                  absolute
+                  top-0
+                  left-0
+                  flex
+                  items-center
+                  justify-center
+                  w-full
+                  h-full
+                  text-3xl text-white
+                "></i>
+                        </div>
+                        <div class="mt-8 services-content">
+                            <h4 class="mb-8 text-xl font-bold text-gray-900">Unlock the Power</h4>
+                            <p class="mb-8">Realtime Battle support for Digimon and Legendz, Punchbag for common DigiROMs, and Infrared support</p>
+                        </div>
+                    </div>
+                    <!-- single services -->
                 </div>
             </div>
-            <div class="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
-                <div class="-ml-48 pr-4 sm:pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-                    <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg" alt="Customer profile user interface">
-                </div>
-            </div>
+            <!-- row -->
         </div>
+        <!-- container -->
+    </section>
+    <div class="flex flex-wrap testimonial-active wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.8s">
+        <!-- row -->
     </div>
-</div>
+
+    <!--====== FOOTER PART START ======-->
+    <footer id="footer" class="relative z-10 footer-area pt-[120px]">
+        <div class="
+        footer-bg
+        absolute
+        bottom-0
+        left-0
+        w-full
+        h-full
+        bg-top bg-no-repeat bg-cover
+        z-[-1]
+      " style="background-image: url({{ asset('/landing_page/assets/images/footer/footer-bg.svg')}})"></div>
+        <div class="container px-4">
+            <div class="px-6
+          pt-10
+          pb-20
+          mb-12
+          bg-white
+          rounded-lg
+          drop-shadow-md
+          md:px-12
+          subscribe-area
+          wow
+          fadeIn" data-wow-duration="1s" data-wow-delay="0.5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeIn;">
+                <div class="flex flex-wrap" id="discord">
+                    <div class="w-full lg:w-1/2">
+                        <div class="lg:mt-12 subscribe-content">
+                            <h2 class="text-2xl font-bold sm:text-4xl subscribe-title">Join our active community<span class="block font-normal">stay current with the project</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2" id="discord">
+                        <div class="h-20">
+
+                        </div>
+                        <a href="https://discord.gg/yJ4Ub64zrP" class="flex items-center">
+                            <img src="https://dcbadge.vercel.app/api/server/yJ4Ub64zrP" alt="Discord Server">
+                        </a>
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- subscribe area -->
+            <div class="footer-widget pb-[120px]">
+                <div class="flex flex-wrap">
+                    <div class="w-4/5 md:w-3/5 lg:w-2/6">
+                        <div class="mt-12 footer-about wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+                            <a class="inline-block mb-8 logo" href="index.html">
+                            </a>
+                        </div>
+                        <!-- footer about -->
+                    </div>
+                    <div class="w-4/5 sm:w-2/3 md:w-3/5 lg:w-2/6">
+                        <div class="flex flex-wrap">
+                            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2">
+                                <div class="mt-12 link-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
+                                    <div class="footer-title">
+                                        <h4 class="mb-8 text-2xl font-bold text-white">
+                                            Quick Link
+                                        </h4>
+                                    </div>
+                                    <ul class="link">
+                                        <li><a href="javascript:void(0)">Road Map</a></li>
+                                        <li><a href="/privacy">Privacy Policy</a></li>
+                                        <li><a href="/terms">Terms of Service</a></li>
+                                    </ul>
+                                </div>
+                                <!-- footer wrapper -->
+                            </div>
+                            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2">
+                                <div class="mt-12 link-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.6s; animation-name: fadeIn;">
+                                    <div class="footer-title">
+                                        <h4 class="mb-8 text-2xl font-bold text-white">
+                                            Resources
+                                        </h4>
+                                    </div>
+                                    <ul class="link">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/dashboard">Dashboard</a></li>
+                                        <li><a href="https://docs.mechawrench.com">Docs</a></li>
+                                    </ul>
+                                </div>
+                                <!-- footer wrapper -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-4/5 sm:w-1/3 md:w-2/5 lg:w-2/6">
+                        <div class="mt-12 footer-contact wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.8s; animation-name: fadeIn;">
+                            <div class="footer-title">
+                                <h4 class="mb-8 text-2xl font-bold text-white">Contact Us</h4>
+                            </div>
+                            <ul class="contact">
+                                <li class="mb-3 text-white">wificom@mechawrench.com</li>
+                                <li class="mb-3 text-white">wificom.dev</li>
+                            </ul>
+                        </div>
+                        <!-- footer contact -->
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- footer widget -->
+            <div class="py-8 border-t border-gray-200 footer-copyright">
+                <p class="text-white text-center">
+                    WiFiCom.dev
+                </p>
+            </div>
+            <!-- footer copyright -->
+        </div>
+        <!-- container -->
+    </footer>
+    <!--====== FOOTER PART ENDS ======-->
+
+    <!--====== BACK TOP TOP PART START ======-->
+    <a href="#" class="back-to-top" style="display: flex;"><i class="lni lni-chevron-up"></i></a>
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+    <!--====== Javascript files ======-->
+    <script src="{{ asset('/landing_page/assets/js/tiny-slider.js')}}"></script>
+    <script src="{{ asset('/landing_page/assets/js/glightbox.min.js')}}"></script>
+    <script src="{{ asset('/landing_page/assets/js/wow.min.js')}}"></script>
+    <script src="{{ asset('/landing_page/assets/js/count-up.min.js')}}"></script>
+    <script src="{{ asset('/landing_page/assets/js/main.js')}}"></script>
+    <script src="https://four-ideal.wificom.dev/script.js" data-site="YSFEVNJI" defer></script>
 </body>
+
 </html>

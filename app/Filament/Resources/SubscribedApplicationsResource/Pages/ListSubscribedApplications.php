@@ -33,7 +33,7 @@ class ListSubscribedApplications extends ListRecords
             //     ->default(public_path('images/default-logo.png')),
             \Filament\Tables\Columns\TextColumn::make('app.name')
                 ->label('Name'),
-            \Filament\Tables\Columns\TextColumn::make('user.name')
+            \Filament\Tables\Columns\TextColumn::make('app.user.name')
                 ->label('Creator'),
             \Filament\Tables\Columns\TextColumn::make('app.uuid')
                 ->label('UUID'),
