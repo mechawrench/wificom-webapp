@@ -184,7 +184,7 @@
                                 WiFi and a power source is all you need to get online
                             </h2>
                             <p class="mb-8 text-white text wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.8s">
-                                Works on any Operating System, mobile device, and even websites
+                                Works on any operating system, mobile device, and even websites
                             </p>
                             <a href="https://docs.wificom.dev" class="main-btn gradient-btn gradient-btn-2 wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="1.1s">
                                 Read our Docs
@@ -241,7 +241,7 @@
                 to-[#fe8464]
                 from-[#fe6e9a]
               "></div>
-                        <h3 class="text-[32px] pt-2 font-bold">Same features as a D-Com<span class="font-normal"> but with so much more, includes a screen, speaker, and buttons to interact</span>
+                        <h3 class="text-[32px] pt-2 font-bold">Same features as a D-Com<span class="font-normal"> but with so much more, includes a screen, speaker, and buttons for interactions</span>
                         </h3>
                     </div>
                     <!-- section title -->
@@ -290,7 +290,7 @@
                         </div>
                         <div class="mt-8 services-content">
                             <h4 class="mb-8 text-xl font-bold text-gray-900">WiFi Enabled</h4>
-                            <p class="mb-8">Also optional, use your WiFiCom as a normal D-Com when unable to connect online</p>
+                            <p class="mb-8">Also optional. Use your WiFiCom as a normal D-Com when unable to connect online</p>
                             <!-- 
 -->
                         </div>
@@ -504,7 +504,7 @@
             <!-- footer widget -->
             <div class="py-8 border-t border-gray-200 footer-copyright">
                 <p class="text-white text-center">
-                    {{ config('app.url', 'WiFiCom') }}
+                    {{ config('app.url', 'WiFiCom.dev') }}
                 </p>
             </div>
             <!-- footer copyright -->
