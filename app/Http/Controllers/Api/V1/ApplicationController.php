@@ -68,6 +68,7 @@ class ApplicationController extends Controller
             'digirom' => $request->get('digirom'),
             'application_id' => $subscribedApplication->app->uuid,
             'hide_output' => $subscribedApplication->app->is_output_hidden,
+            'api_response' => $subscribedApplication->app->is_output_hidden,
         ];
 
         // TODO: Make mqtt setup a function

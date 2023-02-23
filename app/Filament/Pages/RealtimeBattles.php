@@ -239,6 +239,7 @@ class RealtimeBattles extends Page
             'digirom' => null,
             'application_id' => 1,
             'hide_output' => false,
+            'api_response' =>false,
             'topic' => $model->topic,
             'topic_action' => 'subscribe',
             'battle_type' => $model->device_type, // TODO: Change the model column to battle_type instead of device_type
@@ -316,6 +317,7 @@ class RealtimeBattles extends Page
             'digirom' => null,
             'application_id' => 1,
             'hide_output' => false,
+            'api_response' =>false,
             'topic' => $rtb->topic,
             'topic_action' => 'subscribe',
             'battle_type' => $this->battle_type,

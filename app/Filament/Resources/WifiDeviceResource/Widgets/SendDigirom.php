@@ -67,6 +67,7 @@ class SendDigirom extends Widget
             'digirom' => $validatedData['digirom'],
             'application_id' => 0,
             'hide_output' => false,
+            'api_response' =>false,
             'ack_id' => $this->lastAckUuid,
         ];
 
