@@ -479,7 +479,7 @@
                                     <ul class="link">
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/dashboard">Dashboard</a></li>
-                                        <li><a href="https://docs.mechawrench.com">Docs</a></li>
+                                        <li><a href="https://docs.wificom.dev">Docs</a></li>
                                     </ul>
                                 </div>
                                 <!-- footer wrapper -->
