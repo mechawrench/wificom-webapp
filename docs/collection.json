@@ -5,13 +5,13 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/digiunlocker-wificom-filament.test"
+            "value": "https:\/\/wificom.dev"
         }
     ],
     "info": {
-        "name": "WiFiCom",
-        "_postman_id": "52df1fd2-6d19-4236-9f58-c588a0636ffe",
-        "description": "WiFiCom application APIphp artisan scribe:generate\n",
+        "name": "WiFiCom API Documentation",
+        "_postman_id": "3d7f0967-773d-4c2e-bb1e-d198aaf7aac8",
+        "description": "WiFiCom application developer API",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"device_uuid\":\"jyjtupqustudmnrv\",\"application_uuid\":\"tegpautokbtlqsbk\",\"comment\":\"jkhlvxgpapdhgpnwu\",\"digirom\":\"fugit\"}"
+                            "raw": "{\"device_uuid\":\"mwjbrmysjfshrfir\",\"application_uuid\":\"fscsbkraoznanufs\",\"comment\":\"dgrewgacgillzguwmjlro\",\"digirom\":\"fugiat\"}"
                         },
                         "description": ""
                     },
@@ -69,7 +69,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"application_uuid\":\"duzcsjgdyjacxvhw\",\"device_uuid\":\"mlpbrcddpftkiuju\"}"
+                            "raw": "{\"application_uuid\":\"qywmfowyomxwlcpf\",\"device_uuid\":\"oabzdhdxwqizqgbm\"}"
                         },
                         "description": ""
                     },

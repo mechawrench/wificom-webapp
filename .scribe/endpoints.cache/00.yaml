@@ -29,42 +29,42 @@ endpoints:
         name: device_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: jyjtupqustudmnrv
+        example: mwjbrmysjfshrfir
         type: string
         custom: []
       application_uuid:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: tegpautokbtlqsbk
+        example: fscsbkraoznanufs
         type: string
         custom: []
       comment:
         name: comment
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: jkhlvxgpapdhgpnwu
+        example: dgrewgacgillzguwmjlro
         type: string
         custom: []
       digirom:
         name: digirom
         description: ''
         required: true
-        example: fugit
+        example: fugiat
         type: string
         custom: []
     cleanBodyParameters:
-      device_uuid: jyjtupqustudmnrv
-      application_uuid: tegpautokbtlqsbk
-      comment: jkhlvxgpapdhgpnwu
-      digirom: fugit
+      device_uuid: mwjbrmysjfshrfir
+      application_uuid: fscsbkraoznanufs
+      comment: dgrewgacgillzguwmjlro
+      digirom: fugiat
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer aPe4bk8ghv6fa5316ZcEDVd'
+      - 'Bearer hZf6dbk653geDva14a8VEcP'
     controller: null
     method: null
     route: null
@@ -95,26 +95,26 @@ endpoints:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: duzcsjgdyjacxvhw
+        example: qywmfowyomxwlcpf
         type: string
         custom: []
       device_uuid:
         name: device_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: mlpbrcddpftkiuju
+        example: oabzdhdxwqizqgbm
         type: string
         custom: []
     cleanBodyParameters:
-      application_uuid: duzcsjgdyjacxvhw
-      device_uuid: mlpbrcddpftkiuju
+      application_uuid: qywmfowyomxwlcpf
+      device_uuid: oabzdhdxwqizqgbm
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 4g68hecvbV6Pa5kadE3ZDf1'
+      - 'Bearer 1hV8dcEDebv6a5Pgk6fZ34a'
     controller: null
     method: null
     route: null

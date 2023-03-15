@@ -1,10 +1,9 @@
 # Introduction
 
-WiFiCom application APIphp artisan scribe:generate
-
+WiFiCom application developer API
 
 <aside>
-    <strong>Base URL</strong>: <code>https://digiunlocker-wificom-filament.test</code>
+    <strong>Base URL</strong>: <code>https://wificom.dev</code>
 </aside>
 
 This documentation aims to provide all the information you need to work with our API.

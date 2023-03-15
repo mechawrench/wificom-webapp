@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
-  title: WiFiCom
-  description: "WiFiCom application APIphp artisan scribe:generate\n"
+  title: 'WiFiCom API Documentation'
+  description: 'WiFiCom application developer API'
   version: 1.0.0
 servers:
   -
-    url: 'https://digiunlocker-wificom-filament.test'
+    url: 'https://wificom.dev'
 paths:
   /api/v1/application/send_digirom:
     post:
@@ -47,19 +47,19 @@ paths:
                 device_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: jyjtupqustudmnrv
+                  example: mwjbrmysjfshrfir
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: tegpautokbtlqsbk
+                  example: fscsbkraoznanufs
                 comment:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: jkhlvxgpapdhgpnwu
+                  example: dgrewgacgillzguwmjlro
                 digirom:
                   type: string
                   description: ''
-                  example: fugit
+                  example: fugiat
               required:
                 - device_uuid
                 - application_uuid
@@ -104,11 +104,11 @@ paths:
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: duzcsjgdyjacxvhw
+                  example: qywmfowyomxwlcpf
                 device_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: mlpbrcddpftkiuju
+                  example: oabzdhdxwqizqgbm
               required:
                 - application_uuid
                 - device_uuid

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>WiFiCom Documentation</title>
+    <title>WiFiCom API Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -100,16 +100,16 @@
     <div class="dark-box"></div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
-<p>WiFiCom application APIphp artisan scribe:generate</p>
+<p>WiFiCom application developer API</p>
 <aside>
-    <strong>Base URL</strong>: <code>https://digiunlocker-wificom-filament.test</code>
+    <strong>Base URL</strong>: <code>https://wificom.dev</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {USER_API_TOKEN}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {USER_API_TOKEN}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your settings and clicking <b>Generate API token</b> at the bottom of the page.</p>
 
@@ -131,22 +131,22 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://digiunlocker-wificom-filament.test/api/v1/application/send_digirom" \
+    "https://wificom.dev/api/v1/application/send_digirom" \
     --header "Authorization: Bearer {USER_API_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"device_uuid\": \"jyjtupqustudmnrv\",
-    \"application_uuid\": \"tegpautokbtlqsbk\",
-    \"comment\": \"jkhlvxgpapdhgpnwu\",
-    \"digirom\": \"fugit\"
+    \"device_uuid\": \"mwjbrmysjfshrfir\",
+    \"application_uuid\": \"fscsbkraoznanufs\",
+    \"comment\": \"dgrewgacgillzguwmjlro\",
+    \"digirom\": \"fugiat\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://digiunlocker-wificom-filament.test/api/v1/application/send_digirom"
+    "https://wificom.dev/api/v1/application/send_digirom"
 );
 
 const headers = {
@@ -156,10 +156,10 @@ const headers = {
 };
 
 let body = {
-    "device_uuid": "jyjtupqustudmnrv",
-    "application_uuid": "tegpautokbtlqsbk",
-    "comment": "jkhlvxgpapdhgpnwu",
-    "digirom": "fugit"
+    "device_uuid": "mwjbrmysjfshrfir",
+    "application_uuid": "fscsbkraoznanufs",
+    "comment": "dgrewgacgillzguwmjlro",
+    "digirom": "fugiat"
 };
 
 fetch(url, {
@@ -172,7 +172,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'https://digiunlocker-wificom-filament.test/api/v1/application/send_digirom',
+    'https://wificom.dev/api/v1/application/send_digirom',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {USER_API_TOKEN}',
@@ -180,10 +180,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'device_uuid' =&gt; 'jyjtupqustudmnrv',
-            'application_uuid' =&gt; 'tegpautokbtlqsbk',
-            'comment' =&gt; 'jkhlvxgpapdhgpnwu',
-            'digirom' =&gt; 'fugit',
+            'device_uuid' =&gt; 'mwjbrmysjfshrfir',
+            'application_uuid' =&gt; 'fscsbkraoznanufs',
+            'comment' =&gt; 'dgrewgacgillzguwmjlro',
+            'digirom' =&gt; 'fugiat',
         ],
     ]
 );
@@ -195,12 +195,12 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'https://digiunlocker-wificom-filament.test/api/v1/application/send_digirom'
+url = 'https://wificom.dev/api/v1/application/send_digirom'
 payload = {
-    "device_uuid": "jyjtupqustudmnrv",
-    "application_uuid": "tegpautokbtlqsbk",
-    "comment": "jkhlvxgpapdhgpnwu",
-    "digirom": "fugit"
+    "device_uuid": "mwjbrmysjfshrfir",
+    "application_uuid": "fscsbkraoznanufs",
+    "comment": "dgrewgacgillzguwmjlro",
+    "digirom": "fugiat"
 }
 headers = {
   'Authorization': 'Bearer {USER_API_TOKEN}',
@@ -294,10 +294,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="device_uuid"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="jyjtupqustudmnrv"
+               value="mwjbrmysjfshrfir"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>jyjtupqustudmnrv</code></p>
+<p>Must be 16 characters. Example: <code>mwjbrmysjfshrfir</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>application_uuid</code></b>&nbsp;&nbsp;
@@ -305,10 +305,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="application_uuid"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="tegpautokbtlqsbk"
+               value="fscsbkraoznanufs"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>tegpautokbtlqsbk</code></p>
+<p>Must be 16 characters. Example: <code>fscsbkraoznanufs</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -316,10 +316,10 @@ response.json()</code></pre></div>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="comment"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="jkhlvxgpapdhgpnwu"
+               value="dgrewgacgillzguwmjlro"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>jkhlvxgpapdhgpnwu</code></p>
+<p>Must not be greater than 255 characters. Example: <code>dgrewgacgillzguwmjlro</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>digirom</code></b>&nbsp;&nbsp;
@@ -327,10 +327,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="digirom"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="fugit"
+               value="fugiat"
                data-component="body">
     <br>
-<p>Example: <code>fugit</code></p>
+<p>Example: <code>fugiat</code></p>
         </div>
         </form>
 
@@ -348,20 +348,20 @@ response.json()</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://digiunlocker-wificom-filament.test/api/v1/application/last_output" \
+    "https://wificom.dev/api/v1/application/last_output" \
     --header "Authorization: Bearer {USER_API_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"application_uuid\": \"duzcsjgdyjacxvhw\",
-    \"device_uuid\": \"mlpbrcddpftkiuju\"
+    \"application_uuid\": \"qywmfowyomxwlcpf\",
+    \"device_uuid\": \"oabzdhdxwqizqgbm\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://digiunlocker-wificom-filament.test/api/v1/application/last_output"
+    "https://wificom.dev/api/v1/application/last_output"
 );
 
 const headers = {
@@ -371,8 +371,8 @@ const headers = {
 };
 
 let body = {
-    "application_uuid": "duzcsjgdyjacxvhw",
-    "device_uuid": "mlpbrcddpftkiuju"
+    "application_uuid": "qywmfowyomxwlcpf",
+    "device_uuid": "oabzdhdxwqizqgbm"
 };
 
 fetch(url, {
@@ -385,7 +385,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'https://digiunlocker-wificom-filament.test/api/v1/application/last_output',
+    'https://wificom.dev/api/v1/application/last_output',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {USER_API_TOKEN}',
@@ -393,8 +393,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'application_uuid' =&gt; 'duzcsjgdyjacxvhw',
-            'device_uuid' =&gt; 'mlpbrcddpftkiuju',
+            'application_uuid' =&gt; 'qywmfowyomxwlcpf',
+            'device_uuid' =&gt; 'oabzdhdxwqizqgbm',
         ],
     ]
 );
@@ -406,10 +406,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'https://digiunlocker-wificom-filament.test/api/v1/application/last_output'
+url = 'https://wificom.dev/api/v1/application/last_output'
 payload = {
-    "application_uuid": "duzcsjgdyjacxvhw",
-    "device_uuid": "mlpbrcddpftkiuju"
+    "application_uuid": "qywmfowyomxwlcpf",
+    "device_uuid": "oabzdhdxwqizqgbm"
 }
 headers = {
   'Authorization': 'Bearer {USER_API_TOKEN}',
@@ -503,10 +503,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="application_uuid"                data-endpoint="POSTapi-v1-application-last_output"
-               value="duzcsjgdyjacxvhw"
+               value="qywmfowyomxwlcpf"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>duzcsjgdyjacxvhw</code></p>
+<p>Must be 16 characters. Example: <code>qywmfowyomxwlcpf</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>device_uuid</code></b>&nbsp;&nbsp;
@@ -514,10 +514,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="device_uuid"                data-endpoint="POSTapi-v1-application-last_output"
-               value="mlpbrcddpftkiuju"
+               value="oabzdhdxwqizqgbm"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>mlpbrcddpftkiuju</code></p>
+<p>Must be 16 characters. Example: <code>oabzdhdxwqizqgbm</code></p>
         </div>
         </form>
 
