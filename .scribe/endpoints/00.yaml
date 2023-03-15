@@ -27,42 +27,42 @@ endpoints:
         name: device_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: dnpycmvvarvubcqn
+        example: jyjtupqustudmnrv
         type: string
         custom: []
       application_uuid:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: civtkgnxczwboste
+        example: tegpautokbtlqsbk
         type: string
         custom: []
       comment:
         name: comment
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: rltwfngmcgjkdojllotd
+        example: jkhlvxgpapdhgpnwu
         type: string
         custom: []
       digirom:
         name: digirom
         description: ''
         required: true
-        example: explicabo
+        example: fugit
         type: string
         custom: []
     cleanBodyParameters:
-      device_uuid: dnpycmvvarvubcqn
-      application_uuid: civtkgnxczwboste
-      comment: rltwfngmcgjkdojllotd
-      digirom: explicabo
+      device_uuid: jyjtupqustudmnrv
+      application_uuid: tegpautokbtlqsbk
+      comment: jkhlvxgpapdhgpnwu
+      digirom: fugit
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer avZ6d5aec84PfbV1kgE6h3D'
+      - 'Bearer aPe4bk8ghv6fa5316ZcEDVd'
     controller: null
     method: null
     route: null
@@ -93,26 +93,26 @@ endpoints:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: oiypgaxoyshsdjxu
+        example: duzcsjgdyjacxvhw
         type: string
         custom: []
       device_uuid:
         name: device_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: gpsanpwlaqlnyono
+        example: mlpbrcddpftkiuju
         type: string
         custom: []
     cleanBodyParameters:
-      application_uuid: oiypgaxoyshsdjxu
-      device_uuid: gpsanpwlaqlnyono
+      application_uuid: duzcsjgdyjacxvhw
+      device_uuid: mlpbrcddpftkiuju
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer V661E8Df4evZ3aPhkdgabc5'
+      - 'Bearer 4g68hecvbV6Pa5kadE3ZDf1'
     controller: null
     method: null
     route: null

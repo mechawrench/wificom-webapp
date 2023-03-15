@@ -47,19 +47,19 @@ paths:
                 device_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: dnpycmvvarvubcqn
+                  example: jyjtupqustudmnrv
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: civtkgnxczwboste
+                  example: tegpautokbtlqsbk
                 comment:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rltwfngmcgjkdojllotd
+                  example: jkhlvxgpapdhgpnwu
                 digirom:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: fugit
               required:
                 - device_uuid
                 - application_uuid
@@ -104,11 +104,11 @@ paths:
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: oiypgaxoyshsdjxu
+                  example: duzcsjgdyjacxvhw
                 device_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: gpsanpwlaqlnyono
+                  example: mlpbrcddpftkiuju
               required:
                 - application_uuid
                 - device_uuid

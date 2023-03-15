@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "WiFiCom",
-        "_postman_id": "82bfead2-f7ce-406b-89e0-83b31d1cd805",
+        "_postman_id": "52df1fd2-6d19-4236-9f58-c588a0636ffe",
         "description": "WiFiCom application APIphp artisan scribe:generate\n",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"device_uuid\":\"dnpycmvvarvubcqn\",\"application_uuid\":\"civtkgnxczwboste\",\"comment\":\"rltwfngmcgjkdojllotd\",\"digirom\":\"explicabo\"}"
+                            "raw": "{\"device_uuid\":\"jyjtupqustudmnrv\",\"application_uuid\":\"tegpautokbtlqsbk\",\"comment\":\"jkhlvxgpapdhgpnwu\",\"digirom\":\"fugit\"}"
                         },
                         "description": ""
                     },
@@ -69,7 +69,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"application_uuid\":\"oiypgaxoyshsdjxu\",\"device_uuid\":\"gpsanpwlaqlnyono\"}"
+                            "raw": "{\"application_uuid\":\"duzcsjgdyjacxvhw\",\"device_uuid\":\"mlpbrcddpftkiuju\"}"
                         },
                         "description": ""
                     },
