@@ -1,0 +1,91 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/digiunlocker-wificom-filament.test"
+        }
+    ],
+    "info": {
+        "name": "WiFiCom",
+        "_postman_id": "82bfead2-f7ce-406b-89e0-83b31d1cd805",
+        "description": "WiFiCom application APIphp artisan scribe:generate\n",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/v1\/application\/send_digirom",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/application\/send_digirom",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/application\/send_digirom"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"device_uuid\":\"dnpycmvvarvubcqn\",\"application_uuid\":\"civtkgnxczwboste\",\"comment\":\"rltwfngmcgjkdojllotd\",\"digirom\":\"explicabo\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/application\/last_output",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/application\/last_output",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/application\/last_output"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"application_uuid\":\"oiypgaxoyshsdjxu\",\"device_uuid\":\"gpsanpwlaqlnyono\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "value": null,
+                "type": "string"
+            }
+        ]
+    }
+}

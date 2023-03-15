@@ -1,0 +1,119 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/application/send_digirom
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {USER_API_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      device_uuid:
+        name: device_uuid
+        description: 'Must be 16 characters.'
+        required: true
+        example: dnpycmvvarvubcqn
+        type: string
+        custom: []
+      application_uuid:
+        name: application_uuid
+        description: 'Must be 16 characters.'
+        required: true
+        example: civtkgnxczwboste
+        type: string
+        custom: []
+      comment:
+        name: comment
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: rltwfngmcgjkdojllotd
+        type: string
+        custom: []
+      digirom:
+        name: digirom
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        custom: []
+    cleanBodyParameters:
+      device_uuid: dnpycmvvarvubcqn
+      application_uuid: civtkgnxczwboste
+      comment: rltwfngmcgjkdojllotd
+      digirom: explicabo
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer avZ6d5aec84PfbV1kgE6h3D'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/application/last_output
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {USER_API_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      application_uuid:
+        name: application_uuid
+        description: 'Must be 16 characters.'
+        required: true
+        example: oiypgaxoyshsdjxu
+        type: string
+        custom: []
+      device_uuid:
+        name: device_uuid
+        description: 'Must be 16 characters.'
+        required: true
+        example: gpsanpwlaqlnyono
+        type: string
+        custom: []
+    cleanBodyParameters:
+      application_uuid: oiypgaxoyshsdjxu
+      device_uuid: gpsanpwlaqlnyono
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer V661E8Df4evZ3aPhkdgabc5'
+    controller: null
+    method: null
+    route: null
+    custom: []

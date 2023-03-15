@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,15 @@ Route::get('/discord', function () {
 Route::get('/github', function () {
     return redirect('https://github.com/mechawrench/wificom-lib');
 });
+
+Route::get('/docs', function () {
+   return view('docs.index');
+});
+Route::get('/docs.openapi', function () {
+    $content = File::get('resources/views/docs/openapi.yaml');
+    return response($content);
+})->name('docs.openapi.json');
+Route::get('/docs.postman', function () {
+    $content = File::get('resources/views/docs/collection.json');
+    return response($content);
+})->name('docs.postman.json');

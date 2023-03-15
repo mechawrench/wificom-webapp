@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: WiFiCom
+  description: "WiFiCom application APIphp artisan scribe:generate\n"
+  version: 1.0.0
+servers:
+  -
+    url: 'https://digiunlocker-wificom-filament.test'
+paths:
+  /api/v1/application/send_digirom:
+    post:
+      summary: ''
+      operationId: postApiV1ApplicationSend_digirom
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {USER_API_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device_uuid:
+                  type: string
+                  description: 'Must be 16 characters.'
+                  example: dnpycmvvarvubcqn
+                application_uuid:
+                  type: string
+                  description: 'Must be 16 characters.'
+                  example: civtkgnxczwboste
+                comment:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: rltwfngmcgjkdojllotd
+                digirom:
+                  type: string
+                  description: ''
+                  example: explicabo
+              required:
+                - device_uuid
+                - application_uuid
+                - digirom
+  /api/v1/application/last_output:
+    post:
+      summary: ''
+      operationId: postApiV1ApplicationLast_output
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {USER_API_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                application_uuid:
+                  type: string
+                  description: 'Must be 16 characters.'
+                  example: oiypgaxoyshsdjxu
+                device_uuid:
+                  type: string
+                  description: 'Must be 16 characters.'
+                  example: gpsanpwlaqlnyono
+              required:
+                - application_uuid
+                - device_uuid
+tags:
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
