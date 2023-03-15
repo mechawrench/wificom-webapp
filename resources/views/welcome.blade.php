@@ -435,7 +435,7 @@
                         <div class="h-20">
 
                         </div>
-                        <a href="https://discord.gg/yJ4Ub64zrP" class="flex items-center">
+                        <a href="/discord" class="flex items-center">
                             <img src="https://dcbadge.vercel.app/api/server/yJ4Ub64zrP" alt="Discord Server">
                         </a>
                     </div>

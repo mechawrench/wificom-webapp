@@ -34,3 +34,13 @@ Route::get('/privacy', function () {
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
+
+// Redirect to discord.com at url /discord
+Route::get('/discord', function () {
+    return redirect('https://discord.gg/yJ4Ub64zrP');
+});
+
+// Redirect to github.com at url /github
+Route::get('/github', function () {
+    return redirect('https://github.com/mechawrench/wificom-lib');
+});
