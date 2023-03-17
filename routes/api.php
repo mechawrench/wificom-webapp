@@ -20,14 +20,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // API v1
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    // Route::prefix('device')->group(function () {
-    //     Route::post('/ping', [\App\Http\Controllers\Api\V1\DeviceController::class, 'ping']);
-    // });
-
     Route::prefix('application')->group(function () {
         Route::post('/send_digirom', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'send_digirom']);
         Route::post('/last_output', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'last_output']);
         Route::post('/subscribers', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'get_subscribers']);
         Route::post('/subscribers/{subscriber_uuid}', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'get_subscriber']);
+    });
+});
+
+// API V2
+Route::prefix('v2')->group(function () {
+    Route::prefix('application')->group(function () {
+        Route::post('/send_digirom', [\App\Http\Controllers\Api\V2\ApplicationController::class, 'send_digirom']);
+        Route::post('/last_output', [\App\Http\Controllers\Api\V2\ApplicationController::class, 'last_output']);
+        // Route::post('/subscribers', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'get_subscribers']);
+        // Route::post('/subscribers/{subscriber_uuid}', [\App\Http\Controllers\Api\V1\ApplicationController::class, 'get_subscriber']);
     });
 });

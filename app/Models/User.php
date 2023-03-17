@@ -132,4 +132,9 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     {
         return $this->hasMany('App\Models\MqttAcl', 'user_id', 'id');
     }
+
+    public function appApiKeys()
+    {
+        return $this->hasMany('App\Models\AppApiKey', 'user_id', 'id');
+    }   
 }

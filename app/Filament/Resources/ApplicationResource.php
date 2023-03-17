@@ -69,8 +69,7 @@ class ApplicationResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-            ])
+            ->columns([])
             ->filters([
                 //
             ])
@@ -83,7 +82,7 @@ class ApplicationResource extends Resource
                         'application_uuid' => $record->uuid,
                         'user_id' => auth()->id(),
                     ]))
-                    ->visible(fn (Application $record): bool => ! $record->subscribed),
+                    ->visible(fn (Application $record): bool => !$record->subscribed),
                 Action::make('unsubscribe')
                     ->label('Unsubsribe')
                     ->icon('heroicon-o-trash')
@@ -91,7 +90,7 @@ class ApplicationResource extends Resource
                         'application_uuid' => $record->uuid,
                         'user_id' => auth()->id(),
                     ])->delete())
-                    ->hidden(fn (Application $record): bool => ! $record->subscribed),
+                    ->hidden(fn (Application $record): bool => !$record->subscribed),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -105,6 +104,7 @@ class ApplicationResource extends Resource
             'create' => Pages\CreateApplication::route('/create'),
             'edit' => Pages\EditApplication::route('/{record}/edit'),
             'view' => Pages\ViewApplication::route('/{record}'),
+            'app-credentials' => Pages\AppCredentials::route('//app-credentials'),
         ];
     }
 

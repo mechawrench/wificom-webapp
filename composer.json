@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "clarkeash/doorman": "^7.0",
         "doctrine/dbal": "^3.3",
+        "fakerphp/faker": "^1.21",
         "filament/filament": "^2.0",
         "filament/tables": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -28,7 +29,6 @@
         "yepsua/filament-themes": "^0.1.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
         "knuckleswtf/scribe": "^4.16",
         "laravel/pint": "^0.2.3",
         "laravel/sail": "^1.0.1",
