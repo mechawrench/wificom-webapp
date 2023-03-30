@@ -63,8 +63,11 @@
                         secrets = { <br />
                         <div class="pl-5">
                             # Wifi network variables <br />
-                            'ssid' : 'YOUR_WIFI_NETWORK',<br />
-                            'password' : 'YOUR_WIFI_PASSWORD',<br />
+                            'wireless_networks':[<br />
+                            {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},<br />
+                            # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, <br />
+                            # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, <br />
+                            ],
                             # Hosted service variables<br />
                             'broker': '{{ config('mqtt-client.connections.default.host')}}',<br />
                             'mqtt_username' : '{{ $record->user->name }}',<br />
