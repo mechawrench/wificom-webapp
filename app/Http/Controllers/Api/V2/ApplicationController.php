@@ -38,15 +38,15 @@ class ApplicationController extends Controller
             return response(['error' => 'Invalid API Key for application'], 401);
         }
 
-        if($api_key->paused) {
+        if ($api_key->is_paused) {
             \Log::error('API Key: ' . $request->get('api_key') . ' is paused for application: ' . $request->get('application_uuid'));
 
             return response(['error' => 'API Key is paused for application'], 401);
         }
 
         $device = WifiDevice::where('device_name', $request->get('device_name'))
-                ->where('user_id', $api_key->user_id)
-                ->first();
+            ->where('user_id', $api_key->user_id)
+            ->first();
 
         if (!$device) {
             \Log::error('Invalid device name: ' . $request->get('device_name'));
@@ -114,15 +114,15 @@ class ApplicationController extends Controller
             return response(['error' => 'Invalid API Key for application'], 401);
         }
 
-        if($api_key->paused) {
+        if ($api_key->is_paused) {
             \Log::error('API Key: ' . $request->get('api_key') . ' is paused for application: ' . $request->get('application_uuid'));
 
             return response(['error' => 'API Key is paused for application'], 401);
         }
 
         $device = WifiDevice::where('device_name', $request->get('device_name'))
-                ->where('user_id', $api_key->user_id)
-                ->first();
+            ->where('user_id', $api_key->user_id)
+            ->first();
 
         if (!$device) {
             \Log::error('Invalid device name: ' . $request->get('device_name'));
