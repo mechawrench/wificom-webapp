@@ -7,29 +7,15 @@ servers:
   -
     url: 'https://wificom.dev'
 paths:
-  /api/v1/application/send_digirom:
+  /api/v2/application/send_digirom:
     post:
       summary: ''
-      operationId: postApiV1ApplicationSend_digirom
+      operationId: postApiV2ApplicationSend_digirom
       description: ''
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {USER_API_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
           description: ''
           example: application/json
           schema:
@@ -44,49 +30,40 @@ paths:
             schema:
               type: object
               properties:
-                device_uuid:
+                api_key:
                   type: string
-                  description: 'Must be 16 characters.'
-                  example: mwjbrmysjfshrfir
+                  description: 'Authentication key.'
+                  example: '{USER_API_TOKEN}'
+                device_name:
+                  type: string
+                  description: ''
+                  example: corporis
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: fscsbkraoznanufs
+                  example: eatjulyssofjfahp
                 comment:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: dgrewgacgillzguwmjlro
+                  example: cll
                 digirom:
                   type: string
                   description: ''
-                  example: fugiat
+                  example: voluptatibus
               required:
-                - device_uuid
+                - api_key
+                - device_name
                 - application_uuid
                 - digirom
-  /api/v1/application/last_output:
+  /api/v2/application/last_output:
     post:
       summary: ''
-      operationId: postApiV1ApplicationLast_output
+      operationId: postApiV2ApplicationLast_output
       description: ''
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {USER_API_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
           description: ''
           example: application/json
           schema:
@@ -101,27 +78,29 @@ paths:
             schema:
               type: object
               properties:
+                api_key:
+                  type: string
+                  description: 'Authentication key.'
+                  example: '{USER_API_TOKEN}'
                 application_uuid:
                   type: string
                   description: 'Must be 16 characters.'
-                  example: qywmfowyomxwlcpf
-                device_uuid:
+                  example: smzgtlwovjixpdhq
+                device_name:
                   type: string
-                  description: 'Must be 16 characters.'
-                  example: oabzdhdxwqizqgbm
+                  description: ''
+                  example: consequatur
               required:
+                - api_key
                 - application_uuid
-                - device_uuid
+                - device_name
 tags:
   -
     name: Endpoints
     description: ''
 components:
   securitySchemes:
-    default:
-      type: http
-      scheme: bearer
-      description: ''
+    default: []
 security:
   -
     default: []

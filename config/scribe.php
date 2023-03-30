@@ -36,7 +36,7 @@ return [
                 /*
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
-                'prefixes' => ['api/*'],
+                'prefixes' => ['api/v2/*'],
 
                 /*
                  * Match only routes whose domains match this pattern (use * as a wildcard to match any characters). Example: 'api.*'.
@@ -75,8 +75,8 @@ return [
                  * Additional headers to be added to the example requests
                  */
                 'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
+                    // 'Content-Type' => 'application/json',
+                    // 'Accept' => 'application/json',
                 ],
 
                 /*
@@ -225,12 +225,12 @@ return [
          * Where is the auth value meant to be sent in a request?
          * Options: query, body, basic, bearer, header (for custom header)
          */
-        'in' => 'bearer',
+        'in' => 'body',
 
         /*
          * The name of the auth parameter (eg token, key, apiKey) or header (eg Authorization, Api-Key).
          */
-        'name' => 'Authorization',
+        'name' => 'api_key',
 
         /*
          * The value of the parameter to be used by Scribe to authenticate response calls.
@@ -249,7 +249,7 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by visiting your settings and clicking <b>Generate API token</b> at the bottom of the page.',
+        'extra_info' => 'Authentication requests requires an API Key from the applications page and your device as named on wificom.dev.',
     ],
 
     /*

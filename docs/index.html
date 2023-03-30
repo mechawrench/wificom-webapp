@@ -75,11 +75,11 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-application-send_digirom">
-                                <a href="#endpoints-POSTapi-v1-application-send_digirom">POST api/v1/application/send_digirom</a>
+                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v2-application-send_digirom">
+                                <a href="#endpoints-POSTapi-v2-application-send_digirom">POST api/v2/application/send_digirom</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-application-last_output">
-                                <a href="#endpoints-POSTapi-v1-application-last_output">POST api/v1/application/last_output</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v2-application-last_output">
+                                <a href="#endpoints-POSTapi-v2-application-last_output">POST api/v2/application/last_output</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -92,7 +92,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 15, 2023</li>
+        <li>Last updated: March 30, 2023</li>
     </ul>
 </div>
 
@@ -109,15 +109,13 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {USER_API_TOKEN}"</code></strong>.</p>
-<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
-<p>You can retrieve your token by visiting your settings and clicking <b>Generate API token</b> at the bottom of the page.</p>
+<p>Authentication is simple, grab an API Key from each app that you wish to use and then provide your device_name.  Headers are no longer needed, nor are bearer tokens.</p>
 
         <h1 id="endpoints">Endpoints</h1>
 
     
 
-                                <h2 id="endpoints-POSTapi-v1-application-send_digirom">POST api/v1/application/send_digirom</h2>
+                                <h2 id="endpoints-POSTapi-v2-application-send_digirom">POST api/v2/application/send_digirom</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -125,41 +123,40 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 
 
-<span id="example-requests-POSTapi-v1-application-send_digirom">
+<span id="example-requests-POSTapi-v2-application-send_digirom">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wificom.dev/api/v1/application/send_digirom" \
-    --header "Authorization: Bearer {USER_API_TOKEN}" \
+    "https://wificom.dev/api/v2/application/send_digirom" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
     --data "{
-    \"device_uuid\": \"mwjbrmysjfshrfir\",
-    \"application_uuid\": \"fscsbkraoznanufs\",
-    \"comment\": \"dgrewgacgillzguwmjlro\",
-    \"digirom\": \"fugiat\"
+    \"api_key\": \"{USER_API_TOKEN}\",
+    \"device_name\": \"corporis\",
+    \"application_uuid\": \"eatjulyssofjfahp\",
+    \"comment\": \"cll\",
+    \"digirom\": \"voluptatibus\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wificom.dev/api/v1/application/send_digirom"
+    "https://wificom.dev/api/v2/application/send_digirom"
 );
 
 const headers = {
-    "Authorization": "Bearer {USER_API_TOKEN}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "device_uuid": "mwjbrmysjfshrfir",
-    "application_uuid": "fscsbkraoznanufs",
-    "comment": "dgrewgacgillzguwmjlro",
-    "digirom": "fugiat"
+    "api_key": "{USER_API_TOKEN}",
+    "device_name": "corporis",
+    "application_uuid": "eatjulyssofjfahp",
+    "comment": "cll",
+    "digirom": "voluptatibus"
 };
 
 fetch(url, {
@@ -172,18 +169,17 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'https://wificom.dev/api/v1/application/send_digirom',
+    'https://wificom.dev/api/v2/application/send_digirom',
     [
         'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {USER_API_TOKEN}',
             'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'device_uuid' =&gt; 'mwjbrmysjfshrfir',
-            'application_uuid' =&gt; 'fscsbkraoznanufs',
-            'comment' =&gt; 'dgrewgacgillzguwmjlro',
-            'digirom' =&gt; 'fugiat',
+            'api_key' =&gt; '{USER_API_TOKEN}',
+            'device_name' =&gt; 'corporis',
+            'application_uuid' =&gt; 'eatjulyssofjfahp',
+            'comment' =&gt; 'cll',
+            'digirom' =&gt; 'voluptatibus',
         ],
     ]
 );
@@ -195,17 +191,16 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'https://wificom.dev/api/v1/application/send_digirom'
+url = 'https://wificom.dev/api/v2/application/send_digirom'
 payload = {
-    "device_uuid": "mwjbrmysjfshrfir",
-    "application_uuid": "fscsbkraoznanufs",
-    "comment": "dgrewgacgillzguwmjlro",
-    "digirom": "fugiat"
+    "api_key": "{USER_API_TOKEN}",
+    "device_name": "corporis",
+    "application_uuid": "eatjulyssofjfahp",
+    "comment": "cll",
+    "digirom": "voluptatibus"
 }
 headers = {
-  'Authorization': 'Bearer {USER_API_TOKEN}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Content-Type': 'application/json'
 }
 
 response = requests.request('POST', url, headers=headers, json=payload)
@@ -213,75 +208,53 @@ response.json()</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-v1-application-send_digirom">
+<span id="example-responses-POSTapi-v2-application-send_digirom">
 </span>
-<span id="execution-results-POSTapi-v1-application-send_digirom" hidden>
+<span id="execution-results-POSTapi-v2-application-send_digirom" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-application-send_digirom"></span>:
+                id="execution-response-status-POSTapi-v2-application-send_digirom"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-application-send_digirom" style="max-height: 400px;"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-v2-application-send_digirom" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-v1-application-send_digirom" hidden>
+<span id="execution-error-POSTapi-v2-application-send_digirom" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-application-send_digirom"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-v2-application-send_digirom"></code></pre>
 </span>
-<form id="form-POSTapi-v1-application-send_digirom" data-method="POST"
-      data-path="api/v1/application/send_digirom"
+<form id="form-POSTapi-v2-application-send_digirom" data-method="POST"
+      data-path="api/v2/application/send_digirom"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-application-send_digirom', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v2-application-send_digirom', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-application-send_digirom"
-                    onclick="tryItOut('POSTapi-v1-application-send_digirom');">Try it out ⚡
+                    id="btn-tryout-POSTapi-v2-application-send_digirom"
+                    onclick="tryItOut('POSTapi-v2-application-send_digirom');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-application-send_digirom"
-                    onclick="cancelTryOut('POSTapi-v1-application-send_digirom');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-v2-application-send_digirom"
+                    onclick="cancelTryOut('POSTapi-v2-application-send_digirom');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-application-send_digirom" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-v2-application-send_digirom" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/v1/application/send_digirom</code></b>
+            <b><code>api/v2/application/send_digirom</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-application-send_digirom"
-               value="Bearer {USER_API_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {USER_API_TOKEN}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-application-send_digirom"
+               name="Content-Type"                data-endpoint="POSTapi-v2-application-send_digirom"
                value="application/json"
                data-component="header">
     <br>
@@ -289,52 +262,63 @@ response.json()</code></pre></div>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>device_uuid</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>api_key</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="device_uuid"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="mwjbrmysjfshrfir"
+               name="api_key"                data-endpoint="POSTapi-v2-application-send_digirom"
+               value="{USER_API_TOKEN}"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>mwjbrmysjfshrfir</code></p>
+<p>Authentication key. Example: <code>{USER_API_TOKEN}</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>device_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="device_name"                data-endpoint="POSTapi-v2-application-send_digirom"
+               value="corporis"
+               data-component="body">
+    <br>
+<p>Example: <code>corporis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>application_uuid</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="application_uuid"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="fscsbkraoznanufs"
+               name="application_uuid"                data-endpoint="POSTapi-v2-application-send_digirom"
+               value="eatjulyssofjfahp"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>fscsbkraoznanufs</code></p>
+<p>Must be 16 characters. Example: <code>eatjulyssofjfahp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-               name="comment"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="dgrewgacgillzguwmjlro"
+               name="comment"                data-endpoint="POSTapi-v2-application-send_digirom"
+               value="cll"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>dgrewgacgillzguwmjlro</code></p>
+<p>Must not be greater than 255 characters. Example: <code>cll</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>digirom</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="digirom"                data-endpoint="POSTapi-v1-application-send_digirom"
-               value="fugiat"
+               name="digirom"                data-endpoint="POSTapi-v2-application-send_digirom"
+               value="voluptatibus"
                data-component="body">
     <br>
-<p>Example: <code>fugiat</code></p>
+<p>Example: <code>voluptatibus</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-v1-application-last_output">POST api/v1/application/last_output</h2>
+                    <h2 id="endpoints-POSTapi-v2-application-last_output">POST api/v2/application/last_output</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -342,37 +326,36 @@ response.json()</code></pre></div>
 
 
 
-<span id="example-requests-POSTapi-v1-application-last_output">
+<span id="example-requests-POSTapi-v2-application-last_output">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wificom.dev/api/v1/application/last_output" \
-    --header "Authorization: Bearer {USER_API_TOKEN}" \
+    "https://wificom.dev/api/v2/application/last_output" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
     --data "{
-    \"application_uuid\": \"qywmfowyomxwlcpf\",
-    \"device_uuid\": \"oabzdhdxwqizqgbm\"
+    \"api_key\": \"{USER_API_TOKEN}\",
+    \"application_uuid\": \"smzgtlwovjixpdhq\",
+    \"device_name\": \"consequatur\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wificom.dev/api/v1/application/last_output"
+    "https://wificom.dev/api/v2/application/last_output"
 );
 
 const headers = {
-    "Authorization": "Bearer {USER_API_TOKEN}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "application_uuid": "qywmfowyomxwlcpf",
-    "device_uuid": "oabzdhdxwqizqgbm"
+    "api_key": "{USER_API_TOKEN}",
+    "application_uuid": "smzgtlwovjixpdhq",
+    "device_name": "consequatur"
 };
 
 fetch(url, {
@@ -385,16 +368,15 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'https://wificom.dev/api/v1/application/last_output',
+    'https://wificom.dev/api/v2/application/last_output',
     [
         'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {USER_API_TOKEN}',
             'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'application_uuid' =&gt; 'qywmfowyomxwlcpf',
-            'device_uuid' =&gt; 'oabzdhdxwqizqgbm',
+            'api_key' =&gt; '{USER_API_TOKEN}',
+            'application_uuid' =&gt; 'smzgtlwovjixpdhq',
+            'device_name' =&gt; 'consequatur',
         ],
     ]
 );
@@ -406,15 +388,14 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'https://wificom.dev/api/v1/application/last_output'
+url = 'https://wificom.dev/api/v2/application/last_output'
 payload = {
-    "application_uuid": "qywmfowyomxwlcpf",
-    "device_uuid": "oabzdhdxwqizqgbm"
+    "api_key": "{USER_API_TOKEN}",
+    "application_uuid": "smzgtlwovjixpdhq",
+    "device_name": "consequatur"
 }
 headers = {
-  'Authorization': 'Bearer {USER_API_TOKEN}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Content-Type': 'application/json'
 }
 
 response = requests.request('POST', url, headers=headers, json=payload)
@@ -422,75 +403,53 @@ response.json()</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-v1-application-last_output">
+<span id="example-responses-POSTapi-v2-application-last_output">
 </span>
-<span id="execution-results-POSTapi-v1-application-last_output" hidden>
+<span id="execution-results-POSTapi-v2-application-last_output" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-application-last_output"></span>:
+                id="execution-response-status-POSTapi-v2-application-last_output"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-application-last_output" style="max-height: 400px;"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-v2-application-last_output" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-v1-application-last_output" hidden>
+<span id="execution-error-POSTapi-v2-application-last_output" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-application-last_output"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-v2-application-last_output"></code></pre>
 </span>
-<form id="form-POSTapi-v1-application-last_output" data-method="POST"
-      data-path="api/v1/application/last_output"
+<form id="form-POSTapi-v2-application-last_output" data-method="POST"
+      data-path="api/v2/application/last_output"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-application-last_output', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v2-application-last_output', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-application-last_output"
-                    onclick="tryItOut('POSTapi-v1-application-last_output');">Try it out ⚡
+                    id="btn-tryout-POSTapi-v2-application-last_output"
+                    onclick="tryItOut('POSTapi-v2-application-last_output');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-application-last_output"
-                    onclick="cancelTryOut('POSTapi-v1-application-last_output');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-v2-application-last_output"
+                    onclick="cancelTryOut('POSTapi-v2-application-last_output');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-application-last_output" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-v2-application-last_output" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/v1/application/last_output</code></b>
+            <b><code>api/v2/application/last_output</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-application-last_output"
-               value="Bearer {USER_API_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {USER_API_TOKEN}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-application-last_output"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-application-last_output"
+               name="Content-Type"                data-endpoint="POSTapi-v2-application-last_output"
                value="application/json"
                data-component="header">
     <br>
@@ -498,26 +457,37 @@ response.json()</code></pre></div>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>api_key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="api_key"                data-endpoint="POSTapi-v2-application-last_output"
+               value="{USER_API_TOKEN}"
+               data-component="body">
+    <br>
+<p>Authentication key. Example: <code>{USER_API_TOKEN}</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>application_uuid</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="application_uuid"                data-endpoint="POSTapi-v1-application-last_output"
-               value="qywmfowyomxwlcpf"
+               name="application_uuid"                data-endpoint="POSTapi-v2-application-last_output"
+               value="smzgtlwovjixpdhq"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>qywmfowyomxwlcpf</code></p>
+<p>Must be 16 characters. Example: <code>smzgtlwovjixpdhq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>device_uuid</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>device_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="device_uuid"                data-endpoint="POSTapi-v1-application-last_output"
-               value="oabzdhdxwqizqgbm"
+               name="device_name"                data-endpoint="POSTapi-v2-application-last_output"
+               value="consequatur"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>oabzdhdxwqizqgbm</code></p>
+<p>Example: <code>consequatur</code></p>
         </div>
         </form>
 

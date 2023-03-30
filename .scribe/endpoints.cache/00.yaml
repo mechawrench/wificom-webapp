@@ -6,7 +6,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/application/send_digirom
+    uri: api/v2/application/send_digirom
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -17,54 +17,60 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {USER_API_TOKEN}'
       Content-Type: application/json
-      Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      device_uuid:
-        name: device_uuid
-        description: 'Must be 16 characters.'
+      api_key:
+        name: api_key
+        description: 'Authentication key.'
         required: true
-        example: mwjbrmysjfshrfir
+        example: '{USER_API_TOKEN}'
+        type: string
+        custom: []
+      device_name:
+        name: device_name
+        description: ''
+        required: true
+        example: corporis
         type: string
         custom: []
       application_uuid:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: fscsbkraoznanufs
+        example: eatjulyssofjfahp
         type: string
         custom: []
       comment:
         name: comment
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: dgrewgacgillzguwmjlro
+        example: cll
         type: string
         custom: []
       digirom:
         name: digirom
         description: ''
         required: true
-        example: fugiat
+        example: voluptatibus
         type: string
         custom: []
     cleanBodyParameters:
-      device_uuid: mwjbrmysjfshrfir
-      application_uuid: fscsbkraoznanufs
-      comment: dgrewgacgillzguwmjlro
-      digirom: fugiat
+      api_key: '{USER_API_TOKEN}'
+      device_name: corporis
+      application_uuid: eatjulyssofjfahp
+      comment: cll
+      digirom: voluptatibus
     fileParameters: []
     responses: []
     responseFields: []
     auth:
-      - headers
-      - Authorization
-      - 'Bearer hZf6dbk653geDva14a8VEcP'
+      - bodyParameters
+      - api_key
+      - DPk3gahc6d8516beE4afvVZ
     controller: null
     method: null
     route: null
@@ -72,7 +78,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/application/last_output
+    uri: api/v2/application/last_output
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -83,38 +89,44 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {USER_API_TOKEN}'
       Content-Type: application/json
-      Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      api_key:
+        name: api_key
+        description: 'Authentication key.'
+        required: true
+        example: '{USER_API_TOKEN}'
+        type: string
+        custom: []
       application_uuid:
         name: application_uuid
         description: 'Must be 16 characters.'
         required: true
-        example: qywmfowyomxwlcpf
+        example: smzgtlwovjixpdhq
         type: string
         custom: []
-      device_uuid:
-        name: device_uuid
-        description: 'Must be 16 characters.'
+      device_name:
+        name: device_name
+        description: ''
         required: true
-        example: oabzdhdxwqizqgbm
+        example: consequatur
         type: string
         custom: []
     cleanBodyParameters:
-      application_uuid: qywmfowyomxwlcpf
-      device_uuid: oabzdhdxwqizqgbm
+      api_key: '{USER_API_TOKEN}'
+      application_uuid: smzgtlwovjixpdhq
+      device_name: consequatur
     fileParameters: []
     responses: []
     responseFields: []
     auth:
-      - headers
-      - Authorization
-      - 'Bearer 1hV8dcEDebv6a5Pgk6fZ34a'
+      - bodyParameters
+      - api_key
+      - Pb6DV1c8akev435gEfdhZ6a
     controller: null
     method: null
     route: null

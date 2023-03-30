@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "WiFiCom API Documentation",
-        "_postman_id": "3d7f0967-773d-4c2e-bb1e-d198aaf7aac8",
+        "_postman_id": "926be8d2-6bd3-49a6-9152-9b7d5563e0eb",
         "description": "WiFiCom application developer API",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,13 +20,13 @@
             "description": "",
             "item": [
                 {
-                    "name": "POST api\/v1\/application\/send_digirom",
+                    "name": "POST api\/v2\/application\/send_digirom",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/application\/send_digirom",
+                            "path": "api\/v2\/application\/send_digirom",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/application\/send_digirom"
+                            "raw": "{{baseUrl}}\/api\/v2\/application\/send_digirom"
                         },
                         "method": "POST",
                         "header": [
@@ -41,20 +41,20 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"device_uuid\":\"mwjbrmysjfshrfir\",\"application_uuid\":\"fscsbkraoznanufs\",\"comment\":\"dgrewgacgillzguwmjlro\",\"digirom\":\"fugiat\"}"
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"device_name\":\"corporis\",\"application_uuid\":\"eatjulyssofjfahp\",\"comment\":\"cll\",\"digirom\":\"voluptatibus\"}"
                         },
                         "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "POST api\/v1\/application\/last_output",
+                    "name": "POST api\/v2\/application\/last_output",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/application\/last_output",
+                            "path": "api\/v2\/application\/last_output",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/application\/last_output"
+                            "raw": "{{baseUrl}}\/api\/v2\/application\/last_output"
                         },
                         "method": "POST",
                         "header": [
@@ -69,7 +69,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"application_uuid\":\"qywmfowyomxwlcpf\",\"device_uuid\":\"oabzdhdxwqizqgbm\"}"
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"application_uuid\":\"smzgtlwovjixpdhq\",\"device_name\":\"consequatur\"}"
                         },
                         "description": ""
                     },
@@ -79,11 +79,16 @@
         }
     ],
     "auth": {
-        "type": "bearer",
-        "bearer": [
+        "type": "apikey",
+        "apikey": [
             {
-                "key": "Authorization",
-                "value": null,
+                "key": "in",
+                "value": "body",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "api_key",
                 "type": "string"
             }
         ]
