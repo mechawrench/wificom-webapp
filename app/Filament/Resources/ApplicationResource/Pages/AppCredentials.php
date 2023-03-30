@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ApplicationResource\Pages;
 
 use App\Filament\Resources\ApplicationResource;
+use App\Models\Application;
 use Filament\Resources\Pages\Page;
 
 class AppCredentials extends Page
@@ -18,9 +19,21 @@ class AppCredentials extends Page
     protected static string $view = 'filament.resources.application-resource.pages.app-credentials';
 
     public $applications;
-    
+
+    protected $listeners = ['refreshAppCredentials' => 'refreshData'];
+
+
     public function mount(): void
     {
-        $this->applications = \App\Models\Application::where('is_public', true)->get();
+        $this->refreshData();
+    }
+
+    public function refreshData()
+    {
+        $this->applications = \App\Models\Application::where('is_public', true)
+            ->with(['subscribedV2' => function ($query) {
+                $query->where('user_id', auth()->id())->select('app_id', 'is_paused');
+            }])
+            ->get();
     }
 }

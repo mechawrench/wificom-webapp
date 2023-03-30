@@ -25,7 +25,7 @@ class LastOutputRequestV2 extends FormRequest
     {
         return [
             'application_uuid' => 'required|string|size:16',
-            'device_uuid' => 'required|string|size:16',
+            'device_name' => 'required|string',
         ];
     }
 }

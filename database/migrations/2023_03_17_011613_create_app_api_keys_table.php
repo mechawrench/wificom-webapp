@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('app_id');
             $table->string('api_key');
             $table->timestamp('last_rotated_at')->nullable();
+            $table->boolean('is_paused')->default(false);
             $table->timestamps();
-
             $table->unique(['user_id', 'app_id']);
         });
     }

@@ -41,6 +41,12 @@ class Application extends Model
             ->where('user_id', auth()->id());
     }
 
+    public function subscribedV2()
+    {
+        return $this->hasOne(AppApiKey::class, 'app_id', 'id');
+    }
+
+
     public function subscribers()
     {
         return $this->hasMany(SubscribedApplication::class, 'application_uuid', 'uuid');

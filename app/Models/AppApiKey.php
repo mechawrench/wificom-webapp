@@ -12,8 +12,6 @@ class AppApiKey extends Model
 
     protected $guarded = [];
 
-    
-
     public function application()
     {
         return $this->belongsTo(Application::class);
@@ -61,6 +59,7 @@ class AppApiKey extends Model
             $appApiKey = new AppApiKey([
                 'api_key' => $key,
                 'app_id' => $application_id,
+                'last_rotated_at' => \Carbon\Carbon::now(),
             ]);
             auth()->user()->appApiKeys()->save($appApiKey);
         }

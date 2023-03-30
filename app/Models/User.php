@@ -136,5 +136,17 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function appApiKeys()
     {
         return $this->hasMany('App\Models\AppApiKey', 'user_id', 'id');
-    }   
+    } 
+
+    public static function appApiSubscribed($app_id){
+        $check = AppApiKey::where('app_id', $app_id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+        
+        if(!$check){
+            return false;
+        }
+
+        return $check;
+    }
 }

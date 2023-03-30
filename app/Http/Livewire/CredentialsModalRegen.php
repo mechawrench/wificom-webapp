@@ -34,6 +34,10 @@ class CredentialsModalRegen extends Component
             ->where('user_id', auth()->user()->id)
             ->first();
 
+        if (!$creds) {
+            return null;
+        }   
+
         $this->apiKey = $creds->api_key;
         return $creds->api_key;
     }
