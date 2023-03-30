@@ -17,7 +17,7 @@ class Application extends Model
 
         static::creating(function ($application) {
             $application->uuid = hexdec(uniqid());
-            if (! $application->user_id) {
+            if (!$application->user_id) {
                 $application->user_id = auth()->id();
             }
             $application->slug = \Str::slug($application->name);
@@ -43,9 +43,9 @@ class Application extends Model
 
     public function subscribedV2()
     {
-        return $this->hasOne(AppApiKey::class, 'app_id', 'id');
+        return $this->hasOne(AppApiKey::class, 'app_id', 'id')
+            ->where('user_id', auth()->user()->id);
     }
-
 
     public function subscribers()
     {
