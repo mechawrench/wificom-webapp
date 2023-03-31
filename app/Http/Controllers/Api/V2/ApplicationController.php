@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LastOutputRequestV2;
 use App\Http\Requests\SendDigiromRequestV2;
 use App\Models\AppApiKey;
-use App\Models\application;
+use App\Models\Application;
 use App\Models\WifiDevice;
+use Carbon\Carbon;
 use Log;
 
 class ApplicationController extends Controller
@@ -153,10 +154,11 @@ class ApplicationController extends Controller
         $return_data = [
             'last_output' => $device_clone->last_output,
             'last_code_sent_at' => $device->last_code_sent_at,
+            'last_online_ago_seconds' => Carbon::parse($device->last_ping_at)->diffInSeconds(),
             'device' => $device_clone->only('uuid', 'device_name', 'last_ping_at', 'last_used_at', 'last_code_sent_at'),
         ];
 
-        Log::info('Sent last output to application: ' . $application->name . ' for user: ' . $device->user->email, $return_data);
+        \Log::info('Sent last output to application: ' . $application->name . ' for user: ' . $device->user->email, $return_data);
         return response()->json($return_data, 200);
     }
 }

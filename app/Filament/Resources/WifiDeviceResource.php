@@ -64,7 +64,7 @@ class WifiDeviceResource extends Resource
                     ->rules([
                         Rule::unique(WifiDevice::class, 'device_name')
                             ->where('user_id', auth()->user()->id),
-                        new AlphaNumericNoSpaces(),
+                        new AlphaNumericNoSpaces(auth()->user()->id),
                     ]),
 
                 Forms\Components\Textarea::make('device_comments'),
