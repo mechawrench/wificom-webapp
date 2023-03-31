@@ -32,9 +32,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="./js/tryitout-4.16.0.js"></script>
+    <script src="./js/tryitout-4.17.0.js"></script>
 
-    <script src="./js/theme-default-4.16.0.js"></script>
+    <script src="./js/theme-default-4.17.0.js"></script>
 
 </head>
 
@@ -92,7 +92,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 30, 2023</li>
+        <li>Last updated: March 31, 2023</li>
     </ul>
 </div>
 
@@ -133,10 +133,10 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --data "{
     \"api_key\": \"{USER_API_TOKEN}\",
-    \"device_name\": \"corporis\",
-    \"application_uuid\": \"eatjulyssofjfahp\",
-    \"comment\": \"cll\",
-    \"digirom\": \"voluptatibus\"
+    \"device_name\": \"qui\",
+    \"application_uuid\": \"rpbdwogakconcqgg\",
+    \"comment\": \"mnacqqmexvqkt\",
+    \"digirom\": \"consequatur\"
 }"
 </code></pre></div>
 
@@ -153,10 +153,10 @@ const headers = {
 
 let body = {
     "api_key": "{USER_API_TOKEN}",
-    "device_name": "corporis",
-    "application_uuid": "eatjulyssofjfahp",
-    "comment": "cll",
-    "digirom": "voluptatibus"
+    "device_name": "qui",
+    "application_uuid": "rpbdwogakconcqgg",
+    "comment": "mnacqqmexvqkt",
+    "digirom": "consequatur"
 };
 
 fetch(url, {
@@ -176,10 +176,10 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'api_key' =&gt; '{USER_API_TOKEN}',
-            'device_name' =&gt; 'corporis',
-            'application_uuid' =&gt; 'eatjulyssofjfahp',
-            'comment' =&gt; 'cll',
-            'digirom' =&gt; 'voluptatibus',
+            'device_name' =&gt; 'qui',
+            'application_uuid' =&gt; 'rpbdwogakconcqgg',
+            'comment' =&gt; 'mnacqqmexvqkt',
+            'digirom' =&gt; 'consequatur',
         ],
     ]
 );
@@ -194,10 +194,10 @@ import json
 url = 'https://wificom.dev/api/v2/application/send_digirom'
 payload = {
     "api_key": "{USER_API_TOKEN}",
-    "device_name": "corporis",
-    "application_uuid": "eatjulyssofjfahp",
-    "comment": "cll",
-    "digirom": "voluptatibus"
+    "device_name": "qui",
+    "application_uuid": "rpbdwogakconcqgg",
+    "comment": "mnacqqmexvqkt",
+    "digirom": "consequatur"
 }
 headers = {
   'Content-Type': 'application/json'
@@ -278,10 +278,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="device_name"                data-endpoint="POSTapi-v2-application-send_digirom"
-               value="corporis"
+               value="qui"
                data-component="body">
     <br>
-<p>Example: <code>corporis</code></p>
+<p>Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>application_uuid</code></b>&nbsp;&nbsp;
@@ -289,10 +289,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="application_uuid"                data-endpoint="POSTapi-v2-application-send_digirom"
-               value="eatjulyssofjfahp"
+               value="rpbdwogakconcqgg"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>eatjulyssofjfahp</code></p>
+<p>validation.size. Example: <code>rpbdwogakconcqgg</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -300,10 +300,10 @@ response.json()</code></pre></div>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="comment"                data-endpoint="POSTapi-v2-application-send_digirom"
-               value="cll"
+               value="mnacqqmexvqkt"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>cll</code></p>
+<p>validation.max. Example: <code>mnacqqmexvqkt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>digirom</code></b>&nbsp;&nbsp;
@@ -311,10 +311,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="digirom"                data-endpoint="POSTapi-v2-application-send_digirom"
-               value="voluptatibus"
+               value="consequatur"
                data-component="body">
     <br>
-<p>Example: <code>voluptatibus</code></p>
+<p>Example: <code>consequatur</code></p>
         </div>
         </form>
 
@@ -336,8 +336,8 @@ response.json()</code></pre></div>
     --header "Content-Type: application/json" \
     --data "{
     \"api_key\": \"{USER_API_TOKEN}\",
-    \"application_uuid\": \"smzgtlwovjixpdhq\",
-    \"device_name\": \"consequatur\"
+    \"application_uuid\": \"xbeaknfbgypspybe\",
+    \"device_name\": \"asperiores\"
 }"
 </code></pre></div>
 
@@ -354,8 +354,8 @@ const headers = {
 
 let body = {
     "api_key": "{USER_API_TOKEN}",
-    "application_uuid": "smzgtlwovjixpdhq",
-    "device_name": "consequatur"
+    "application_uuid": "xbeaknfbgypspybe",
+    "device_name": "asperiores"
 };
 
 fetch(url, {
@@ -375,8 +375,8 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'api_key' =&gt; '{USER_API_TOKEN}',
-            'application_uuid' =&gt; 'smzgtlwovjixpdhq',
-            'device_name' =&gt; 'consequatur',
+            'application_uuid' =&gt; 'xbeaknfbgypspybe',
+            'device_name' =&gt; 'asperiores',
         ],
     ]
 );
@@ -391,8 +391,8 @@ import json
 url = 'https://wificom.dev/api/v2/application/last_output'
 payload = {
     "api_key": "{USER_API_TOKEN}",
-    "application_uuid": "smzgtlwovjixpdhq",
-    "device_name": "consequatur"
+    "application_uuid": "xbeaknfbgypspybe",
+    "device_name": "asperiores"
 }
 headers = {
   'Content-Type': 'application/json'
@@ -473,10 +473,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="application_uuid"                data-endpoint="POSTapi-v2-application-last_output"
-               value="smzgtlwovjixpdhq"
+               value="xbeaknfbgypspybe"
                data-component="body">
     <br>
-<p>Must be 16 characters. Example: <code>smzgtlwovjixpdhq</code></p>
+<p>validation.size. Example: <code>xbeaknfbgypspybe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>device_name</code></b>&nbsp;&nbsp;
@@ -484,10 +484,10 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="device_name"                data-endpoint="POSTapi-v2-application-last_output"
-               value="consequatur"
+               value="asperiores"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>asperiores</code></p>
         </div>
         </form>
 

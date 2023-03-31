@@ -33,10 +33,8 @@ class ListApplications extends ListRecords
             \Filament\Tables\Columns\TextColumn::make('name')
                 ->label('Name'),
             \Filament\Tables\Columns\TextColumn::make('uuid'),
-            \Filament\Tables\Columns\BooleanColumn::make('subscribed')
-                ->default(false)
-                ->exists('subscribed')
-                ->name('Subscribed'),
+            \Filament\Tables\Columns\TextColumn::make('api_version')
+                ->label('API Version')
         ];
     }
 }

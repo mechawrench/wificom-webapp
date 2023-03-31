@@ -19,7 +19,7 @@ class CredentialsModalGet extends Component
     public function mount($applicationId)
     {
         $this->applicationId = $applicationId;
-        $this->application = Application::find($applicationId);
+        $this->application = Application::where('id', $applicationId)->where('api_version', 2)->first();
         $this->apiKey = $this->getCredentials()->api_key ??  null;
     }
 

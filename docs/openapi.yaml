@@ -37,19 +37,19 @@ paths:
                 device_name:
                   type: string
                   description: ''
-                  example: corporis
+                  example: qui
                 application_uuid:
                   type: string
-                  description: 'Must be 16 characters.'
-                  example: eatjulyssofjfahp
+                  description: validation.size.
+                  example: rpbdwogakconcqgg
                 comment:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: cll
+                  description: validation.max.
+                  example: mnacqqmexvqkt
                 digirom:
                   type: string
                   description: ''
-                  example: voluptatibus
+                  example: consequatur
               required:
                 - api_key
                 - device_name
@@ -84,12 +84,12 @@ paths:
                   example: '{USER_API_TOKEN}'
                 application_uuid:
                   type: string
-                  description: 'Must be 16 characters.'
-                  example: smzgtlwovjixpdhq
+                  description: validation.size.
+                  example: xbeaknfbgypspybe
                 device_name:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: asperiores
               required:
                 - api_key
                 - application_uuid

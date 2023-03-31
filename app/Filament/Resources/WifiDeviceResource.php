@@ -8,12 +8,14 @@ use App\Filament\Resources\WifiDeviceResource\Widgets\ConfigExportWidget;
 use App\Filament\Resources\WifiDeviceResource\Widgets\SendDigirom;
 use App\Filament\Resources\WifiDeviceResource\Widgets\WifiDeviceStatus;
 use App\Models\WifiDevice;
+use App\Rules\AlphaNumericNoSpaces;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Validation\Rule;
 
 class WifiDeviceResource extends Resource
 {
@@ -29,11 +31,14 @@ class WifiDeviceResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'device_name';
 
+    // Change sidebar order
+    protected static int $order = 0;
+
     // Update name of the resource on sidebar
     protected static ?string $label = 'Wifi-Com';
 
     // Add plural name of the resource on sidebar
-//    protected static ?string $labelPlural = 'WiFi-Com Devices';
+    //    protected static ?string $labelPlural = 'WiFi-Com Devices';
 
     public static function getEloquentQuery(): Builder
     {
@@ -55,8 +60,12 @@ class WifiDeviceResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('device_name')
-                    ->unique(ignorable: fn (?WifiDevice $record): ?WifiDevice => $record)
-                    ->required(),
+                    ->required()
+                    ->rules([
+                        Rule::unique(WifiDevice::class, 'device_name')
+                            ->where('user_id', auth()->user()->id),
+                        new AlphaNumericNoSpaces(),
+                    ]),
 
                 Forms\Components\Textarea::make('device_comments'),
 
@@ -81,8 +90,7 @@ class WifiDeviceResource extends Resource
                     ->sortable(),
             ])
             ->defaultSort('sort', 'asc')
-            ->filters([
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

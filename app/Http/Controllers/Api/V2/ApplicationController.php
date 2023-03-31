@@ -24,7 +24,9 @@ class ApplicationController extends Controller
             return response(['error' => 'Invalid API Key'], 401);
         }
 
-        $application = Application::where('uuid', $request->get('application_uuid'))->first();
+        $application = Application::where('uuid', $request->get('application_uuid'))
+            ->where('api_version', 2)
+            ->first();
 
         if (!$application) {
             \Log::error('Invalid application UUID: ' . $request->get('application_uuid'));
@@ -100,7 +102,9 @@ class ApplicationController extends Controller
             return response(['error' => 'Invalid API Key'], 401);
         }
 
-        $application = Application::where('uuid', $request->get('application_uuid'))->first();
+        $application = Application::where('uuid', $request->get('application_uuid'))
+            ->where('api_version', 2)
+            ->first();
 
         if (!$application) {
             \Log::error('Invalid application UUID: ' . $request->get('application_uuid'));

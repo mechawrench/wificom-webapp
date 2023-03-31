@@ -159,6 +159,7 @@ class ApplicationController extends Controller
             ->with('subscribers')
             ->with('subscribers.user')
             ->select('uuid', 'user_id', 'name')
+            ->where('api_version', 1)
             ->first();
 
         if (!$application) {
@@ -182,6 +183,7 @@ class ApplicationController extends Controller
             ->with('subscribers')
             ->with('subscribers.user')
             ->select('uuid', 'user_id', 'name')
+            ->where('api_version', 1)
             ->first();
 
         if (!$application) {

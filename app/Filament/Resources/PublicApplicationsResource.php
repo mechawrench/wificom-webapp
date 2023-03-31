@@ -28,7 +28,7 @@ class PublicApplicationsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
-    protected static ?string $navigationGroup = 'Apps';
+    protected static ?string $navigationGroup = 'API v1';
 
     protected static ?string $label = 'Public Application';
 
@@ -41,7 +41,7 @@ class PublicApplicationsResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('is_public', true);
+        return parent::getEloquentQuery()->where('is_public', true)->where('api_version', 1);
     }
 
     public static function form(Form $form): Form
@@ -62,7 +62,6 @@ class PublicApplicationsResource extends Resource
                 //
             ])
             ->actions([
-                //                Tables\Actions\EditAction::make(),
                 Action::make('subscribe')
                     ->label('Subscribe')
                     ->icon('heroicon-o-check-circle')

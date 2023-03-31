@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "WiFiCom API Documentation",
-        "_postman_id": "926be8d2-6bd3-49a6-9152-9b7d5563e0eb",
+        "_postman_id": "574b1070-37a2-4dc4-846e-1a10e3ac0476",
         "description": "WiFiCom application developer API",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"device_name\":\"corporis\",\"application_uuid\":\"eatjulyssofjfahp\",\"comment\":\"cll\",\"digirom\":\"voluptatibus\"}"
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"device_name\":\"qui\",\"application_uuid\":\"rpbdwogakconcqgg\",\"comment\":\"mnacqqmexvqkt\",\"digirom\":\"consequatur\"}"
                         },
                         "description": ""
                     },
@@ -69,7 +69,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"application_uuid\":\"smzgtlwovjixpdhq\",\"device_name\":\"consequatur\"}"
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"application_uuid\":\"xbeaknfbgypspybe\",\"device_name\":\"asperiores\"}"
                         },
                         "description": ""
                     },

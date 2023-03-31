@@ -16,15 +16,20 @@ class CredentialsModalRegen extends Component
 
     public function mount($applicationId, $regenerate = false)
     {
-        $this->application = Application::find($applicationId);
+        $this->application = Application::where('id', $applicationId)->where('api_version', 2)->first();
         $this->applicationId = $applicationId;
-        $this->apiKey = $this->getCredentials();
+    }
+
+    public function clearKey()
+    {
+        $this->apiKey = null;
     }
 
     public function regenCredentials($applicationId)
     {
         $creds = AppApiKey::generateUniqueKey($applicationId);
         $this->apiKey = $creds;
+
         return $creds;
     }
 
@@ -44,9 +49,6 @@ class CredentialsModalRegen extends Component
 
     public function render()
     {
-        // refresh the livewire component
-
-
         return view('livewire.credentials-modal-regen', [
             'application_id' => $this->applicationId,
             'apiKey' => $this->apiKey

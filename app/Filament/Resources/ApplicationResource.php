@@ -37,7 +37,7 @@ class ApplicationResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
 
     // Change sidebar order
-    protected static int $order = 0;
+    protected static int $order = 2;
 
     public static function getEloquentQuery(): Builder
     {
@@ -75,22 +75,6 @@ class ApplicationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Action::make('subscribe')
-                    ->label('Subscribe')
-                    ->icon('heroicon-o-check-circle')
-                    ->action(fn (Application $record): string => SubscribedApplication::create([
-                        'application_uuid' => $record->uuid,
-                        'user_id' => auth()->id(),
-                    ]))
-                    ->visible(fn (Application $record): bool => !$record->subscribed),
-                Action::make('unsubscribe')
-                    ->label('Unsubsribe')
-                    ->icon('heroicon-o-trash')
-                    ->action(fn (Application $record): string => SubscribedApplication::where([
-                        'application_uuid' => $record->uuid,
-                        'user_id' => auth()->id(),
-                    ])->delete())
-                    ->hidden(fn (Application $record): bool => !$record->subscribed),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
