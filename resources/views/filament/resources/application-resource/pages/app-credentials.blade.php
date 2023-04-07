@@ -15,7 +15,7 @@
                 <h3 class="text-xl font-semibold mb-4 text-center">{{$application->name}} <br /><span class="text-xs italic">By {{$application->user->name}}</h3>
                 <p class="text-center">{{$application->description}}</p>
             </div>
-            <div class="justify-center mb-4" wire:poll.2s>
+            <div class="justify-center mb-4" >
                 <div class="flex justify-center space-x-2 mb-4">
                     <div class="w-1/2">
                         @livewire('credentials-modal-get', ['applicationId' => $application->id], key($application->id . 'get'))

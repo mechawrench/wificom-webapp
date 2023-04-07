@@ -88,7 +88,7 @@ class ApplicationController extends Controller
         $mqtt->connect($connectionSettings, true);
         $mqtt->publish($device->user->name . '/f/' . $device->user->uuid . '-' . $device->uuid . '/wificom-input', json_encode($message_data));
 
-        \Log::info('Sent digirom to device: ' . $device->uuid . ' for application: ' . $application->app->name . ' for user: ' . $device->user->email);
+        \Log::info('Sent digirom to device: ' . $device->uuid . ' for application: ' . $request->get('application_uuid') . ' for user: ' . $device->user->email);
         return response()->json(['device' => $device->only('uuid', 'device_name', 'pending_digirom', 'last_ping_at', 'last_used_at', 'last_code_sent_at')], 200);
     }
 
@@ -98,7 +98,7 @@ class ApplicationController extends Controller
         $api_key = AppApiKey::where('api_key', $request->get('api_key'))->first();
 
         if (!$api_key) {
-            \Log::error('Invalid API Key: ' . $request->get('api_key'));
+            \Log::info('Invalid API Key: ' . $request->get('api_key'));
 
             return response(['error' => 'Invalid API Key'], 401);
         }
@@ -108,19 +108,19 @@ class ApplicationController extends Controller
             ->first();
 
         if (!$application) {
-            \Log::error('Invalid application UUID: ' . $request->get('application_uuid'));
+            \Log::info('Invalid application UUID: ' . $request->get('application_uuid'));
 
             return response(['error' => 'Invalid application UUID'], 401);
         }
 
         if ($api_key->app_id != $application->id) {
-            \Log::error('Invalid API Key: ' . $request->get('api_key') . ' for application: ' . $request->get('application_uuid'));
+            \Log::info('Invalid API Key: ' . $request->get('api_key') . ' for application: ' . $request->get('application_uuid'));
 
             return response(['error' => 'Invalid API Key for application'], 401);
         }
 
         if ($api_key->is_paused) {
-            \Log::error('API Key: ' . $request->get('api_key') . ' is paused for application: ' . $request->get('application_uuid'));
+            \Log::info('API Key: ' . $request->get('api_key') . ' is paused for application: ' . $request->get('application_uuid'));
 
             return response(['error' => 'API Key is paused for application'], 401);
         }
@@ -130,8 +130,8 @@ class ApplicationController extends Controller
             ->first();
 
         if (!$device) {
-            \Log::error('Invalid device name: ' . $request->get('device_name'));
-            return response(['error' => 'Invalid device UUID'], 401);
+            \Log::info('Invalid device name: ' . $request->get('device_name'));
+            return response(['error' => 'Invalid device name'], 401);
         }
 
         $device_clone = clone $device;

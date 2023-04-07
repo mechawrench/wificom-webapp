@@ -9,6 +9,7 @@ use Livewire\Component;
 class CredentialsModalDelete extends Component
 {
     public $application;
+    public $applicationId;
 
     public function mount($applicationId)
     {
@@ -21,6 +22,8 @@ class CredentialsModalDelete extends Component
         AppApiKey::where('app_id', $app_id)
             ->where('user_id', auth()->user()->id)
             ->delete();
+
+        $this->emit('deleteTriggered');
 
         return true;
     }

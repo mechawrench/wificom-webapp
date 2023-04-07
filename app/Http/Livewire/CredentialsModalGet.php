@@ -16,11 +16,13 @@ class CredentialsModalGet extends Component
     public $application;
     public $apiKey;
 
+    protected $listeners = ['deleteTriggered' => 'deleteCredentials'];
+
     public function mount($applicationId)
     {
         $this->applicationId = $applicationId;
         $this->application = Application::where('id', $applicationId)->where('api_version', 2)->first();
-        $this->apiKey = $this->getCredentials()->api_key ??  null;
+        $this->apiKey = $this->getCredentials() ?? null;
     }
 
     public function getCredentials()
@@ -29,10 +31,12 @@ class CredentialsModalGet extends Component
             ->where('user_id', auth()->user()->id)
             ->first();
 
-        $this->emit('refreshStatusBadge');
-
-
         return $creds->api_key ?? null;
+    }
+
+    public function deleteCredentials()
+    {
+        $this->apiKey = null;
     }
 
     public function generateKey()
@@ -51,7 +55,6 @@ class CredentialsModalGet extends Component
 
     public function render()
     {
-        $apiKey = $this->getCredentials();
         $device_names = $this->getDeviceNames();
 
         return view('livewire.credentials-modal-get', [
