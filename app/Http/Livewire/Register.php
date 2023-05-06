@@ -39,6 +39,7 @@ class Register extends FilamentBreezyRegister
     {
         return [
             'email.unique' => __('filament-breezy::default.registration.notification_unique'),
+            'name.unique' => "That name is already taken.",
             'invite_code => "Invitation code is incorrect, contact BrassBolt',
         ];
     }
@@ -54,7 +55,8 @@ class Register extends FilamentBreezyRegister
                 ->rules([new DoormanRule($this->email)]),
                 Forms\Components\TextInput::make('name')
                     ->label(__('filament-breezy::default.fields.name'))
-                    ->required(),
+                    ->unique(table: config('filament-breezy.user_model'))
+                    ->required(),   
                 Forms\Components\TextInput::make('email')
                     ->label(__('filament-breezy::default.fields.email'))
                     ->required()
@@ -79,6 +81,7 @@ class Register extends FilamentBreezyRegister
             Forms\Components\TextInput::make('name')
                 ->label(__('filament-breezy::default.fields.name'))
                 ->required()
+                ->unique(table: config('filament-breezy.user_model'))
                 ->rules(['alpha_dash']),
             Forms\Components\TextInput::make('email')
                 ->label(__('filament-breezy::default.fields.email'))

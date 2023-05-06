@@ -22,6 +22,10 @@ class Application extends Model
             }
             $application->slug = \Str::slug($application->name);
         });
+
+        static::updating(function ($application) {
+            $application->slug = \Str::slug($application->name);
+        });
     }
 
     protected $casts = [
