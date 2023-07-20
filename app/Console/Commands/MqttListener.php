@@ -44,11 +44,10 @@ class MqttListener extends Command
         $mqtt->connect($connectionSettings, true);
 
         $mqtt->subscribe('#', function (string $topic, string $message) {
-
             $message_json = json_decode($message, true);
             if (array_key_exists('ack_id', $message_json)) {
                 //                Cache::put($message_json['ack_id'], true, 60);
-                $this->info("Ack ID: " . $message_json['ack_id'] . ' received from device_uuid: ' . $message_json['device_uuid']);
+                $this->info('Ack ID: '.$message_json['ack_id'].' received from device_uuid: '.$message_json['device_uuid']);
 
                 $ack_request = \App\Models\AckRequest::create([
                     'ack_id' => $message_json['ack_id'],
@@ -70,7 +69,7 @@ class MqttListener extends Command
                     ->first();
 
                 if (strpos($message['output'], 'r:') !== false || strpos($message['output'], 'Error') !== false) {
-                    $this->info('Received message from wifi com module user name: ' . $name);
+                    $this->info('Received message from wifi com module user name: '.$name);
                     $wifiDevice->last_output = str($message['output']);
                     $wifiDevice->last_valid_output = str($message['output']);
 
@@ -79,7 +78,7 @@ class MqttListener extends Command
                     }
 
                     // Put in cache the last_output
-                    $cache_key = $user_uuid . '-' . $device_uuid . '-' . $message['application_uuid'] . '_last_output';
+                    $cache_key = $user_uuid.'-'.$device_uuid.'-'.$message['application_uuid'].'_last_output';
                     $this->info($cache_key);
                     Cache::put($cache_key, str($message['output']), $seconds = 600);
                 }
@@ -101,12 +100,12 @@ class MqttListener extends Command
                     $realtime_battle->last_activity_at = now();
 
                     // Put in cache the last_output
-                    $cache_key = $name . '-' . $battle_id . '_realtime_output';
+                    $cache_key = $name.'-'.$battle_id.'_realtime_output';
                     $this->info($cache_key);
                     // Add to existing cache if exists
                     if (Cache::has($cache_key)) {
                         $cache_value = Cache::get($cache_key);
-                        $cache_value .= str($message_json['output'] . '\n');
+                        $cache_value .= str($message_json['output'].'\n');
                         Cache::put($cache_key, $cache_value, $seconds = 600);
                     } else {
                         Cache::put($cache_key, str($message_json['output']), $seconds = 600);

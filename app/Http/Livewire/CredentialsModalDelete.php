@@ -9,6 +9,7 @@ use Livewire\Component;
 class CredentialsModalDelete extends Component
 {
     public $application;
+
     public $applicationId;
 
     public function mount($applicationId)

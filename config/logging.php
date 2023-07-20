@@ -1,9 +1,8 @@
 <?php
 
 use Monolog\Handler\NullHandler;
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Handler\SocketHandler;
+use Monolog\Handler\StreamHandler;
 
 return [
 
@@ -112,7 +111,7 @@ return [
             'level' => 'debug',
             'handler' => SocketHandler::class,
             'handler_with' => [
-                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
             ],
         ],
         'flare' => [

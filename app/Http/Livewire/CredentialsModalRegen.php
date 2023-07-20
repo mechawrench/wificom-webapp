@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Filament\Resources\ApplicationResource\Pages\AppCredentials;
 use App\Models\AppApiKey;
 use App\Models\Application;
 use App\Models\User;
@@ -11,8 +10,11 @@ use Livewire\Component;
 class CredentialsModalRegen extends Component
 {
     public $isOpenRegen = false;
+
     public $applicationId;
+
     public $application;
+
     public $apiKey;
 
     public function mount($applicationId, $regenerate = false)
@@ -47,11 +49,12 @@ class CredentialsModalRegen extends Component
             ->where('user_id', auth()->user()->id)
             ->first();
 
-        if (!$creds) {
+        if (! $creds) {
             return null;
-        }   
+        }
 
         $this->apiKey = $creds->api_key;
+
         return $creds->api_key;
     }
 

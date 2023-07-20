@@ -7,6 +7,7 @@ use Livewire\Component;
 class AppStatusButton extends Component
 {
     public $applicationId;
+
     public $user_subscribed;
 
     public function mounted($application)
@@ -23,7 +24,7 @@ class AppStatusButton extends Component
     {
         return view('livewire.app-status-button', [
             'user_subscribed' => $this->user_subscribed,
-            'applicationId' => $this->applicationId
+            'applicationId' => $this->applicationId,
         ]);
     }
 }

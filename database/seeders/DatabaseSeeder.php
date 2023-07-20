@@ -36,6 +36,5 @@ class DatabaseSeeder extends Seeder
         echo 'mqtt password: '.$user->mqtt_token."\n";
         echo "-----------------IMPORTANT-----------------\n";
         echo "\n";
-
     }
 }

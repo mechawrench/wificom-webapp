@@ -53,9 +53,11 @@ class RealtimeBattles extends Page
     public $initial_invite_code;
 
     public $show_guest_message = false;
+
     public $show_host_message = false;
 
     public $host_ack_id;
+
     public $guest_ack_id;
 
     public $guest_rtb_button_enabled = false;
@@ -104,7 +106,7 @@ class RealtimeBattles extends Page
         } else {
             $this->validate([
                 'battle_type' => 'required|in:digimon-penx-battle,legendz',
-                'user_selected_com_host' => 'required|exists:wifi_devices,uuid,user_id,' . auth()->id(),
+                'user_selected_com_host' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
             ]);
         }
 
@@ -117,7 +119,7 @@ class RealtimeBattles extends Page
 
         // Generate mqtt_acl for topic
         $mqtt_acl = new \App\Models\MqttAcl();
-        $mqtt_acl->topic = strtolower(auth()->user()->name) . '/f/' . $rtb->topic;
+        $mqtt_acl->topic = strtolower(auth()->user()->name).'/f/'.$rtb->topic;
         $mqtt_acl->user_id = auth()->id();
         $mqtt_acl->save();
 
@@ -125,7 +127,6 @@ class RealtimeBattles extends Page
         $wifi_device = auth()->user()->wifiDevices()->where('uuid', $rtb->initiator_com_uuid)->first();
 
         $this->hostAccept($wifi_device, $rtb);
-
 
         $this->successMessageInitiate = 'Success!  Pass the code to your partner.';
         $this->show_host_message = true;
@@ -151,7 +152,7 @@ class RealtimeBattles extends Page
             ->where('opponent_id', null)
             ->first();
 
-        if (!$model) {
+        if (! $model) {
             return null;
         }
 
@@ -167,12 +168,12 @@ class RealtimeBattles extends Page
 
         $this->validate([
             'invite_code' => 'required|exists:realtime_battles,invite_code',
-            'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,' . auth()->id(),
+            'user_selected_com_guest' => 'required|exists:wifi_devices,uuid,user_id,'.auth()->id(),
         ]);
 
         $model = $this->get_opponent_model();
 
-        if (!$model) {
+        if (! $model) {
             $this->successMessageAccept = 'Invalid invite code or already used';
             $this->show_guest_message = true;
 
@@ -185,7 +186,7 @@ class RealtimeBattles extends Page
 
         // Generate mqtt_acl for topic
         $mqtt_acl = new \App\Models\MqttAcl();
-        $mqtt_acl->topic = strtolower($model->user->name) . '/f/' . $model->topic;
+        $mqtt_acl->topic = strtolower($model->user->name).'/f/'.$model->topic;
         $mqtt_acl->user_id = auth()->id();
         $mqtt_acl->save();
 
@@ -206,7 +207,7 @@ class RealtimeBattles extends Page
     public function retryHost()
     {
         if ($this->user_selected_com_host != 'DUMMY') {
-            $wifi_device  = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
+            $wifi_device = \App\Models\WifiDevice::where('uuid', $this->user_selected_com_host)->first();
             $this->hostAccept($wifi_device, $this->current_rtb_model);
         } else {
             // Display a message to the user host
@@ -222,7 +223,7 @@ class RealtimeBattles extends Page
         $model = RealtimeBattle::where('invite_code', $this->invite_code)
             ->first();
 
-        if (!$model) {
+        if (! $model) {
             $this->errorMessage = 'Invalid invite code or already used';
 
             return;
@@ -242,7 +243,7 @@ class RealtimeBattles extends Page
             'digirom' => null,
             'application_id' => 1,
             'hide_output' => false,
-            'api_response' =>false,
+            'api_response' => false,
             'topic' => $model->topic,
             'topic_action' => 'subscribe',
             'battle_type' => $model->device_type, // TODO: Change the model column to battle_type instead of device_type
@@ -266,12 +267,11 @@ class RealtimeBattles extends Page
             ->setTlsSelfSignedAllowed(true);
 
         $mqtt->connect($connectionSettings, true);
-        $mqtt->publish(strtolower(auth()->user()->name) . '/f/' . auth()->user()->uuid . '-' . $wifi_device->uuid . '/wificom-input', json_encode($message_data));
+        $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
 
         $this->successMessageAccept = 'Retried to send battle code to device.';
         $this->show_guest_message = true;
     }
-
 
     public function checkAckReceivedHost()
     {
@@ -310,6 +310,7 @@ class RealtimeBattles extends Page
             }
         }
     }
+
     public function hostAccept($wifi_device, $rtb)
     {
         // Create ack record in cache for 1 minute
@@ -320,7 +321,7 @@ class RealtimeBattles extends Page
             'digirom' => null,
             'application_id' => 1,
             'hide_output' => false,
-            'api_response' =>false,
+            'api_response' => false,
             'topic' => $rtb->topic,
             'topic_action' => 'subscribe',
             'battle_type' => $this->battle_type,
@@ -340,7 +341,7 @@ class RealtimeBattles extends Page
 
         $mqtt->connect($connectionSettings, true);
         if ($this->user_selected_com_host != 'DUMMY') {
-            $mqtt->publish(strtolower(auth()->user()->name) . '/f/' . auth()->user()->uuid . '-' . $wifi_device->uuid . '/wificom-input', json_encode($message_data));
+            $mqtt->publish(strtolower(auth()->user()->name).'/f/'.auth()->user()->uuid.'-'.$wifi_device->uuid.'/wificom-input', json_encode($message_data));
         }
         $this->successMessageInitiate = 'Successfully retried to send battle request to device!';
         $this->show_host_message = true;

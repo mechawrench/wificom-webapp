@@ -5,13 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ApplicationResource\Pages;
 use App\Filament\Resources\ApplicationResource\RelationManagers\SubscribedApplicationsRelationManager;
 use App\Models\Application;
-use App\Models\SubscribedApplication;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Builder;
 
 class ApplicationResource extends Resource

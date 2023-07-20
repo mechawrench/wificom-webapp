@@ -8,6 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
 class AlphaNumericNoSpaces implements Rule
 {
     private $user_id;
+
     private $device_id;
 
     public function __construct($user_id, $device_id = null)
@@ -21,8 +22,8 @@ class AlphaNumericNoSpaces implements Rule
         $device = $this->device_id ? WifiDevice::find($this->device_id) : null;
 
         // Check if value is alphanumeric for new records and existing conforming names
-        if (!$device || ($device && preg_match('/^[a-zA-Z0-9]+$/', $device->device_name))) {
-            if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) {
+        if (! $device || ($device && preg_match('/^[a-zA-Z0-9]+$/', $device->device_name))) {
+            if (! preg_match('/^[a-zA-Z0-9]+$/', $value)) {
                 return false;
             }
         }

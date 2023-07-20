@@ -8,5 +8,5 @@ class PublicAppsOverview extends Widget
 {
     protected static string $view = 'filament.resources.public-applications-resource.widgets.public-apps-overview';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 }

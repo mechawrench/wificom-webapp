@@ -23,7 +23,6 @@ class WifiDevice extends Model
         });
 
         static::created(function ($wifi_device) {
-
             // Create ACL for user
             $wifi_device->user->mqtt_acl()->create([
                 'user_id' => $wifi_device->user->id,

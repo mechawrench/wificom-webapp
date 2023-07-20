@@ -18,7 +18,6 @@ class AuthenticateWithApiKey
     /**
      * Create a new middleware instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
      * @return void
      */
     public function __construct(Auth $auth)
@@ -29,8 +28,6 @@ class AuthenticateWithApiKey
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
