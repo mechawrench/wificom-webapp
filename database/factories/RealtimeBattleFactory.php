@@ -24,7 +24,7 @@ class RealtimeBattleFactory extends Factory
             'opponent_com_uuid' => hexdec(uniqid()),
             'invite_code' => null,
             'device_type' => array_rand(['legendz', 'digimon-penz', 'digimon-penx']),
-            'topic' => $this->faker->word,
+            'topic' => $this->faker->word(),
             'is_session_complete' => false,
             'last_activity_at' => now(),
         ];

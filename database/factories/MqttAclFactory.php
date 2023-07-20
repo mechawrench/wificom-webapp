@@ -18,7 +18,7 @@ class MqttAclFactory extends Factory
     {
         return [
             'user_id' => null,
-            'topic' => $this->faker->word,
+            'topic' => $this->faker->word(),
             'rw' => 4,
         ];
     }
