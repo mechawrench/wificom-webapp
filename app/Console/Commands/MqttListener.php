@@ -30,7 +30,7 @@ class MqttListener extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $mqtt = new \PhpMqtt\Client\MqttClient(config('mqtt-client.connections.default.host'), config('mqtt-client.connections.default.port'));
 

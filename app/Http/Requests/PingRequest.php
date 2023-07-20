@@ -11,7 +11,7 @@ class PingRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         if (auth()->user()->tokenCan('device_access')) {
             return true;
@@ -25,7 +25,7 @@ class PingRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'device_uuid' => 'required|string|size:16',
