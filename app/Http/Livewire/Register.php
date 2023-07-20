@@ -39,8 +39,8 @@ class Register extends FilamentBreezyRegister
     {
         return [
             'email.unique' => __('filament-breezy::default.registration.notification_unique'),
-            'name.unique' => "That name is already taken.",
-            'invite_code => "Invitation code is incorrect, contact BrassBolt',
+            'name.unique'  => "That name is already taken.",
+            'invite_code'  => "Invitation code is incorrect, contact BrassBolt",
         ];
     }
 
@@ -107,10 +107,10 @@ class Register extends FilamentBreezyRegister
     protected function prepareModelData($data): array
     {
         $preparedData = [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'consent_to_terms' => $this->consent_to_terms,
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'password'          => Hash::make($data['password']),
+            'consent_to_terms'  => $this->consent_to_terms,
         ];
 
         return $preparedData;

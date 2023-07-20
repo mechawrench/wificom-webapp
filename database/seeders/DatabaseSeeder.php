@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         $generate_password = Str::random(20);
 
         $user = \App\Models\User::factory()->create([

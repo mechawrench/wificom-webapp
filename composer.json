@@ -25,6 +25,7 @@
         "php-mqtt/laravel-client": "^1.0",
         "rakutentech/laravel-request-docs": "^1.23",
         "sentry/sentry-laravel": "^2.13",
+        "spatie/laravel-ignition": "^1.6",
         "spiral/roadrunner": "^2.8.2",
         "yepsua/filament-themes": "^0.1.0"
     },
@@ -38,8 +39,7 @@
         "pestphp/pest-plugin-laravel": "^1.2",
         "pestphp/pest-plugin-livewire": "^1.0",
         "pestphp/pest-plugin-parallel": "^1.2",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
         "psr-4": {
