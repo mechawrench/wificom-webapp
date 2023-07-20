@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Symfony\Component\HttpFoundation\Response;
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticateWithApiKey
 {
