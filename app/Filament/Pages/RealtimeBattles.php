@@ -45,6 +45,7 @@ class RealtimeBattles extends Page
     public $errorMessage = '';
 
     public $invite_code;
+    public $last_invite_code;
 
     public $guest_connected = false;
 
@@ -59,6 +60,16 @@ class RealtimeBattles extends Page
     public $guest_ack_id;
 
     public $guest_rtb_button_enabled = false;
+
+    public function updating($attribute)
+    {
+        if ($attribute === 'user_selected_com_guest') {
+            if($this->invite_code != null){
+                $this->last_invite_code = $this->invite_code;
+            }
+            $this->invite_code = null;
+        }
+    }
 
     public function mount(): void
     {
