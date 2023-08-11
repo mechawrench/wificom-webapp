@@ -1,0 +1,96 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/wificom.dev"
+        }
+    ],
+    "info": {
+        "name": "WiFiCom API Documentation",
+        "_postman_id": "574b1070-37a2-4dc4-846e-1a10e3ac0476",
+        "description": "WiFiCom application developer API",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/v2\/application\/send_digirom",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/application\/send_digirom",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/application\/send_digirom"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"device_name\":\"qui\",\"application_uuid\":\"rpbdwogakconcqgg\",\"comment\":\"mnacqqmexvqkt\",\"digirom\":\"consequatur\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v2\/application\/last_output",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/application\/last_output",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/application\/last_output"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"api_key\":\"{USER_API_TOKEN}\",\"application_uuid\":\"xbeaknfbgypspybe\",\"device_name\":\"asperiores\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "in",
+                "value": "body",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "api_key",
+                "type": "string"
+            }
+        ]
+    }
+}

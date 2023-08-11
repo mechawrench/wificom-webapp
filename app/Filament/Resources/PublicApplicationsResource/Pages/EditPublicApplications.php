@@ -13,7 +13,7 @@ class EditPublicApplications extends EditRecord
     // Add query scope
     protected function getTableQuery(): Builder
     {
-        return parent::getTableQuery()->where('is_public', true);
+        return parent::getTableQuery()->where('is_public', true)->where('api_version', 1);
     }
 
     protected function getActions(): array

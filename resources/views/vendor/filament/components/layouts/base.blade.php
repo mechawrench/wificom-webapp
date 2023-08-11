@@ -78,6 +78,9 @@
         <script src="https://four-ideal.wificom.dev/script.js" data-site="YSFEVNJI" defer></script>
 
         {{ \Filament\Facades\Filament::renderHook('head.end') }}
+
+        <script src="https://kit.fontawesome.com/your-fontawesome-kit-code.js" crossorigin="anonymous"></script>
+
     </head>
 
     <body @class([

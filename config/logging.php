@@ -54,7 +54,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily', 'flare'],
             'ignore_exceptions' => false,
         ],
 
@@ -112,8 +112,16 @@ return [
             'level' => 'debug',
             'handler' => SocketHandler::class,
             'handler_with' => [
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
+        ],
+        'flare' => [
+            'driver' => 'flare',
+        ],
+        'vapor' => [
+            'driver' => 'stack',
+            'channels' => ['flare', 'papertrail', 'stderr'],
+            'ignore_exceptions' => false,
         ],
     ],
 

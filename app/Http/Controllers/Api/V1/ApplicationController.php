@@ -8,6 +8,7 @@ use App\Http\Requests\LastOutputRequest;
 use App\Http\Requests\SendDigiromRequest;
 use App\Models\SubscribedApplication;
 use App\Models\WifiDevice;
+use Carbon\Carbon;
 use PhpMqtt\Client\Facades\MQTT;
 use Log;
 
@@ -144,6 +145,7 @@ class ApplicationController extends Controller
             'last_output' => $device_clone->last_output,
             //'last_valid_output' => $device->last_valid_output,
             'last_code_sent_at' => $device->last_code_sent_at,
+            'last_online_ago' => Carbon::parse($device->last_ping_at)->diffInMinutes(),
             'device' => $device_clone->only('uuid', 'device_name', 'last_ping_at', 'last_used_at', 'last_code_sent_at'),
         ];
 
@@ -157,6 +159,7 @@ class ApplicationController extends Controller
             ->with('subscribers')
             ->with('subscribers.user')
             ->select('uuid', 'user_id', 'name')
+            ->where('api_version', 1)
             ->first();
 
         if (!$application) {
@@ -180,6 +183,7 @@ class ApplicationController extends Controller
             ->with('subscribers')
             ->with('subscribers.user')
             ->select('uuid', 'user_id', 'name')
+            ->where('api_version', 1)
             ->first();
 
         if (!$application) {

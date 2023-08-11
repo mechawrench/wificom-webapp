@@ -40,24 +40,26 @@ class Register extends FilamentBreezyRegister
     {
         return [
             'email.unique' => __('filament-breezy::default.registration.notification_unique'),
+            'name.unique' => 'That username is already taken.',
         ];
     }
 
     protected function getFormSchema(): array
     {
         $fields = [];
-//        if(env('REQUIRE_INVITE') == true){
-//            // append to $fields array
-//            array_add($fields, [[Forms\Components\TextInput::make('invite_code')
-//                ->label(__('Invitation Code'))
-//                ->required()
-//                ->rules([new DoormanRule($this->email)])]]);
-//        }
+        //        if(env('REQUIRE_INVITE') == true){
+        //            // append to $fields array
+        //            array_add($fields, [[Forms\Components\TextInput::make('invite_code')
+        //                ->label(__('Invitation Code'))
+        //                ->required()
+        //                ->rules([new DoormanRule($this->email)])]]);
+        //        }
 
         array_add($fields, [
             Forms\Components\TextInput::make('name')
                 ->label(__('filament-breezy::default.fields.name'))
-                ->required(),
+                ->required()
+                ->unique('users', 'name'),
             Forms\Components\TextInput::make('email')
                 ->label(__('filament-breezy::default.fields.email'))
                 ->required()

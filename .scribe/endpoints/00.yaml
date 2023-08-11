@@ -1,0 +1,131 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v2/application/send_digirom
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      api_key:
+        name: api_key
+        description: 'Authentication key.'
+        required: true
+        example: '{USER_API_TOKEN}'
+        type: string
+        custom: []
+      device_name:
+        name: device_name
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
+      application_uuid:
+        name: application_uuid
+        description: validation.size.
+        required: true
+        example: rpbdwogakconcqgg
+        type: string
+        custom: []
+      comment:
+        name: comment
+        description: validation.max.
+        required: false
+        example: mnacqqmexvqkt
+        type: string
+        custom: []
+      digirom:
+        name: digirom
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+    cleanBodyParameters:
+      api_key: '{USER_API_TOKEN}'
+      device_name: qui
+      application_uuid: rpbdwogakconcqgg
+      comment: mnacqqmexvqkt
+      digirom: consequatur
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - bodyParameters
+      - api_key
+      - db4aE5e6g1Pv3VZhfaDkc86
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v2/application/last_output
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      api_key:
+        name: api_key
+        description: 'Authentication key.'
+        required: true
+        example: '{USER_API_TOKEN}'
+        type: string
+        custom: []
+      application_uuid:
+        name: application_uuid
+        description: validation.size.
+        required: true
+        example: xbeaknfbgypspybe
+        type: string
+        custom: []
+      device_name:
+        name: device_name
+        description: ''
+        required: true
+        example: asperiores
+        type: string
+        custom: []
+    cleanBodyParameters:
+      api_key: '{USER_API_TOKEN}'
+      application_uuid: xbeaknfbgypspybe
+      device_name: asperiores
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - bodyParameters
+      - api_key
+      - bZ8Vaf6kD1Pvh36g5edc4aE
+    controller: null
+    method: null
+    route: null
+    custom: []

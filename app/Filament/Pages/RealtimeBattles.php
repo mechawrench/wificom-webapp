@@ -23,6 +23,9 @@ class RealtimeBattles extends Page
 
     protected static ?string $model = RealtimeBattle::class;
 
+    // Change sidebar order
+    protected static int $order = 1;
+
     public $successMessageAccept = '';
 
     public $successMessageInitiate = '';

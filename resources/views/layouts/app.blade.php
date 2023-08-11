@@ -13,6 +13,7 @@
         <!-- Styles -->
         <style>[x-cloak] { display: none !important; }</style>
         @livewireStyles
+        <script src="https://kit.fontawesome.com/your-fontawesome-kit-code.js" crossorigin="anonymous"></script>
     </head>
 
     <body class="antialiased">

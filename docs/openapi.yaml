@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: 'WiFiCom API Documentation'
+  description: 'WiFiCom application developer API'
+  version: 1.0.0
+servers:
+  -
+    url: 'https://wificom.dev'
+paths:
+  /api/v2/application/send_digirom:
+    post:
+      summary: ''
+      operationId: postApiV2ApplicationSend_digirom
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  type: string
+                  description: 'Authentication key.'
+                  example: '{USER_API_TOKEN}'
+                device_name:
+                  type: string
+                  description: ''
+                  example: qui
+                application_uuid:
+                  type: string
+                  description: validation.size.
+                  example: rpbdwogakconcqgg
+                comment:
+                  type: string
+                  description: validation.max.
+                  example: mnacqqmexvqkt
+                digirom:
+                  type: string
+                  description: ''
+                  example: consequatur
+              required:
+                - api_key
+                - device_name
+                - application_uuid
+                - digirom
+  /api/v2/application/last_output:
+    post:
+      summary: ''
+      operationId: postApiV2ApplicationLast_output
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  type: string
+                  description: 'Authentication key.'
+                  example: '{USER_API_TOKEN}'
+                application_uuid:
+                  type: string
+                  description: validation.size.
+                  example: xbeaknfbgypspybe
+                device_name:
+                  type: string
+                  description: ''
+                  example: asperiores
+              required:
+                - api_key
+                - application_uuid
+                - device_name
+tags:
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default: []
+security:
+  -
+    default: []

@@ -41,8 +41,11 @@
                 <x-filament::button type="submit" onclick="downloadFile(
                 `secrets = {
                     # Wifi network variables
-                    'ssid' : 'YOUR_WIFI_NETWORK',
-                    'password' : 'YOUR_WIFI_PASSWORD',
+                    'wireless_networks':[
+                        {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
+                        # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+                        # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+                    ],
                     # Hosted service variables
                     'broker': '{{ config('mqtt-client.connections.default.host')}}',
                     'mqtt_username' : '{{ $record->user->name }}',
@@ -60,8 +63,11 @@
                         secrets = { <br />
                         <div class="pl-5">
                             # Wifi network variables <br />
-                            'ssid' : 'YOUR_WIFI_NETWORK',<br />
-                            'password' : 'YOUR_WIFI_PASSWORD',<br />
+                            'wireless_networks':[<br />
+                            {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},<br />
+                            # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, <br />
+                            # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, <br />
+                            ],
                             # Hosted service variables<br />
                             'broker': '{{ config('mqtt-client.connections.default.host')}}',<br />
                             'mqtt_username' : '{{ $record->user->name }}',<br />

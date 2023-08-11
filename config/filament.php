@@ -112,7 +112,8 @@ return [
         'namespace' => 'App\\Filament\\Pages',
         'path' => app_path('Filament/Pages'),
         'register' => [
-            Pages\Dashboard::class,
+            // Pages\Dashboard::class,
+            App\Filament\Resources\ApplicationResource\Pages\AppCredentials::class,
         ],
     ],
 
