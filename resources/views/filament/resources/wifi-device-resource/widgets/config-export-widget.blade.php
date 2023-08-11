@@ -48,8 +48,7 @@
                     Show/Hide secrets.py
                 </x-filament::button>
                 <span class="px-5"></span>
-                <x-filament::button type="submit" onclick="downloadFile(
-`secrets = {
+                <x-filament::button type="submit" onclick="downloadFile(`secrets = {
 # Wifi network variables
 'wireless_networks':[
     {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
@@ -62,9 +61,9 @@
 'mqtt_password' : '{{ $record->user->mqtt_token }}',
 'user_uuid': '{{ $record->user->uuid }}',
 'device_uuid': '{{ $record->uuid }}',
-}
-`)" class="w-1/4">
-                    Download secrets.py
+}`)" class="w-1/4">
+
+                Download secrets.py
                 </x-filament::button>
             </div>
             <div x-show="open">
@@ -106,19 +105,25 @@
                         wifi_custom_password: '',
 
                         submitForm() {
-secrets=`# Wifi network variables
-'wireless_networks':
-      {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
-    # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'},
-    # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'},
-],
-# Hosted service variables
-'broker': '{{ config('mqtt-client.connections.default.host')}}',
-'mqtt_username' : '{{ $record->user->name }}',
-'mqtt_password' : '{{ $record->user->mqtt_token }}',
-'user_uuid': '{{ $record->user->uuid }}',
-'device_uuid': '{{ $record->uuid }}'`;
+let secrets =`'''
+This file is where you keep secret settings, keep it safe and keep a backup.
+Please note, you can get an automatically generated version of this on the webapp
+'''
 
+secrets = {
+	# WiFi network variables
+	'wireless_networks':[
+		{'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
+		# {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+		# {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+	],
+	# Hosted service variables
+	'broker': '{{ config('mqtt-client.connections.default.host')}}',
+    'mqtt_username' : '{{ $record->user->name }}',
+    'mqtt_password' : '{{ $record->user->mqtt_token }}',
+    'user_uuid': '{{ $record->user->uuid }}',
+    'device_uuid': '{{ $record->uuid }}
+}`;
                             secrets = secrets.replace("{'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'}", `{'ssid': '${this.wifi_custom_ssid}', 'password': '${this.wifi_custom_password}'}`);
 
                             const blob = new Blob([secrets], { type: 'text/plain' });
@@ -136,25 +141,21 @@ secrets=`# Wifi network variables
 
                 new ClipboardJS('.btn');
 
-                function downloadFile(text) {
-                    // create a new Blob object with the text as its content
-                    const blob = new Blob([text], {
-                        type: 'text/plain'
-                    });
+                function downloadPythonFile(content, filename) {
+                    const blob = new Blob([content], { type: 'text/x-python' });
+                    const url = window.URL.createObjectURL(blob);
 
-                    // create a temporary anchor element
-                    const anchor = document.createElement('a');
-                    anchor.download = 'secrets.py';
-                    anchor.href = URL.createObjectURL(blob);
-                    anchor.style.display = 'none';
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = filename;
 
-                    // append the anchor to the document and click it
-                    document.body.appendChild(anchor);
-                    anchor.click();
+                    document.body.appendChild(a);
+                    a.click();
 
-                    // remove the anchor from the document
-                    document.body.removeChild(anchor);
+                    window.URL.revokeObjectURL(url);
                 }
+
             </script>
         </div>
     </x-filament::card>
