@@ -1,11 +1,7 @@
 <x-filament::page>
     <x-filament::card>
         <div>
-
-
             <h1 class="text-2xl">Generate Realtime Battle Code</h1>
-            <!-- Create a form with one text item and a submit button -->
-            <!-- Show validation errors -->
             <div>
                 <div class="mb-3">
                     Create a realtime battle instance with another player, send them the invite code to sync up your WiFiCom
@@ -70,8 +66,6 @@
     <x-filament::card>
         <div>
             <h1 class="text-2xl">Accept Realtime Battle</h1>
-            <!-- Create a form with one text item and a submit button -->
-            <!-- Show validation errors -->
             <div>
                 <div class="mb-3">
                     Enter your partner's invite code
@@ -79,22 +73,20 @@
 
                 <div>
                     <div class="mb-3">
-                        <input type="text" wire:model="invite_code" class="w-full">
-                        @error('invite_code') <span class="error text-red-300"><br />{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label for="user_selected_com_guest" class="block text-sm font-bold mb-2">WiFiCom Device to
                             Use</label>
                         <select wire:model="user_selected_com_guest" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="none" selected>Select a Com Device</option>
                             @foreach($user_coms as $com)
-                            <option value="{{$com->uuid}}">{{$com->device_name}}</option>
+                                <option value="{{$com->uuid}}">{{$com->device_name}}</option>
                             @endforeach
                         </select>
                         @error('user_selected_com_guest') <span class="error text-red-300"><br />{{ $message }}</span>
                         @enderror
-
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" wire:model="invite_code" class="w-full">
+                        @error('invite_code') <span class="error text-red-300"><br />{{ $message }}</span> @enderror
                     </div>
 
                     <div class="pt-5 text-right grid grid-cols-2 gap-4">
@@ -108,7 +100,7 @@
                             @endif
                         </div>
                         <div class="">
-                            @if(($this->guest_rtb_button_enabled && $this->guest_connected) || !$this->guest_connected)
+                            @if(($this->guest_rtb_button_enabled && $this->guest_connected) || !$this->guest_connected || ($this->invite_code != $this->initial_invite_code))
                             <x-filament::button type="submit" class="w-2/4" wire:click.prevent="accept_rtb">
                                 Start Realtime Battle
                             </x-filament::button>
@@ -118,7 +110,7 @@
                             </x-filament::button>
                             @endif
                             <br />
-                            @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6)
+                            @if($this->invite_code == $this->initial_invite_code && $this->guest_connected && strlen($this->invite_code) == 6 && ($this->invite_code == $this->initial_invite_code))
                             <x-filament::button class="mt-5 w-2/4" wire:click.prevent="retryGuest">
                                 Retry
                             </x-filament::button>
@@ -132,6 +124,5 @@
                 </div>
             </div>
         </div>
-
     </x-filament::card>
 </x-filament::page>

@@ -28,14 +28,9 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerNavigationGroups([
                 'Devices',
                 'Apps',
-                'Docs',
-            ]);
+                'Online Battles',
+                'Applications',
+                ]);
         });
-
-        Filament::registerNavigationGroups([
-            'Devices',
-            'Online Battles',
-            'Applicatons',
-        ]);
     }
 }
