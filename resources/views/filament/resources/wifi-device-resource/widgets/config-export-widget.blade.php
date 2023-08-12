@@ -48,8 +48,7 @@
                     Show/Hide secrets.py
                 </x-filament::button>
                 <span class="px-5"></span>
-                <x-filament::button type="submit" onclick="downloadFile(`
-'''
+                <x-filament::button type="submit" onclick="downloadFile(`'''
 This file is where you keep secret settings, keep it safe and keep a backup.
 Please note, you can get an automatically generated version of this on the webapp
 '''
@@ -78,6 +77,7 @@ secrets = {
                     <code>
                         secrets = { <br />
                         <div class="pl-5">
+                            <br/>
                             # Wifi network variables <br />
                             'wireless_networks':[<br />
                             {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},<br />
