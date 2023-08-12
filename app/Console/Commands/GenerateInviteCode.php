@@ -24,10 +24,8 @@ class GenerateInviteCode extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $count = $this->argument('count');
         $duration = $this->argument('duration');

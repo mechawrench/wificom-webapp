@@ -8,10 +8,8 @@ class SendDigiromRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         if (auth()->user()->tokenCan('applications_access')) {
             return true;
@@ -29,7 +27,7 @@ class SendDigiromRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'device_uuid' => 'required|string|size:16',

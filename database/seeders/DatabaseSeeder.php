@@ -9,10 +9,8 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $generate_password = Str::random(20);
 
@@ -36,6 +34,5 @@ class DatabaseSeeder extends Seeder
         echo 'mqtt password: '.$user->mqtt_token."\n";
         echo "-----------------IMPORTANT-----------------\n";
         echo "\n";
-
     }
 }

@@ -112,13 +112,13 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function wifiDevices()
     {
         // Retur a relationship to the wifi devices that this user has access to
-        return $this->hasMany('App\Models\WifiDevice', 'user_id', 'id');
+        return $this->hasMany(\App\Models\WifiDevice::class, 'user_id', 'id');
     }
 
     // Extract device_uuids from wifiDevices relationship into an attribute
     public function getWifiDeviceUuidsAttribute()
     {
-        $wifiDevices = $this->hasMany('App\Models\WifiDevice', 'user_id', 'id')->get();
+        $wifiDevices = $this->hasMany(\App\Models\WifiDevice::class, 'user_id', 'id')->get();
 //        dd($wifiDevices);
         $device_uuids = [];
         foreach ($wifiDevices as $wifiDevice) {
@@ -130,20 +130,21 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     public function mqtt_acl()
     {
-        return $this->hasMany('App\Models\MqttAcl', 'user_id', 'id');
+        return $this->hasMany(\App\Models\MqttAcl::class, 'user_id', 'id');
     }
 
     public function appApiKeys()
     {
-        return $this->hasMany('App\Models\AppApiKey', 'user_id', 'id');
-    } 
+        return $this->hasMany(\App\Models\AppApiKey::class, 'user_id', 'id');
+    }
 
-    public static function appApiSubscribed($app_id){
+    public static function appApiSubscribed($app_id)
+    {
         $check = AppApiKey::where('app_id', $app_id)
                 ->where('user_id', auth()->user()->id)
                 ->first();
-        
-        if(!$check){
+
+        if (! $check) {
             return false;
         }
 

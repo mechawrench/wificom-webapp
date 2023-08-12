@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Faker\Factory as Faker;
 
 class AppApiKey extends Model
 {
@@ -33,16 +33,16 @@ class AppApiKey extends Model
             'yacht', 'zippy', 'amber', 'bluff', 'creep', 'douse', 'elbow', 'faint', 'grasp', 'hover',
             'input', 'jaded', 'kiosk', 'laugh', 'mirth', 'noble', 'olive', 'plume', 'quark', 'rifle',
             'siren', 'toxic', 'udder', 'vixen', 'woven', 'xylem', 'yodel', 'zesty', 'acorn', 'blend',
-            'clove', 'drove', 'eject', 'flock', 'gnarl', 'hutch', 'irate', 'jumbo'
+            'clove', 'drove', 'eject', 'flock', 'gnarl', 'hutch', 'irate', 'jumbo',
         ];
 
         $faker = Faker::create('en_US');
         $unique = false;
-        while (!$unique) {
-            $key = $faker->randomElement($englishWords) . '-' . $faker->randomElement($englishWords) . '-' . $faker->randomElement($englishWords);
+        while (! $unique) {
+            $key = $faker->randomElement($englishWords).'-'.$faker->randomElement($englishWords).'-'.$faker->randomElement($englishWords);
 
             // Check if the key exists in the database
-            if (!AppApiKey::where('api_key', $key)->exists()) {
+            if (! AppApiKey::where('api_key', $key)->exists()) {
                 $unique = true;
             }
         }

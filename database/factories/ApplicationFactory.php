@@ -14,16 +14,16 @@ class ApplicationFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'uuid' => hexdec(uniqid()),
             'user_id' => null,
-            'name' => $this->faker->name,
-            'slug' => \Str::slug($this->faker->name),
-            'description' => $this->faker->sentence,
+            'name' => $this->faker->name(),
+            'slug' => \Str::slug($this->faker->name()),
+            'description' => $this->faker->sentence(),
             'logo' => $this->faker->imageUrl(),
-            'website' => $this->faker->url,
+            'website' => $this->faker->url(),
             'is_active' => true,
             'is_public' => rand(0, 1),
             'is_third_party_enabled' => rand(0, 1),

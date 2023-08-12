@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Filament\Resources\ApplicationResource\Pages\AppCredentials;
 use App\Models\AppApiKey;
 use App\Models\Application;
 use App\Models\User;
@@ -11,9 +10,13 @@ use Livewire\Component;
 class CredentialsModalGet extends Component
 {
     public $isOpen = false;
+
     public $applicationId;
+
     public $regenerate = false;
+
     public $application;
+
     public $apiKey;
 
     protected $listeners = ['deleteTriggered' => 'deleteCredentials'];

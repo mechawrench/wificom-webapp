@@ -8,7 +8,7 @@ class OnlineWifiDevices extends Widget
 {
     protected static string $view = 'filament.widgets.online-wifi-devices';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     public function mount(): void
     {

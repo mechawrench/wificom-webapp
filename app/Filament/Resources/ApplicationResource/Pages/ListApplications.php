@@ -34,7 +34,7 @@ class ListApplications extends ListRecords
                 ->label('Name'),
             \Filament\Tables\Columns\TextColumn::make('uuid'),
             \Filament\Tables\Columns\TextColumn::make('api_version')
-                ->label('API Version')
+                ->label('API Version'),
         ];
     }
 }

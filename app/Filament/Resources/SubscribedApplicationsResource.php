@@ -51,7 +51,7 @@ class SubscribedApplicationsResource extends Resource
                     ->label('Subscribe')
                     ->icon('heroicon-o-check')
                     ->action(fn (SubscribedApplication $record): string => $record->delete())
-                    ->visible(fn (SubscribedApplication $record): bool => !$record->exists()),
+                    ->visible(fn (SubscribedApplication $record): bool => ! $record->exists()),
                 Action::make('unsubscribe')
                     ->label('Unsubscribe')
                     ->icon('heroicon-o-trash')
@@ -66,7 +66,7 @@ class SubscribedApplicationsResource extends Resource
                     ->label('Remove Exclusivity')
                     ->icon('heroicon-o-star')
                     ->action(fn (SubscribedApplication $record): string => $record->makeNotExclusive())
-                    ->hidden(fn (SubscribedApplication $record): bool => !$record->is_exclusive),
+                    ->hidden(fn (SubscribedApplication $record): bool => ! $record->is_exclusive),
             ])
             ->bulkActions([
                 // TODO: Add bulk unsubscribe

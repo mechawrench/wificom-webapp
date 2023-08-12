@@ -3,13 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\AppApiKey;
-use App\Models\Application;
 use Livewire\Component;
 
 class CredentialsModalPause extends Component
 {
     public $application;
+
     public $isOpen = false;
+
     public $applicationId;
 
     public function mount($application)

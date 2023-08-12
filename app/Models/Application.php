@@ -17,7 +17,7 @@ class Application extends Model
 
         static::creating(function ($application) {
             $application->uuid = hexdec(uniqid());
-            if (!$application->user_id) {
+            if (! $application->user_id) {
                 $application->user_id = auth()->id();
             }
             $application->slug = \Str::slug($application->name);
