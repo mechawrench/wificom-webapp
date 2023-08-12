@@ -67,7 +67,8 @@ secrets = {
     'mqtt_password' : '{{ $record->user->mqtt_token }}',
     'user_uuid': '{{ $record->user->uuid }}',
     'device_uuid': '{{ $record->uuid }}',
-}`)" class="w-1/4">
+}
+`)" class="w-1/4">
 
                 Download secrets.py
                 </x-filament::button>
@@ -89,6 +90,7 @@ secrets = {
                             'mqtt_password' : '{{ $record->user->mqtt_token }}',<br />
                             'user_uuid': '{{ $record->user->uuid }}',<br />
                             'device_uuid': '{{ $record->uuid }}',<br />
+                            <br/>
                         </div>
                         }
                     </code>
@@ -99,8 +101,6 @@ secrets = {
                     </x-filament::button>
                 </div>
             </div>
-
-
         </div>
 
             <script>
@@ -128,8 +128,9 @@ secrets = {
     'mqtt_username' : '{{ $record->user->name }}',
     'mqtt_password' : '{{ $record->user->mqtt_token }}',
     'user_uuid': '{{ $record->user->uuid }}',
-    'device_uuid': '{{ $record->uuid }}
-}`;
+    'device_uuid': '{{ $record->uuid }}'
+}
+`;
                             secrets = secrets.replace("{'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'}", `{'ssid': '${this.wifi_custom_ssid}', 'password': '${this.wifi_custom_password}'}`);
 
                             const blob = new Blob([secrets], { type: 'text/plain' });
