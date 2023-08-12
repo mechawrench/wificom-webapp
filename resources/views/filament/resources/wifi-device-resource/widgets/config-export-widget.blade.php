@@ -48,19 +48,25 @@
                     Show/Hide secrets.py
                 </x-filament::button>
                 <span class="px-5"></span>
-                <x-filament::button type="submit" onclick="downloadFile(`secrets = {
-# Wifi network variables
-'wireless_networks':[
-    {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
-    # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
-    # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
-],
-# Hosted service variables
-'broker': '{{ config('mqtt-client.connections.default.host')}}',
-'mqtt_username' : '{{ $record->user->name }}',
-'mqtt_password' : '{{ $record->user->mqtt_token }}',
-'user_uuid': '{{ $record->user->uuid }}',
-'device_uuid': '{{ $record->uuid }}',
+                <x-filament::button type="submit" onclick="downloadFile(`
+'''
+This file is where you keep secret settings, keep it safe and keep a backup.
+Please note, you can get an automatically generated version of this on the webapp
+'''
+
+secrets = {
+    # Wifi network variables
+    'wireless_networks':[
+        {'ssid': 'FIRST_SSID', 'password': 'YOURSECUREPASSWORD'},
+        # {'ssid': 'SECOND_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+        # {'ssid': 'THIRD_SSID', 'password': 'YOURSECUREPASSWORD'}, # Example of an additional network
+    ],
+    # Hosted service variables
+    'broker': '{{ config('mqtt-client.connections.default.host')}}',
+    'mqtt_username' : '{{ $record->user->name }}',
+    'mqtt_password' : '{{ $record->user->mqtt_token }}',
+    'user_uuid': '{{ $record->user->uuid }}',
+    'device_uuid': '{{ $record->uuid }}',
 }`)" class="w-1/4">
 
                 Download secrets.py
@@ -141,21 +147,21 @@ secrets = {
 
                 new ClipboardJS('.btn');
 
-                function downloadPythonFile(content, filename) {
-                    const blob = new Blob([content], { type: 'text/x-python' });
-                    const url = window.URL.createObjectURL(blob);
+                function downloadFile(text) {const blob = new Blob([text], {
+                        type: 'text/plain'
+                    });
 
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = filename;
+                    const anchor = document.createElement('a');
+                    anchor.download = 'secrets.py';
+                    anchor.href = URL.createObjectURL(blob);
+                    anchor.style.display = 'none';
 
-                    document.body.appendChild(a);
-                    a.click();
+                    document.body.appendChild(anchor);
 
-                    window.URL.revokeObjectURL(url);
+                    anchor.click();
+
+                    document.body.removeChild(anchor);
                 }
-
             </script>
         </div>
     </x-filament::card>
