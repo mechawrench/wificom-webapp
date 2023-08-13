@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+      - vapor_CD
 
 jobs:
   deploy:
