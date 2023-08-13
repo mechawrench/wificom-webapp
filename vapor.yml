@@ -44,7 +44,7 @@ environments:
     gateway-version: 2
     database: wificom-master-db
     runtime: 'php-8.2:al2'
-    octane: false
+    octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
     domain:
