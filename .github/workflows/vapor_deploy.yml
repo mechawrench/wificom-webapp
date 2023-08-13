@@ -24,6 +24,22 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-dev
 
+      - name: Get latest tag
+        id: tag
+        run: echo ::set-output name=tag::$(git describe --tags --abbrev=0)
+
+      - name: Get current commit SHA
+        id: commit
+        run: echo ::set-output name=commit::$(git rev-parse --short HEAD)
+
+          # Create/append to the GIT_COMMIT_TAG_VERSION file
+      - name: Append to GIT_COMMIT_TAG_VERSION
+        run: |
+          echo "Commit: ${{ steps.commit.outputs.commit }}" >> GIT_COMMIT_TAG_VERSION
+          if [[ ! -z "${{ steps.tag.outputs.tag }}" ]]; then
+            echo "Tag: ${{ steps.tag.outputs.tag }}" >> GIT_COMMIT_TAG_VERSION
+          fi
+
       - name: Require Vapor CLI
         run: composer global require laravel/vapor-cli
 

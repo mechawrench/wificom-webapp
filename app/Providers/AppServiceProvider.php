@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,10 @@ class AppServiceProvider extends ServiceProvider
                 'Applications',
                 ]);
         });
+
+        Filament::registerRenderHook(
+            'sidebar.end',
+            fn (): View => view("components.version"),
+        );
     }
 }

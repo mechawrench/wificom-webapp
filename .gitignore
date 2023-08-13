@@ -19,3 +19,5 @@ rr
 .env.staging
 
 .vapor/
+
+GIT_COMMIT_TAG_VERSION
