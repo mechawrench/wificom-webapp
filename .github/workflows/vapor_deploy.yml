@@ -12,6 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: Deploy to staging (Test Branch)
+        if: github.ref == 'refs/heads/vapor_CD'
+        uses: teamnovu/vapor-action@master
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+        with:
+          args: deploy staging
+
       - name: Deploy to staging
         if: github.ref == 'refs/heads/develop'
         uses: teamnovu/vapor-action@master
