@@ -14,7 +14,6 @@ yarn-error.log
 /.idea
 /.vscode
 
-vapor.yml
 rr
 .rr.yaml
 .env.staging
