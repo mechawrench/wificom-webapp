@@ -1,0 +1,56 @@
+id: 37111
+name: WiFiCom-WebApp
+environments:
+  production:
+    memory: 1024
+    cli-memory: 512
+    separate-vendor: true
+    gateway-version: 2
+    database: wificom-master-db
+    runtime: 'php-8.2:al2'
+    concurrency: 100
+    warm: 20
+    octane: true
+    octane-database-session-persist: true
+    octane-database-session-ttl: 10
+    domain:
+      - wificom.dev
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+      - 'npm ci && npm run build && rm -rf node_modules'
+  staging:
+    memory: 1024
+    cli-memory: 512
+    separate-vendor: true
+    gateway-version: 2
+    database: wificom-master-db
+    runtime: 'php-8.2:al2'
+    concurrency: 50
+    warm: 5
+    octane: true
+    octane-database-session-persist: true
+    octane-database-session-ttl: 10
+    domain:
+      - vapor-staging.wificom.dev
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+      - 'npm ci && npm run build && rm -rf node_modules'
+  qa:
+    memory: 1024
+    cli-memory: 512
+    separate-vendor: true
+    gateway-version: 2
+    database: wificom-master-db
+    runtime: 'php-8.2:al2'
+    octane: true
+    octane-database-session-persist: true
+    octane-database-session-ttl: 10
+    domain:
+      - qa.wificom.dev
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+      - 'npm ci && npm run build && rm -rf node_modules'
+

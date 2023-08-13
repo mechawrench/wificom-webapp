@@ -1,0 +1,54 @@
+name: Deploy to Vapor based on branch
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-dev
+
+      - name: Get latest tag
+        id: tag
+        run: echo ::set-output name=tag::$(git describe --tags --abbrev=0)
+
+      - name: Get current commit SHA
+        id: commit
+        run: echo ::set-output name=commit::$(git rev-parse --short HEAD)
+
+      - name: Append to GIT_COMMIT_TAG_VERSION
+        run: |
+          echo "Commit: ${{ steps.commit.outputs.commit }}" >> GIT_COMMIT_TAG_VERSION
+          if [[ ! -z "${{ steps.tag.outputs.tag }}" ]]; then
+            echo "Tag: ${{ steps.tag.outputs.tag }}" >> GIT_COMMIT_TAG_VERSION
+          fi
+
+      - name: Require Vapor CLI
+        run: composer global require laravel/vapor-cli
+
+      - name: Deploy to qa
+        if: github.ref == 'refs/heads/develop'
+        run: vapor deploy qa --without-waiting
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/main'
+        run: vapor deploy production --without-waiting
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
