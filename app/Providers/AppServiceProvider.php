@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Filament::registerRenderHook(
-            'sidebar.end',
+            'content.end',
             fn (): View => view("components.version"),
         );
     }
