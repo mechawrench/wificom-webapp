@@ -3,9 +3,8 @@ name: Deploy to Vapor based on branch
 on:
   push:
     branches:
-      - develop
-      - main
-
+      - '*'
+      -
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -42,13 +41,13 @@ jobs:
         run: composer global require laravel/vapor-cli
 
       - name: Deploy to qa
-        if: github.ref == 'refs/heads/develop'
-        run: vapor deploy qa --without-waiting
+        if: github.ref != 'refs/heads/main'
+        run: vapor deploy qa
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 
       - name: Deploy to production
         if: github.ref == 'refs/heads/main'
-        run: vapor deploy production --without-waiting
+        run: vapor deploy production
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
