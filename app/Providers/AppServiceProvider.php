@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
                 'Online Battles',
                 'Applications',
                 ]);
-        });
+        })
+        
+        Filament::registerRenderHook(
+            'content.end',
+            fn (): View => view("components.version"),
+        );
     }
 }
