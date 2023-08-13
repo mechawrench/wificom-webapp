@@ -1,4 +1,4 @@
-name: Deploy to Laravel Vapor based on branch
+name: Deploy based on branch
 
 on:
   push:
@@ -11,28 +11,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Deploy to staging (Test Branch)
-        if: github.ref == 'refs/heads/vapor_CD'
-        uses: teamnovu/vapor-action@master
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-dev
+
+      - name: Require Vapor CLI
+        run: composer global require laravel/vapor-cli
+
+      - name: Deploy to qa
+        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/vapor_CD'
+        run: vapor deploy qa --without-waiting
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
-        with:
-          args: deploy qa
-
-      - name: Deploy to staging
-        if: github.ref == 'refs/heads/develop'
-        uses: teamnovu/vapor-action@master
-        env:
-          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
-        with:
-          args: deploy qa
 
       - name: Deploy to production
         if: github.ref == 'refs/heads/main'
-        uses: teamnovu/vapor-action@master
+        run: vapor deploy production --without-waiting
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
-        with:
-          args: deploy production
