@@ -1,11 +1,10 @@
-name: Deploy based on branch
+name: Deploy to Vapor based on branch
 
 on:
   push:
     branches:
       - develop
       - main
-      - vapor_CD
 
 jobs:
   deploy:
@@ -32,7 +31,6 @@ jobs:
         id: commit
         run: echo ::set-output name=commit::$(git rev-parse --short HEAD)
 
-          # Create/append to the GIT_COMMIT_TAG_VERSION file
       - name: Append to GIT_COMMIT_TAG_VERSION
         run: |
           echo "Commit: ${{ steps.commit.outputs.commit }}" >> GIT_COMMIT_TAG_VERSION
@@ -44,7 +42,7 @@ jobs:
         run: composer global require laravel/vapor-cli
 
       - name: Deploy to qa
-        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/vapor_CD'
+        if: github.ref == 'refs/heads/develop'
         run: vapor deploy qa --without-waiting
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
