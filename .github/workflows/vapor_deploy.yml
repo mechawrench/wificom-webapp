@@ -19,7 +19,7 @@ jobs:
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
         with:
-          args: deploy staging
+          args: deploy qa
 
       - name: Deploy to staging
         if: github.ref == 'refs/heads/develop'
@@ -27,7 +27,7 @@ jobs:
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
         with:
-          args: deploy staging
+          args: deploy qa
 
       - name: Deploy to production
         if: github.ref == 'refs/heads/main'
