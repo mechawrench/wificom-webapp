@@ -8,6 +8,7 @@ use App\Models\WifiDevice;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class MqttListener extends Command
 {
@@ -76,6 +77,7 @@ class MqttListener extends Command
 
                     if ($message['application_uuid'] == 0) {
                         $wifiDevice->last_output_web = str($message['output']);
+                        $wifiDevice->last_output_web_updated_at = Carbon::now();
                     }
 
                     // Put in cache the last_output
