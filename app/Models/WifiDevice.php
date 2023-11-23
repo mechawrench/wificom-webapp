@@ -38,6 +38,7 @@ class WifiDevice extends Model
         'last_ping_at' => 'datetime',
         'last_used_at' => 'datetime',
         'last_code_sent_at' => 'datetime',
+        'last_output_web_updated_at' => 'datetime',
     ];
 
     protected $appends = [

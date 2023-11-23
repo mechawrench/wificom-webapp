@@ -26,7 +26,10 @@
                 </div>
             </form>
             <div wire:poll>
-                Recent Output
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-bold">Recent Output</h2>
+                    <p class="text-sm text-gray-500">{{ $record->last_output_web_updated_at ? $record->last_output_web_updated_at->diffForHumans() : '' }}</p>
+                </div>
                 <!-- (Results stay for 10 minutes) -->
                 <div class="bg-gray-300 border-2 border-gray-500 p-4">
                     {{ $record->last_output_web }}

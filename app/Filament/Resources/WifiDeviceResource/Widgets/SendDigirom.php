@@ -53,10 +53,13 @@ class SendDigirom extends Widget
     {
         $validatedData = $this->validate();
 
+        $this->successMessage = 'Sending Digirom...';
+
         // TODO: No longer using pending_digirom, remove this?
         $this->record->pending_digirom = $validatedData['digirom'];
         $this->record->last_code_sent_at = Carbon::now();
         $this->record->last_output_web = "";
+        $this->record->last_output_web_updated_at = null;
         $this->record->save();
 
         // Create ack record in cache for 1 minute
