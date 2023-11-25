@@ -33,12 +33,5 @@ class AppServiceProvider extends ServiceProvider
                 'Applications',
                 ]);
         });
-
-        if (env('APP_ENV') != 'production') {
-            Filament::registerRenderHook(
-                'body.start',
-                fn (): View => view('env-banner'),
-            );
-        }
     }
 }
