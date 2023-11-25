@@ -29,7 +29,7 @@
             @class([
                 'filament-main w-screen flex-1 flex-col gap-y-6 rtl:lg:pl-0',
                 'hidden h-full transition-all' => config('filament.layout.sidebar.is_collapsible_on_desktop'),
-                'flex lg:pl-[var(--sidebar-width)] rtl:lg:pr-[var(--sidebar-width)]' => ! config('filament.layout.sidebar.is_collapsible_on_desktop'),
+                'flex rtl:lg:pr-[var(--sidebar-width)]' => ! config('filament.layout.sidebar.is_collapsible_on_desktop'),
             ])
         >
             <x-filament::topbar :breadcrumbs="$breadcrumbs" />
