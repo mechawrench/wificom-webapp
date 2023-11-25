@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,12 @@ class AppServiceProvider extends ServiceProvider
                 'Applications',
                 ]);
         });
+
+        if (env('APP_ENV') != 'production') {
+            Filament::registerRenderHook(
+                'body.start',
+                fn (): View => view('env-banner'),
+            );
+        }
     }
 }
