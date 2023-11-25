@@ -16,7 +16,7 @@
         "
     @endif
     @class([
-        'filament-sidebar inset-y-0 left-0 z-20 flex h-screen w-[var(--sidebar-width)] flex-col overflow-hidden bg-white transition-all rtl:left-auto rtl:right-0 lg:z-0 lg:border-r rtl:lg:border-l rtl:lg:border-r-0',
+        'filament-sidebar fixed inset-y-0 left-0 z-20 flex h-screen w-[var(--sidebar-width)] flex-col overflow-hidden bg-white transition-all rtl:left-auto rtl:right-0 lg:z-0 lg:border-r rtl:lg:border-l rtl:lg:border-r-0 transform-gpu translate-y-40',
         'lg:translate-x-0' => ! config('filament.layout.sidebar.is_collapsible_on_desktop'),
         'dark:border-gray-700 dark:bg-gray-800' => config('filament.dark_mode'),
     ])
