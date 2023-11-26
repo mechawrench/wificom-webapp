@@ -36,6 +36,15 @@
                     </div>
                 </div>
                 @endif
+                @if($application->is_public == false)
+                    <div class="rounded-md bg-red-200 p-4">
+                        <div class="flex">
+                            <div class="ml-3 flex-grow text-center">
+                                <h3 class="text-sm font-medium text-red-800 font-bold">Private Application</h3>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>

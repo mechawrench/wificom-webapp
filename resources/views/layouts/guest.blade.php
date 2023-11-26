@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    @if (env('APP_ENV') != 'production')
+        @include('env-banner')
+    @endif
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>

@@ -87,8 +87,11 @@
         'bg-gray-100 text-gray-900 filament-body',
         'dark:text-gray-100 dark:bg-gray-900' => config('filament.dark_mode'),
     ])>
+        @if (env('APP_ENV') != 'production')
+            @include('env-banner')
+        @endif
         {{ \Filament\Facades\Filament::renderHook('body.start') }}
-
+        
         {{ $slot }}
 
         @livewireScripts
