@@ -29,9 +29,12 @@ class AppCredentials extends Page
 
     public function refreshData()
     {
-        $this->applications = \App\Models\Application::where('is_public', true)
-            ->where('api_version', 2)
-            ->with('subscribedV2')
-            ->get();
+        $this->applications = \App\Models\Application::where(function ($query) {
+            $query->where('is_public', true)
+                  ->orWhere('user_id', auth()->user()->id);
+        })
+        ->where('api_version', 2)
+        ->with('subscribedV2')
+        ->get();
     }
 }
