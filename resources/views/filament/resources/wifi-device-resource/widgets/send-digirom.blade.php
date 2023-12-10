@@ -32,7 +32,7 @@
                 </div>
                 <!-- (Results stay for 10 minutes) -->
                 <div class="bg-gray-300 border-2 border-gray-500 p-4">
-                    {{ $record->last_output_web }}
+                    {!! nl2br(e($record->last_output_web)) !!}
                 </div>
             </div>
 

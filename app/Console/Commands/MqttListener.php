@@ -70,7 +70,7 @@ class MqttListener extends Command
                     ->where('uuid', $device_uuid)
                     ->first();
 
-                if (strpos($message['output'], 'r:') !== false || strpos($message['output'], 'Error') !== false) {
+                if (strpos($message['output'], 'r:') !== false || strpos($message['output'], 'Error') !== false || strpos($message['output'], '=') !== false) {
                     $this->info('Received message from wifi com module user name: ' . $name);
                     $wifiDevice->last_output = str($message['output']);
                     $wifiDevice->last_valid_output = str($message['output']);
