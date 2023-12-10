@@ -18,16 +18,6 @@
                     </div>
                     <div>
                         <div class="mb-3">
-                            <label for="battle_type" class="block text-sm font-bold mb-2">Device Type</label>
-                            <select wire:model="battle_type" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                <option value="none" selected>Select a Device Type (Digimon/Legendz)</option>
-                                <option value="digimon-penx-battle">Digimon 3-prong battle</option>
-                                <option value="legendz">Legendz battle</option>
-                            </select>
-                            @error('battle_type') <span class="error text-red-300"><br />{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="mb-3">
                             <label for="user_selected_com_host" class="block text-sm font-bold mb-2">WiFiCom Device to
                                 Use</label>
                             <select wire:model="user_selected_com_host" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
