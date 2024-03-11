@@ -1,7 +1,3 @@
-Here is the rewritten code selection:
-
-```
-// Start of Selection
 <?php
 
 use Illuminate\Database\Migrations\Migration;
