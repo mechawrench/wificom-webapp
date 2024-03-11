@@ -27,7 +27,7 @@ class SendDigiromRequestV2 extends FormRequest
             'device_name' => 'required|string',
             'application_uuid' => 'required|string|size:16',
             'comment' => 'nullable|string|max:255',
-            'digirom' => 'required|string',
+            'digirom' => 'required|string|max:700',
         ];
     }
 }
