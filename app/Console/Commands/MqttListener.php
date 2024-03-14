@@ -66,6 +66,13 @@ class MqttListener extends Command
 
                 $user = User::where('name', $name)->where('uuid', $user_uuid)->first();
 
+                // Log user device info from MQTT message
+                if (isset($message_json['version'], $message_json['circuitpython_version'], $message_json['circuitpython_board_id'], $message_json['has_display'])) {
+                    $infoMessage = "User: {$name}, Version: {$message_json['version']}, CircuitPython Version: {$message_json['circuitpython_version']}, Board ID: {$message_json['circuitpython_board_id']}, Has Display: " . ($message_json['has_display'] ? 'Yes' : 'No');
+                    $this->info($infoMessage);
+                    \Log::info($infoMessage);
+                }
+
                 $wifiDevice = WifiDevice::where('user_id', $user->id)
                     ->where('uuid', $device_uuid)
                     ->first();
